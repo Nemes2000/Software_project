@@ -12,7 +12,16 @@ public abstract class Material {
 	
 	abstract protected String GetType();
 	
-	public boolean isSame(Material mat) {
-		return mat.GetType() == this.GetType();
+	public boolean isSame(Material mat1) {
+		return mat1.GetType() == this.GetType();
+	}
+	
+	public int getValue()
+	{
+		return value;
+	}
+	
+	public void setValue(int ujValue) {
+		value = ujValue;
 	}
 }
