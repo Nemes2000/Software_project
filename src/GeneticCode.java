@@ -1,8 +1,8 @@
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GeneticCode {
-	private List<Material> cost;
+	protected ArrayList<Material> cost;
 	
 	public GeneticCode() 
 	{
