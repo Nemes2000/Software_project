@@ -182,7 +182,7 @@ public class Packet
 				m.setValue(maxPerMaterial-matsMaterialNDb);
 				
 				//ezen anyagot hozzáadjuk a kapott zsebhez
-				pac.getMaterials().add(m); ///ez igy jó???????????????????????????????????????
+				pac.addMaterial(m); 
 				
 				//az anyag értékét pedig lecsökkentjük
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialNDb));
@@ -193,7 +193,7 @@ public class Packet
 				System.out.println("Felvette az Nukleotidot.");
 				
 				//hozzáadjuk a kapott zsebhez az anyagot
-				pac.getMaterials().add(mat);
+				pac.addMaterial(mat);
 			}
 		}
 		//amennyiben aminosavról van szó
@@ -209,7 +209,7 @@ public class Packet
 				m.setValue(maxPerMaterial-matsMaterialADb);
 				
 				//ezen anyagot hozzáadjuk a kapott zsebhez
-				pac.getMaterials().add(m); ///ez igy jó???????????????????????????????????????
+				pac.addMaterial(m); 
 				
 				//az anyag értékét pedig lecsökkentjük
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialADb));
@@ -220,7 +220,7 @@ public class Packet
 				System.out.println("Sikeresen felvette az Aminosavat.");
 				
 				//hozzáadjuk a kapott zsebhez az anyagot
-				pac.getMaterials().add(mat);
+				pac.addMaterial(mat);
 			}
 		}
 			
@@ -244,6 +244,13 @@ public class Packet
 	{
 		//System.out.println(">[:Packet].getMaterials()");
 		return materials;
+	}
+	
+	//A paraméterként kapott anyagot hozzáadja a zsebhez
+	//MAterial mat - azon anyag amit a zsebhez adunk
+	public void addMaterial(Material mat)
+	{
+		this.materials.add(mat);
 	}
 	
 }
