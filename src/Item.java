@@ -1,5 +1,8 @@
 
 public class Item {
+	//ezeket a függvényeket overridolják(opcionálisan) a Itemek. 
+	//Alapértelmezetten olyan a visszatérési érték, hogy ne legyen hatása(pl.: alapból nem véd semmi, ezért a canCastEffect true)
+	
 	public boolean canCastEffect() {
 	System.out.println(">[:Item].canCastEffect()");
 	return true;

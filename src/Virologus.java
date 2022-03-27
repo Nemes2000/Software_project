@@ -29,6 +29,7 @@ public class Virologus extends AgensUsable {
 	//ellenõrzi, hogy lehet-e tõle tárgyat lopni, és ha igen, akkor végrehajtja a lopást
 	//Virologus v - a virológus, aki lopni próbál tõle
 	public void stealItemAttempt(Virologus v) {
+		System.out.println(">[:Virologus].stealItemAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
 			if (a.canStealEffect())
@@ -53,7 +54,19 @@ public class Virologus extends AgensUsable {
 	//ellenõrzi, hogy lehet-e tõle anyagot lopni, és ha igen, akkor végrehajtja a lopást
 	//Virologus v - a virológus, aki lopni próbál tõle
 	public void stealMaterialAttempt(Virologus v) {
-		
+		System.out.println(">[:Virologus].stealMaterialAttempt(v)");
+		boolean canSteal = false;
+		for(Agens a : agensOnMe) {
+			if (a.canStealEffect())
+				canSteal = true;
+		}
+		if (canSteal) {
+			Packet p = v.getPacket();
+			ArrayList<Material> ms = packet.getMaterials();
+			for (Material m : ms) {
+				packet.handleMaterialSeparate(m, p);
+			}
+		}
 	}
 	
 	//lecserél egy tárgyat a nála lévõ tárgyak közül
@@ -80,17 +93,73 @@ public class Virologus extends AgensUsable {
 		mit.pickUpEffect(this);
 	}
 	
-	//még nincs kész
+	//felvesz egy tárgyat, ha nincs helye, akkor kicseréli az egyiket
+	//ArrayList<Item> is - a tárgyak listája, amibõl kiválasztja, hogy melyiket szeretné
 	public void pickUpItem(ArrayList<Item> is) {
 		System.out.println(">[:Virologus].pickUpItem(is)");
+		Item mire = is.get(1);
 		if (itemHave.size() >= 3) {
-			changeItem(itemHave.get(1), is.get(1));
+			Item mit = itemHave.get(1);
+			changeItem(mit, mire);
+			field.addItem(mit);
+		} else {
+			addItem(mire);
+		}
+		field.removeItem(mire);
+		
+	}
+	
+	//egy tárgyat otthagy ahol van
+	public void leaveItem() {
+		System.out.println(">[:Virologus].leaveItem()");
+		Item mit = itemHave.get(1);
+		field.addItem(mit);
+		removeItem(mit);
+	}
+	
+	
+	//megtámadják az adott virológust
+	public void uRAttacked(Agens ag, Virologus v) {
+		System.out.println(">[:Virologus].uRAttacked()");
+		//küldõtõlk kitörli az ágenst
+		v.removeAgens(ag);
+		//ellenõrzi, hogy van-e védve valami által
+		boolean isProtected = false;
+		for(Agens a : agensOnMe){
+			if(a.defendEffect()) {
+				isProtected=true;
+			}
+		}
+		//mivel virológus, ezért végigmegy az ágensein kívül az itemein is, hogy azok valamelyike megvédi-e
+		for(Item it : itemHave){
+			if(it.canCastEffect()) {
+				isProtected=true;
+			}
+		}
+		//mivel virológus, ezért végigmegy az itemein, hogy valamelyik visszakeni-e
+		if(!isProtected) {
+			boolean fireBacked = false;
+			for(Item it: itemHave){
+				if(it.fireBackEffect(v,ag)) {
+					fireBacked=true;
+				}
+			}
+			//ha vissza sem keni, akkor hozzáadja a rajt lévõ ágensekhez
+			if(!fireBacked) {
+				addAgensOnMe(ag);
+			}
+			
+			
 		}
 		
 	}
 	
-	//még nincs kész
-	public void leaveItem() {
-		System.out.println(">[:Virologus].leaveItem()");
+	public void touch() {
+		System.out.println(">[:Virologus].touch()");
+		field.touching(this);
+	}
+	
+	public void setField(Field f) {
+		field = f;
 	}
 }
