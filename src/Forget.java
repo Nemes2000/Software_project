@@ -2,12 +2,12 @@
 public class Forget extends Agens{
 
 	@Override
-	public boolean startTurnEffect(Virologus v) {
+	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Forget].startTurnEffect()");
 		//kör elején elfelejtteti minden megtanult kódját
-		v.forgetAll();
+		au.forgetAll();
 		//kiotörli a gazdája listájából magát
-		v.removeAgensOnMe(this);
+		au.removeAgensOnMe(this);
 		//visszatér igazzal, mert tud még mozogni
 		return true;
 	}

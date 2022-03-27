@@ -7,7 +7,7 @@ public class Agens {
 		System.out.println(">[:Agens].canStealEffect()");
 		return false;
 	}
-	public boolean startTurnEffect(Virologus vir) {
+	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Agens].startTurnEffect()");
 		return true;
 	}

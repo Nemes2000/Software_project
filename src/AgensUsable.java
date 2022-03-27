@@ -39,7 +39,7 @@ public abstract class AgensUsable extends Entity{
 		boolean canStep = true;
 		//minden startTurneffect lefut, akkor is, ha már volt stunnoló
 		for(Agens a: agensOnMe){
-			if(!a.startTurnEffect()) {
+			if(!a.startTurnEffect(this)) {
 				canStep=false;
 			}
 		}
@@ -47,7 +47,6 @@ public abstract class AgensUsable extends Entity{
 	}
 	
 	//megtámadják ezt az agensusable-t
-	@Override
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:AgensUsable].uRAttacked()");
 		//küldõtõlk kitörli az ágenst
