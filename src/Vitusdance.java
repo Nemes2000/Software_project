@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Vitusdance extends Agens{
 	
@@ -6,13 +8,20 @@ public class Vitusdance extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Vitusdance].startTurnEffect()");
-		//kör elején háromszor random lépteti
+		//kï¿½r elejï¿½n hï¿½romszor random lï¿½pteti
+		Field all;
+		ArrayList<Field> osszesSzomszed = new ArrayList<Field>();
+		int randomSzomsz;
+		Random rand = new Random();
 		for(int i=0;i<3;i++) {
-			au.move();
+			all = au.getField();
+			osszesSzomszed = all.getNeighbourhood();
+			randomSzomsz = rand.nextInt(osszesSzomszed.size());
+			au.move(osszesSzomszed.get(randomSzomsz));
 		}
-		//kitörli a virológuson lévõ ágensek közül
+		//kitï¿½rli a virolï¿½guson lï¿½vï¿½ ï¿½gensek kï¿½zï¿½l
 		au.removeAgensOnMe(this);
-		//visszatér igazzal, mert még tud utána lépni
+		//visszatï¿½r igazzal, mert mï¿½g tud utï¿½na lï¿½pni
 		return true;
 	}
 	

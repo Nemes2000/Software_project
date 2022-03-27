@@ -1,7 +1,7 @@
 
 public class Agens {
 	
-	//ezeket a függvényeket overridolják(opcionálisan) az ágensek. Alapértelmezetten olyan a visszatérési érték, hogy ne legyen hatása(pl.: nem lehet csak úgy lopni, ezért a canStealEffect false)
+	//ezeket a fï¿½ggvï¿½nyeket overridoljï¿½k(opcionï¿½lisan) az ï¿½gensek. Alapï¿½rtelmezetten olyan a visszatï¿½rï¿½si ï¿½rtï¿½k, hogy ne legyen hatï¿½sa(pl.: nem lehet csak ï¿½gy lopni, ezï¿½rt a canStealEffect false)
 	
 	public boolean canStealEffect() {
 		System.out.println(">[:Agens].canStealEffect()");

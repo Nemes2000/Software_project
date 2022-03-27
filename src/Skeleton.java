@@ -31,32 +31,46 @@ public class Skeleton {
 			}
 		}
 	}
+	
+	// Kódduplikáció miatt jött létre
+		// Egy menü, amiben a felhasználó által választott genetikus kóddal
+		// tér vissza
+	public GeneticCode initGeneticCode() {
+		System.out.println("Válassz egy ágenst:");
+		System.out.println("1.Kabitas");
+		System.out.println("2.Vitustanc");
+		System.out.println("3.Vedelem");
+		System.out.println("4.Felejtes");
+		Scanner myInput = new Scanner(System.in);
+		// a felhasználó választ egy ágenst
+		while (true) {
+			int beolvasott = myInput.nextInt();
+			switch (beolvasott) {
+			case 1:
+				return new StunCode();
+			case 2:
+				return new VitusdanceCode();
+			case 3:
+				return new ProtectionCode();
+			case 4:
+				return new ForgetCode();
+			}
+		}
+	}
 
-	// egy virológus egy mezőről egy másik mezőre való léptetését prezentálja
+	// egy entitás egy mezőről egy másik mezőre való léptetését prezentálja
 	public void move() {
 		Field hely = new Field();
 		Field cel = new Field();
-		Virologus virologus = new Virologus();
-		virologus.setField(hely);
-		virologus.move(cel);
-
-		/*
-		 * Game game= new Game(); game.addEntity(virulogus); game.step();
-		 * 
-		 * kell Skeletonba a Game? létrehozott virologus hozzádása az összes entiti
-		 * listájához itt igy kene de itt a felhasznalo kell valasszon ami eléggé
-		 * funkcionalitás már(vagyis a step()- függvény meg kell legyen írva konzolos
-		 * választással.)
-		 */
+		Entity entity = new Entity();
+		entity.setField(hely); //az entitást a helyére helyezzük
+		entity.move(cel);  //az entitás a cél mezőre lépteti
+		//A Game step() függvénye kezeli a későbbiekben.
 	}
 
-	// egy virológus letapogatja a genetikus kódot a Laborról amin áll
+	// egy virológus megtanul egy genetikus kódot
 	public void geneticCodeLearn() {
 		Virologus virologus = new Virologus();
-		Lab lab = new Lab();
-		virologus.setField(lab);
-		// Ez az egész rész kihagyható ha generálódik a Labornak egy genetikus kód a
-		// konstruktorában.
 		System.out.println("Milyen genetikus kód legyen a laborban?");
 		System.out.println("1.Kabitas");
 		System.out.println("2.Vitustanc");
@@ -64,37 +78,37 @@ public class Skeleton {
 		System.out.println("4.Felejtes");
 		GeneticCode gc;
 		Scanner myInput = new Scanner(System.in);
-		// a felhasználó választ egy ágenst
+		// a felhasználó választ egy genetikus kódot
 		int beolvasott = myInput.nextInt();
 		switch (beolvasott) {
 		case 1:
 			gc = new StunCode();
+			virologus.learnGeneticCode(gc); //a virológus megtanul egy genetikus kódot
 			break;
 		case 2:
 			gc = new VitusdanceCode();
+			virologus.learnGeneticCode(gc);
 			break;
 		case 3:
 			gc = new ProtectionCode();
+			virologus.learnGeneticCode(gc);
 			break;
 		case 4:
 			gc = new ForgetCode();
+			virologus.learnGeneticCode(gc);
 			break;
 		}
-		lab.setGeneticCode(gc); //
-		lab.touching(virologus); // ezt a Game touch() függvénye fogja a későbbiekben kezelni
 	}
 
 	// ágens létrehozása, a felhasználó válassza ki a kívánt ágenst
-	// a kiválasztott ágens genetikus kódja feltételezzük ismert a virológusnak
+	// a kiválasztott ágens genetikus kódját is inicializáljuk
 	public void agensCreate() {
 		Virologus virologus = new Virologus();
 		// genetikus kód inicializálás, felhasználó választ
 		GeneticCode gc = initGeneticCode();
 		Aminosav aminoCost = new Aminosav();
 		aminoCost.setValue(5);
-		gc.setCost(aminoCost); // GenetikusKód generál egy random receptet, de nem állít értéket Aminonak meg
-								// Nukleotidnak.
-		// zseb tartalmának megtöltése
+		//virológus zsebének tartalmának megtöltése
 		Aminosav amino = new Aminosav();
 		amino.setValue(10);
 		Nukleotid nukleo = new Nukleotid();
@@ -102,12 +116,13 @@ public class Skeleton {
 		Packet packet = virologus.getPacket();
 		packet.handleMaterialSeparate(amino, packet);
 		packet.handleMaterialSeparate(nukleo, packet);
-		// genetikus kód legyártása
+		System.out.println("Init vége!");
 		virologus.learnGeneticCode(gc);
+		// genetikus kód legyártása
 		gc.createAgens(virologus); // későbbiekben a Game step() függvénye kezeli.
 	}
 
-	// agens hasznalata magan
+	// ágens használata magán
 	public void agensUseOnMe() {
 		Virologus virologus = new Virologus();
 		System.out.println("Valassz egy agenst amit magadra kennel");
@@ -115,24 +130,25 @@ public class Skeleton {
 		System.out.println("2.Vitustanc");
 		System.out.println("3.Vedelem");
 		System.out.println("4.Felejtes");
-		Scanner myInput = new Scanner( System.in );
+		Scanner myInput = new Scanner(System.in);
 		int beolvasott = myInput.nextInt();
-		switch(beolvasott) {
-			case 1:
-				virologus.uRAttacked(new Stun(), virologus);
-				break;
-			case 2:
-				virologus.uRAttacked(new Vitusdance(), virologus);
-				break;
-			case 3:
-				virologus.uRAttacked(new Protection(), virologus);
-				break;
-			case 4:
-				virologus.uRAttacked(new Forget(), virologus);
-				break;
+		switch (beolvasott) {
+		case 1:
+			virologus.uRAttacked(new Stun(), virologus);  //a kiválasztott ágenst magán használja
+			break;
+		case 2:
+			virologus.uRAttacked(new Vitusdance(), virologus);
+			break;
+		case 3:
+			virologus.uRAttacked(new Protection(), virologus);
+			break;
+		case 4:
+			virologus.uRAttacked(new Forget(), virologus);
+			break;
+		}
 	}
 
-	// agens kenese ellensegen
+	// ágens használata ellenségen
 	public void agensUseEnemy() {
 		Virologus virologus = new Virologus();
 		Virologus ellenseg = new Virologus();
@@ -143,9 +159,15 @@ public class Skeleton {
 		System.out.println("4.Felejtes");
 		Scanner myInput = new Scanner(System.in);
 		int beolvasott = myInput.nextInt();
+		//a virológusunknak inicializáljuk az összes ágenst, hogy bármelyiket tudja használni
+		virologus.addAgensOnMe(new Vitusdance());
+		virologus.addAgensOnMe(new Protection());
+		virologus.addAgensOnMe(new Stun());
+		virologus.addAgensOnMe(new Forget());
+		System.out.println("Init vége!");
 		switch (beolvasott) {
 		case 1:
-			virologus.uRAttacked(new Stun(), ellenseg);
+			virologus.uRAttacked(new Stun(), ellenseg); //az ellenségen használja az ágenst
 			break;
 		case 2:
 			virologus.uRAttacked(new Vitusdance(), ellenseg);
@@ -159,43 +181,57 @@ public class Skeleton {
 		}
 	}
 
-	// anyag gyujtese eset
+	// anyag gyűjtése Storage mezőről
 	public void materialCollect() {
 		Virologus virologus = new Virologus();
 		Storage storage = new Storage();
-		virologus.setField(storage);
-		virologus.touch();
+		virologus.setField(storage); //virológus elhelyezése a Storagen
+		System.out.println("Init vége!");
+		Packet p = virologus.getPacket();
+		virologus.increaseMaterial(p); //virológus felveszi az anyagokat
 	}
 
-	// targy felvetel eset
+	// tárgy felvétele Shelter mezőről
 	public void itemPickUp() {
 		Virologus virologus = new Virologus();
 		Shelter shelter = new Shelter();
-		virologus.setField(shelter);
-		shelter.setItem(new Item());
-		virologus.touch();
+		Item i = new Item();
+		virologus.setField(shelter); //virológust óvóhelyre helyezünk
+		shelter.addItem(i);	//óvóhelyhez tárgyat adunk hozzá
+		System.out.println("Init vége!");
+		virologus.pickUpItem(shelter.getItems()); //virológus felveszi a tárgyat
 	}
 
-	// targy eldobasa eset
+	// tárgy eldobása
 	public void itemDrop() {
 		Virologus virologus = new Virologus();
+		Field f = new Shelter();
+		virologus.setField(f); //egy virológust a mezőre helyezünk
 		Item item = new Item();
 		virologus.setItem(item);
-		virologus.leaveItem(item);
+		virologus.leaveItem(); //a virológus eldobja a tárgyát
 	}
 
-	// anyag lopasa eset
+	// anyag lopása
 	public void stealMaterial() {
 		Virologus virologus = new Virologus();
-		Virologus ellenseg = new Virologus();
-		ellenseg.stealMaterialAttempt(virologus);
+		Virologus ellenseg = new Virologus(); //ettől a virológustól fogunk lopni
+		ellenseg.addAgensOnMe(new Stun()); //ahoz hogy lopni tudjunk Stunnolva kell legyen
+		ellenseg.getPacket().addMaterial(new Nukleotid()); //adunk neki anyagot amit ellopunk
+		
+		System.out.println("Init vége!");
+		ellenseg.stealMaterialAttempt(virologus); //anyag ellopása
 	}
 
-	// targy lopasa eset
+	// tárgy ellopása
 	public void stealItem() {
 		Virologus virologus = new Virologus();
-		Virologus ellenseg = new Virologus();
-		ellenseg.stealItemAttempt(ellenseg);
+		Virologus ellenseg = new Virologus(); //ettől a virológustól fogunk lopni
+		ellenseg.addAgensOnMe(new Stun()); //ahoz hogy lopni tudjunk Stunnolva kell legyen
+		ellenseg.addItem(new Item());//adunk neki tárgyat amit ellopunk
+		System.out.println("Init vége!");
+
+		ellenseg.stealItemAttempt(virologus); //tárgy ellopása
 	}
 
 	// a menupontok kiirasa
@@ -209,34 +245,37 @@ public class Skeleton {
 		System.out.println("7 - Tárgy felvetel");
 		System.out.println("8 - Targy lerakas");
 		System.out.println("9 - Lopas anyag");
-		System.out.println("9 - Lopas targy");
+		System.out.println("10 - Lopas targy");
+		System.out.println("0 - Exit");
 	}
 
-	// megakasztja a program futasat amig egy 0at nem kap.
-	// igy a felhasznalo tanulmanyozhatja a tesztesetet
+	// megakasztja a program futását, amíg egy 0-át nem kap.
+	// így a felhasználó tanulmányozhatja a tesztesetet
 	public void caseMenuPresent() {
-		System.out.println("0-Exit");
-		int beolvasott = 1; // 1re inicializáltuk, hogy lépjen be a ciklusba
-		Scanner myInput = new Scanner(System.in);
+		System.out.println("0 - Back");
+		int beolvasott  = 1; // 1-re inicializáltuk, hogy lépjen be a ciklusba
+		Scanner in = new Scanner(System.in);
 		while (beolvasott != 0) {
-			beolvasott = myInput.nextInt();
+			beolvasott = in.nextInt();
 		}
 	}
-
+	
+	//ezt a függvényt használjuk főmenünek, ami kezeli az eseteket
 	public void start() {
 		boolean megy = true;
-		int beolvasott;
-		try (Scanner myInput = new Scanner(System.in)) { // ha esetleg hibas adatot kapna
-			// Egy végtelen ciklus a menü vezérléshez
+		int beolvasott;  //menüpont választó
+		// ha esetleg hibás adatot kapna
+		 try (Scanner in = new Scanner(System.in)) {
+	    // Egy végtelen ciklus a menü vezérléshez
 			while (megy) {
 				menuPresent();
-				beolvasott = myInput.nextInt();
+				beolvasott = in.nextInt(); //beolvassa a felhasználó által adott adatot
 
 				// menüpont kiválasztása
 				switch (beolvasott) {
 				case 1:
 					move();
-					caseMenuPresent(); // a program 0 inputig ebben az allapotban marad
+					caseMenuPresent(); // a program 0 inputig ebben az állapotban marad
 					break;
 				case 2:
 					geneticCodeLearn();
@@ -255,28 +294,32 @@ public class Skeleton {
 					caseMenuPresent();
 					break;
 				case 6:
-					stealMaterial();
+					materialCollect();
 					caseMenuPresent();
 					break;
 				case 7:
-					stealItem();
+					itemPickUp();
 					caseMenuPresent();
 					break;
 				case 8:
+					itemDrop();
+					caseMenuPresent();
 					break;
 				case 9:
+					stealMaterial();
+					caseMenuPresent();
+					break;
+				case 10:
+					stealItem();
 					caseMenuPresent();
 					break;
 				case 0:
-					megy = false;
-					caseMenuPresent();
+					megy = false; //program leállítása
 					break;
 				default:
 					break;
 				}
 			}
-		} catch (Exception e) {
-			System.out.println("Menüpont kiválasztási hiba");
-		}
+		}catch(Exception e) {System.out.println("Input fail!");}
 	}
 }

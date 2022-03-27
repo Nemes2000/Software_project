@@ -15,6 +15,10 @@ public class Storage extends Field
 		System.out.println(">[:Storage].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
 	}
+	
+	public void setPacket(Packet p) {
+		packet = p;
+	}
 }
 
 

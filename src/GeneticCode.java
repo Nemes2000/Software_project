@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-//A megvalósított genetikus kódok õsosztálya
-//ArrayList<Material> cost - az elkészítéséhez szükséges anyagok
+//A megvalï¿½sï¿½tott genetikus kï¿½dok ï¿½sosztï¿½lya
+//ArrayList<Material> cost - az elkï¿½szï¿½tï¿½sï¿½hez szï¿½ksï¿½ges anyagok
 public abstract class GeneticCode {
 	protected ArrayList<Material> cost;
 	
-	//Konstruktor, melyben a cost-nak adok értékeket
+	//Konstruktor, melyben a cost-nak adok ï¿½rtï¿½keket
 	public GeneticCode() 
 	{
+		cost = new ArrayList<Material>();
 		Random rand = new Random();
-		
-		//maximum két anyagba kerülhet
+		//maximum kï¿½t anyagba kerï¿½lhet
 		int costDb = rand.nextInt(1);
 		for(int i = 0; i <= costDb; i++)
 		{
-			//generál egy random értéket mely szerint aminosavat vagy nukleotidot hozunk létre
+			//generï¿½l egy random ï¿½rtï¿½ket mely szerint aminosavat vagy nukleotidot hozunk lï¿½tre
 			boolean melyiket = rand.nextBoolean();
 			Material mat;
 			if(melyiket)
@@ -26,8 +26,8 @@ public abstract class GeneticCode {
 		}	
 	}
 	
-	//ezen függvényt meg kell valósitania a leszármazottaknak
-	//létrehozza a megfelelõ ágenst, és hozzáadja a paraméterként kapott ágens használónak
-	//AgensUsable au - ezen entity fogja megkapni a létrehozott ágenst
+	//ezen fï¿½ggvï¿½nyt meg kell valï¿½sitania a leszï¿½rmazottaknak
+	//lï¿½trehozza a megfelelï¿½ ï¿½genst, ï¿½s hozzï¿½adja a paramï¿½terkï¿½nt kapott ï¿½gens hasznï¿½lï¿½nak
+	//AgensUsable au - ezen entity fogja megkapni a lï¿½trehozott ï¿½genst
 	public abstract void createAgens(AgensUsable au);
 }

@@ -11,6 +11,7 @@ public class Shelter extends Field
 	}
 	
 	//tölri a tárgyat a shelterről
+	@Override
 	public void removeItem(Item i)
 	{
 		System.out.println(">[:Shelter].removeItem(i)");
@@ -18,15 +19,10 @@ public class Shelter extends Field
 	}
 	
 	//hozzáadja a tárgyat a shelterhez
+	@Override
 	public void addItem(Item i)
 	{
 		System.out.println(">[:Shelter].addItem(i)");
-		items.add(i);
-	}
-	
-	//skeletonhoz?
-	public void setItem(Item i)
-	{
 		items.add(i);
 	}
 	
@@ -35,6 +31,10 @@ public class Shelter extends Field
 	{
 		System.out.println(">[:Shelter].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
+	}
+	
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 }
 

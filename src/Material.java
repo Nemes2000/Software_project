@@ -1,39 +1,34 @@
 import java.util.Random;
 
-
-//Egy anyagtulajdonágaiért felel
-//int value - mennyi az anyag mennyisége
-public abstract class Material
-{	
+//Egy anyagtulajdonï¿½gaiï¿½rt felel
+//int value - mennyi az anyag mennyisï¿½ge
+public abstract class Material {
 	private int value;
-	
-	//Konstruktor, beállítja random az anyag értékét
+
+	// Konstruktor, beï¿½llï¿½tja random az anyag ï¿½rtï¿½kï¿½t
 	public Material()
 	{
 		Random rand = new Random();
 		value = rand.nextInt(5);
 	}
-	
-	//az anyag tipusát adja vissza, csak a leszármazottak valósítják meg
+
+	// az anyag tipusï¿½t adja vissza, csak a leszï¿½rmazottak valï¿½sï¿½tjï¿½k meg
 	abstract protected String getType();
-	
-	//megmondja, hogy a paraméterként kapott anyag hasonló típusú-e mint ezen amyag
-	//Material mat1 - a kapott anyag, ezt hasonlítja össze
-	public boolean isSame(Material mat1) 
-	{
+
+	// megmondja, hogy a paramï¿½terkï¿½nt kapott anyag hasonlï¿½ tï¿½pusï¿½-e mint ezen amyag
+	// Material mat1 - a kapott anyag, ezt hasonlï¿½tja ï¿½ssze
+	public boolean isSame(Material mat1) {
 		return mat1.getType() == this.getType();
 	}
-	
-	//visszadaja az anyag mennyiségét
-	public int getValue()
-	{
+
+	// visszadaja az anyag mennyisï¿½gï¿½t
+	public int getValue() {
 		return value;
 	}
-	
-	//beállítja az anyag mennyiségét
-	//int ujValue - erre az értékre lesz állítva az anyag mennyisége
-	public void setValue(int ujValue) 
-	{
+
+	// beï¿½llï¿½tja az anyag mennyisï¿½gï¿½t
+	// int ujValue - erre az ï¿½rtï¿½kre lesz ï¿½llï¿½tva az anyag mennyisï¿½ge
+	public void setValue(int ujValue) {
 		value = ujValue;
 	}
 }

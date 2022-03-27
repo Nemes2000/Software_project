@@ -2,16 +2,17 @@ import java.util.ArrayList;
 
 public class Field
 {
-	private ArrayList<? super Virologus> entity; // A mezőn található entity-k
+	private ArrayList<Entity> entity; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
 	
 	public Field()
 	{
-		//létrehozza a virológust
+		entity = new ArrayList<Entity>(); //létrehozza a virológust
+		neighbor = new ArrayList<Field>();
 	}
 	
 	//visszaadja a virológusok listáját
-	public ArrayList<? super Virologus> getVirologusok()
+	public ArrayList<Entity> getVirologusok()
 	{
 		System.out.println(">[:Field].getVirologusok()");
 		return entity;
@@ -19,14 +20,14 @@ public class Field
 	}
 	
 	//törli a virológust a listából
-	public void remove(Virologus v)
+	public void remove(Entity v)
 	{
 		System.out.println(">[:Field].remove(v)");
 		entity.remove(v);
 	}
 	
 	//hozzáadja a virológust a listához
-	public void accept(Virologus v)
+	public void accept(Entity v)
 	{
 		System.out.println(">[:Field].accept(v)");
 		entity.add(v);
@@ -52,7 +53,7 @@ public class Field
 		System.out.println(">[:Field].getNeighbourhood()");
 		return neighbor;
 	}
-	
+
 	public void removeItem(Item i) {}
 	public void addItem(Item i) {}
 	

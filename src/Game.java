@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game
 {
 	private Map map;
-	ArrayList<? extends Entity> entity;
+	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	
 	public Game()
