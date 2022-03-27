@@ -106,4 +106,36 @@ public class Virologus extends AgensUsable {
 	public void leaveItem() {
 		System.out.println(">[:Virologus].leaveItem()");
 	}
+	
+	public void uRAttacked(Agens ag, Virologus v) {
+		System.out.println(">[:Virologus].uRAttacked()");
+		//küldõtõlk kitörli az ágenst
+		v.removeAgens(ag);
+		//ellenõrzi, hogy van-e védve valami által
+		boolean isProtected = false;
+		foreach(Agens ag: agensOnMe){
+			if(ag.defendEffect()) {
+				isProtected=true;
+			}
+		}
+		foreach(Item it: itemHave){
+			if(it.canCastEffect()) {
+				isProtected=true;
+			}
+		}
+		if(!isProtected) {
+			boolean fireBacked = false;
+			foreach(Items it: itemHave){
+				if(it.fireBackEffect(v1,ag)) {
+					fireBacked=true;
+				}
+			}
+			if(!fireBacked) {
+				addAgensOnMe(ag);
+			}
+			
+			
+		}
+		
+	}
 }
