@@ -107,6 +107,8 @@ public class Virologus extends AgensUsable {
 		System.out.println(">[:Virologus].leaveItem()");
 	}
 	
+	
+	//megtámadják az adott virológust
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:Virologus].uRAttacked()");
 		//küldõtõlk kitörli az ágenst
@@ -118,11 +120,13 @@ public class Virologus extends AgensUsable {
 				isProtected=true;
 			}
 		}
+		//mivel virológus, ezért végigmegy az ágensein kívül az itemein is, hogy azok valamelyike megvédi-e
 		foreach(Item it: itemHave){
 			if(it.canCastEffect()) {
 				isProtected=true;
 			}
 		}
+		//mivel virológus, ezért végigmegy az itemein, hogy valamelyik visszakeni-e
 		if(!isProtected) {
 			boolean fireBacked = false;
 			foreach(Items it: itemHave){
@@ -130,6 +134,7 @@ public class Virologus extends AgensUsable {
 					fireBacked=true;
 				}
 			}
+			//ha vissza sem keni, akkor hozzáadja a rajt lévõ ágensekhez
 			if(!fireBacked) {
 				addAgensOnMe(ag);
 			}
@@ -137,5 +142,9 @@ public class Virologus extends AgensUsable {
 			
 		}
 		
+	}
+	
+	public void touch() {
+		field.touching(this);
 	}
 }
