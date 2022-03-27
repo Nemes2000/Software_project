@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game
 {
 	private Map map;
-	ArrayList<? extends Entity> entity;
+	ArrayList<Virologus> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	
 	public Game()
@@ -15,7 +15,7 @@ public class Game
 	{
 		System.out.println(">[:Game].initGame()");
 		map = new Map();
-		entity = new ArrayList<Entity>();
+		entity = new ArrayList<Virologus>();
 		allGeneticCode = new ArrayList<GeneticCode>();
 	}
 	

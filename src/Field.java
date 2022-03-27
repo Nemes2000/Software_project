@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Field
 {
-	private ArrayList<? super Virologus> entity; // A mezőn található entity-k
+	private ArrayList<Virologus> entity; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
 	
 	public Field()
@@ -11,7 +11,7 @@ public class Field
 	}
 	
 	//visszaadja a virológusok listáját
-	public ArrayList<? super Virologus> getVirologusok()
+	public ArrayList<Virologus> getVirologusok()
 	{
 		System.out.println(">[:Field].getVirologusok()");
 		return entity;
