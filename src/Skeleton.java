@@ -6,83 +6,105 @@
 import java.util.Scanner;
 
 public class Skeleton {
+	// Kódduplikáció miatt jött létre
+	// Egy menü, amiben a felhasználó által választott ágenssel
+	// tér vissza
+	public Agens initAgens() {
+		System.out.println("Válassz egy ágenst:");
+		System.out.println("1.Kabitas");
+		System.out.println("2.Vitustanc");
+		System.out.println("3.Vedelem");
+		System.out.println("4.Felejtes");
+		Scanner myInput = new Scanner(System.in);
+		// a felhasználó választ egy ágenst
+		while (true) {
+			int beolvasott = myInput.nextInt();
+			switch (beolvasott) {
+			case 1:
+				return new Stun();
+			case 2:
+				return new Vitusdance();
+			case 3:
+				return new Protection();
+			case 4:
+				return new Forget();
+			}
+		}
+	}
+
 	// egy virológus egy mezőről egy másik mezőre való léptetését prezentálja
 	public void move() {
 		Field hely = new Field();
 		Field cel = new Field();
 		Virologus virologus = new Virologus();
 		virologus.setField(hely);
+		virologus.move(cel);
 
 		/*
-		 * kell Skeletonba a Game? Game game= new Game(); létrehozott virologus
-		 * hozzádása az összes entitt listájához game.addEntity(virulogus); //itt igy
-		 * kene de itt a felhasznalo kell valasszon ami eléggé funkcionalitás már(vagyis
-		 * a step()- függvény meg kell legyen írva konzolos választással.) game.step();
+		 * Game game= new Game(); game.addEntity(virulogus); game.step();
+		 * 
+		 * kell Skeletonba a Game? létrehozott virologus hozzádása az összes entiti
+		 * listájához itt igy kene de itt a felhasznalo kell valasszon ami eléggé
+		 * funkcionalitás már(vagyis a step()- függvény meg kell legyen írva konzolos
+		 * választással.)
 		 */
-
-		virologus.move(cel);
 	}
 
-	// egy virologus egy laboron all es megtanulja a rajta levo genetikus kodot
+	// egy virológus letapogatja a genetikus kódot a Laborról amin áll
 	public void geneticCodeLearn() {
 		Virologus virologus = new Virologus();
 		Lab lab = new Lab();
 		virologus.setField(lab);
-		/*
-		 * System.out.println("Valassz egy genetikus kodot amit meg szeretnel tanulni");
-		 * System.out.println("1.Kabitas"); System.out.println("2.Vitustanc");
-		 * System.out.println("3.Vedelem"); System.out.println("4.Felejtes"); Scanner
-		 * myInput = new Scanner( System.in ); int beolvasott = myInput.nextInt();
-		 * switch(beolvasott) { case 1: lab.setGeneticCode(new StunCode()); break; case
-		 * 2: lab.setGeneticCode(new VitusdanceCode()); break; case 3:
-		 * lab.setGeneticCode(new ProtectionCode()); break; case 4:
-		 * lab.setGeneticCode(new StunCode()); break; }
-		 */
-		lab.setGeneticCode(new GeneticCode());
-		virologus.touch();
-	}
-
-	// agens letrehozasa
-	public void agensCreate() {
-		Virologus virologus = new Virologus();
-		Packet p = new Packet();
-		Aminosav amino = new Aminosav();
-		amino.setValue(10);
-		Nukleotid nukle = new Nukleotid();
-		nukle.setValue(10);
-		p.addMaterial(amino);
-		p.addMaterial(nukle);
-
-		System.out.println("Válassz egy ágenst amit el szeretnél keszíteni:");
+		// Ez az egész rész kihagyható ha generálódik a Labornak egy genetikus kód a
+		// konstruktorában.
+		System.out.println("Milyen genetikus kód legyen a laborban?");
 		System.out.println("1.Kabitas");
 		System.out.println("2.Vitustanc");
 		System.out.println("3.Vedelem");
 		System.out.println("4.Felejtes");
+		GeneticCode gc;
 		Scanner myInput = new Scanner(System.in);
+		// a felhasználó választ egy ágenst
 		int beolvasott = myInput.nextInt();
 		switch (beolvasott) {
 		case 1:
-			StunCode codeStun = new StunCode();
-			virologus.learnGenetikCode(codeStun);
-			addAgens(codeStun.createAgens(virologus));
+			gc = new StunCode();
 			break;
 		case 2:
-			VitusdanceCode codeVitus = new VitusdanceCode();
-			virologus.learnGenetikCode(codeVitus);
-			addAgens(codeVitus.createAgens(virologus));
+			gc = new VitusdanceCode();
 			break;
 		case 3:
-			ProtectionCode codeProt = new ProtectionCode();
-			virologus.learnGenetikCode(codeProt);
-			addAgens(codeProt.createAgens(virologus));
+			gc = new ProtectionCode();
 			break;
 		case 4:
-			ForgetCode codeForget = new ForgetCode();
-			virologus.learnGenetikCode(codeForget);
-			addAgens(codeForget.createAgens(virologus));
+			gc = new ForgetCode();
 			break;
-		// NEM JÓ, ÁT KELL GONDOLNI.
 		}
+		lab.setGeneticCode(gc); //
+		lab.touching(virologus); // ezt a Game touch() függvénye fogja a későbbiekben kezelni
+	}
+
+	// ágens létrehozása, a felhasználó válassza ki a kívánt ágenst
+	// a kiválasztott ágens genetikus kódja feltételezzük ismert a virológusnak
+	public void agensCreate() {
+		Virologus virologus = new Virologus();
+		// genetikus kód inicializálás, felhasználó választ
+		GeneticCode gc = initGeneticCode();
+		Aminosav aminoCost = new Aminosav();
+		aminoCost.setValue(5);
+		gc.setCost(aminoCost); // GenetikusKód generál egy random receptet, de nem állít értéket Aminonak meg
+								// Nukleotidnak
+		// zseb tartalmának megtöltése
+		Aminosav amino = new Aminosav();
+		amino.setValue(10);
+		Nukleotid nukleo = new Nukleotid();
+		nukleo.setValue(10);
+		Packet packet = virologus.getPacket();
+		packet.handleMaterialSeparate(amino, packet);
+		packet.handleMaterialSeparate(nukleo, packet);
+		// genetikus kód legyártása
+		virologus.learnGeneticCode(gc);
+		gc.createAgens(virologus); // későbbiekben a Game step() függvénye kezeli.
 	}
 
 	// agens hasznalata magan
@@ -194,8 +216,8 @@ public class Skeleton {
 	// igy a felhasznalo tanulmanyozhatja a tesztesetet
 	public void caseMenuPresent() {
 		System.out.println("0-Exit");
+		int beolvasott = 1; // 1re inicializáltuk, hogy lépjen be a ciklusba
 		Scanner myInput = new Scanner(System.in);
-		int beolvasott;
 		while (beolvasott != 0) {
 			beolvasott = myInput.nextInt();
 		}
@@ -238,16 +260,16 @@ public class Skeleton {
 					break;
 				case 7:
 					stealItem();
-					caseMegy = caseMenuPresent();
+					caseMenuPresent();
 					break;
 				case 8:
 					break;
 				case 9:
-					caseMegy = caseMenuPresent();
+					caseMenuPresent();
 					break;
 				case 0:
 					megy = false;
-					caseMegy = caseMenuPresent();
+					caseMenuPresent();
 					break;
 				default:
 					break;

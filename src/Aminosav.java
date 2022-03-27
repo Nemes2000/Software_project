@@ -1,18 +1,15 @@
-//egy konkrét anyagtípusért felel
-public class Aminosav extends Material
-{
-	//Konstruktor, amit az õsével egyenlõ
-	public Aminosav() 
-	{
+//egy konkrï¿½t anyagtï¿½pusï¿½rt felel
+public class Aminosav extends Material {
+	// Konstruktor, amit az ï¿½sï¿½vel egyenlï¿½
+	public Aminosav() {
 		super();
 	}
 
-	
-	//megvalósított függvény, mely az õsben nincs implementálva
-	//visszaadja a típusát az anyagnak
+	// megvalï¿½sï¿½tott fï¿½ggvï¿½ny, mely az ï¿½sben nincs implementï¿½lva
+	// visszaadja a tï¿½pusï¿½t az anyagnak
 	@Override
 	protected String getType() {
 		return "Aminosav";
 	}
-	
+
 }
