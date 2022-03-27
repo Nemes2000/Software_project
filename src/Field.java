@@ -53,6 +53,9 @@ public class Field
 		return neighbor;
 	}
 	
+	public void removeItem(Item i) {}
+	public void addItem(Item i) {}
+	
 	
 	
 }

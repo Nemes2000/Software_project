@@ -93,18 +93,28 @@ public class Virologus extends AgensUsable {
 		mit.pickUpEffect(this);
 	}
 	
-	//még nincs kész
+	//felvesz egy tárgyat, ha nincs helye, akkor kicseréli az egyiket
+	//ArrayList<Item> is - a tárgyak listája, amibõl kiválasztja, hogy melyiket szeretné
 	public void pickUpItem(ArrayList<Item> is) {
 		System.out.println(">[:Virologus].pickUpItem(is)");
+		Item mire = is.get(1);
 		if (itemHave.size() >= 3) {
-			changeItem(itemHave.get(1), is.get(1));
+			Item mit = itemHave.get(1);
+			changeItem(mit, mire);
+			field.addItem(mit);
+		} else {
+			addItem(mire);
 		}
+		field.removeItem(mire);
 		
 	}
 	
-	//még nincs kész
+	//egy tárgyat otthagy ahol van
 	public void leaveItem() {
 		System.out.println(">[:Virologus].leaveItem()");
+		Item mit = itemHave.get(1);
+		field.addItem(mit);
+		removeItem(mit);
 	}
 	
 	
