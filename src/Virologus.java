@@ -115,13 +115,13 @@ public class Virologus extends AgensUsable {
 		v.removeAgens(ag);
 		//ellenõrzi, hogy van-e védve valami által
 		boolean isProtected = false;
-		foreach(Agens ag: agensOnMe){
-			if(ag.defendEffect()) {
+		for(Agens a : agensOnMe){
+			if(a.defendEffect()) {
 				isProtected=true;
 			}
 		}
 		//mivel virológus, ezért végigmegy az ágensein kívül az itemein is, hogy azok valamelyike megvédi-e
-		foreach(Item it: itemHave){
+		for(Item it : itemHave){
 			if(it.canCastEffect()) {
 				isProtected=true;
 			}
@@ -129,8 +129,8 @@ public class Virologus extends AgensUsable {
 		//mivel virológus, ezért végigmegy az itemein, hogy valamelyik visszakeni-e
 		if(!isProtected) {
 			boolean fireBacked = false;
-			foreach(Items it: itemHave){
-				if(it.fireBackEffect(v1,ag)) {
+			for(Item it: itemHave){
+				if(it.fireBackEffect(v,ag)) {
 					fireBacked=true;
 				}
 			}

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class AgensUsable {
+public abstract class AgensUsable extends Entity{
 	
 	private ArrayList<Agens> agens;
 	protected ArrayList<Agens> agensOnMe;
@@ -38,8 +38,8 @@ public abstract class AgensUsable {
 		System.out.println(">[:AgensUsable].roundDesc()");
 		boolean canStep = true;
 		//minden startTurneffect lefut, akkor is, ha már volt stunnoló
-		foreach(Agens ag: agensOnMe){
-			if(!ag.startTurnEffect) {
+		for(Agens a: agensOnMe){
+			if(!a.startTurnEffect()) {
 				canStep=false;
 			}
 		}
@@ -54,8 +54,8 @@ public abstract class AgensUsable {
 		v.removeAgens(ag);
 		//ellenõrzi, hogy van-e védve valami által
 		boolean isProtected = false;
-		foreach(Agens ag: agensOnMe){
-			if(ag.defendEffect()) {
+		for(Agens a: agensOnMe){
+			if(a.defendEffect()) {
 				isProtected=true;
 			}
 		}
