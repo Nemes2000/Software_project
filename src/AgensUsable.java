@@ -18,5 +18,9 @@ public class AgensUsable {
 	public void uRAttacked(Agens ag, Virologus v) {
 		
 	}
+	
+	public boolean roundDesc() {
+		
+	}
 
 }
