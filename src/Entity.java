@@ -7,7 +7,8 @@ public class Entity {
 		
 		
 	}
-	public void move() {
+	
+	public void move(Field field) {
 		
 	}
 

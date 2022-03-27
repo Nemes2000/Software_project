@@ -8,7 +8,7 @@ public abstract class AgensUsable extends Entity{
 	protected Packet packet;
 	
 	
-	//listákhoz simán hozzáadja és elveszi
+	//listï¿½khoz simï¿½n hozzï¿½adja ï¿½s elveszi
 	public void addAgens(Agens a)
 	{
 		System.out.println("Uj felhasznalhato agens");
@@ -33,11 +33,11 @@ public abstract class AgensUsable extends Entity{
 	
 
 	
-	//ha egy ágens is lebénító, akkor false-ot add vissza
+	//ha egy ï¿½gens is lebï¿½nï¿½tï¿½, akkor false-ot add vissza
 	public boolean roundDesc() {
 		System.out.println(">[:AgensUsable].roundDesc()");
 		boolean canStep = true;
-		//minden startTurneffect lefut, akkor is, ha már volt stunnoló
+		//minden startTurneffect lefut, akkor is, ha mï¿½r volt stunnolï¿½
 		for(Agens a: agensOnMe){
 			if(!a.startTurnEffect(this)) {
 				canStep=false;
@@ -46,12 +46,12 @@ public abstract class AgensUsable extends Entity{
 		return canStep;
 	}
 	
-	//megtámadják ezt az agensusable-t
+	//megtï¿½madjï¿½k ezt az agensusable-t
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:AgensUsable].uRAttacked()");
-		//küldõtõlk kitörli az ágenst
+		//kï¿½ldï¿½tï¿½lk kitï¿½rli az ï¿½genst
 		v.removeAgens(ag);
-		//ellenõrzi, hogy van-e védve valami által
+		//ellenï¿½rzi, hogy van-e vï¿½dve valami ï¿½ltal
 		boolean isProtected = false;
 		for(Agens a: agensOnMe){
 			if(a.defendEffect()) {
@@ -65,27 +65,31 @@ public abstract class AgensUsable extends Entity{
 		
 	}
 	
-	//megtanul egy genetikkódot
+	//megtanul egy genetikkï¿½dot
 	public void learnGeneticCode(GeneticCode gc) {
 		System.out.println(">[:AgensUsable].learnGeneticCode()");
 		geneticCode.add(gc);
 	}
 	
-	//megkérdezi a felhasználót melyik genetik kódot szeretné ágenssé alakítani és azt megcsinálja
+	//megkï¿½rdezi a felhasznï¿½lï¿½t melyik genetik kï¿½dot szeretnï¿½ ï¿½genssï¿½ alakï¿½tani ï¿½s azt megcsinï¿½lja
 	public void createAgens() {
 		System.out.println(">[:AgensUsable].createAgens()");
 		geneticCode.get(1).createAgens(this);
 	}
-	//elfelejt minden genetikkódot
+	//elfelejt minden genetikkï¿½dot
 	public void forgetAll() {
 		System.out.println(">[:AgensUsable].forgetAll()");
-		geneticCode.removeAll();
+		geneticCode.removeAll(geneticCode);
 	}
 	
-	//elvileg ez összevonja a kapott packet-et a sajátjával?
+	//elvileg ez ï¿½sszevonja a kapott packet-et a sajï¿½tjï¿½val?
 	public void increaseMaterial(Packet p) {
 		System.out.println(">[:AgensUsable].increaseMaterial()");
-		
+		p.handleMaterialSeparate(null, p);
+	}
+	
+	public Field getField() {
+		return this.field;
 	}
 
 }

@@ -6,13 +6,15 @@ public class Vitusdance extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Vitusdance].startTurnEffect()");
-		//kör elején háromszor random lépteti
+		//kÃ¶r elejÃ©romszor random lÃ©pteti
+		Field f = au.getField();
+		
 		for(int i=0;i<3;i++) {
-			au.move();
+			au.move(f.getNeighbourhood().size());
 		}
-		//kitörli a virológuson lévõ ágensek közül
+		//kitï¿½rli a virolï¿½guson lï¿½vï¿½ ï¿½gensek kï¿½zï¿½l
 		au.removeAgensOnMe(this);
-		//visszatér igazzal, mert még tud utána lépni
+		//visszatï¿½r igazzal, mert mï¿½g tud utï¿½na lï¿½pni
 		return true;
 	}
 	

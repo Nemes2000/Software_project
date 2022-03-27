@@ -62,7 +62,7 @@ public class Skeleton {
 		System.out.println("2.Vitustanc");
 		System.out.println("3.Vedelem");
 		System.out.println("4.Felejtes");
-		GeneticCode gc;
+		GeneticCode gc = null;
 		Scanner myInput = new Scanner(System.in);
 		// a felhasználó választ egy ágenst
 		int beolvasott = myInput.nextInt();
@@ -89,11 +89,10 @@ public class Skeleton {
 	public void agensCreate() {
 		Virologus virologus = new Virologus();
 		// genetikus kód inicializálás, felhasználó választ
-		GeneticCode gc = initGeneticCode();
+		//GeneticCode gc = initGeneticCode();
 		Aminosav aminoCost = new Aminosav();
 		aminoCost.setValue(5);
-		gc.setCost(aminoCost); // GenetikusKód generál egy random receptet, de nem állít értéket Aminonak meg
-								// Nukleotidnak.
+		
 		// zseb tartalmának megtöltése
 		Aminosav amino = new Aminosav();
 		amino.setValue(10);
@@ -130,6 +129,7 @@ public class Skeleton {
 			case 4:
 				virologus.uRAttacked(new Forget(), virologus);
 				break;
+		}
 	}
 
 	// agens kenese ellensegen
@@ -180,8 +180,8 @@ public class Skeleton {
 	public void itemDrop() {
 		Virologus virologus = new Virologus();
 		Item item = new Item();
-		virologus.setItem(item);
-		virologus.leaveItem(item);
+		virologus.addItem(item);
+		virologus.leaveItem();
 	}
 
 	// anyag lopasa eset
