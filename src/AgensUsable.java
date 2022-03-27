@@ -4,7 +4,7 @@ public class AgensUsable {
 	
 	private ArrayList<Agens> agens;
 	protected ArrayList<Agens> agensOnMe;
-	private Packet packet;
+	protected Packet packet;
 	
 	public void addAgens(Agens a)
 	{

@@ -29,6 +29,7 @@ public class Virologus extends AgensUsable {
 	//ellenõrzi, hogy lehet-e tõle tárgyat lopni, és ha igen, akkor végrehajtja a lopást
 	//Virologus v - a virológus, aki lopni próbál tõle
 	public void stealItemAttempt(Virologus v) {
+		System.out.println(">[:Virologus].stealItemAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
 			if (a.canStealEffect())
@@ -53,7 +54,19 @@ public class Virologus extends AgensUsable {
 	//ellenõrzi, hogy lehet-e tõle anyagot lopni, és ha igen, akkor végrehajtja a lopást
 	//Virologus v - a virológus, aki lopni próbál tõle
 	public void stealMaterialAttempt(Virologus v) {
-		
+		System.out.println(">[:Virologus].stealMaterialAttempt(v)");
+		boolean canSteal = false;
+		for(Agens a : agensOnMe) {
+			if (a.canStealEffect())
+				canSteal = true;
+		}
+		if (canSteal) {
+			Packet p = v.getPacket();
+			ArrayList<Material> ms = packet.getMaterials();
+			for (Material m : ms) {
+				packet.handleMaterialSeparate(m, p);
+			}
+		}
 	}
 	
 	//lecserél egy tárgyat a nála lévõ tárgyak közül
