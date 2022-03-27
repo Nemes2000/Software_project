@@ -10,6 +10,7 @@ public class Stun extends Agens{
 	
 	@Override
 	public boolean startTurnEffect(Virologus vir) {
+		System.out.println(">[:Stun].startTurnEffect()");
 		//csökkenti a hatásidõt, és ha lejárt, akkor kitörli a virológustól
 		if(--effectTime < 0) {
 			vir.removeAgensOnMe(this);
@@ -24,6 +25,7 @@ public class Stun extends Agens{
 	//stunnolt, tehát lehet lopni tõle
 	@Override
 	public boolean canStealEffect() {
+		System.out.println(">[:Stun].canStealEffect()");
 		return true;
 	}
 }

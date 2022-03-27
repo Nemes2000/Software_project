@@ -9,18 +9,20 @@ public class Protection extends Agens{
 	}
 	
 	public boolean startTurnEffect(Virologus vir) {
+		System.out.println(">[:Protection].startTurnEffect()");
 		//csökkenti a hatásidõt, és ha lejárt, akkor kitörli a virológustól
 		if(--effectTime < 0) {
 			vir.removeAgensOnMe(this);
 		}
 		
-		
+		//még tud mozogni ezert igazzal ter vissza
 		return true;
 	}
 	
 	//ha megtámadják akkor megvédi mindenképp a viselõjét
 	@Override
 	public boolean defendEffect() {
+		System.out.println(">[:Protection].defendEffect()");
 		return true;
 	}
 	

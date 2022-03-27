@@ -5,6 +5,7 @@ public class Vitusdance extends Agens{
 	
 	@Override
 	public boolean startTurnEffect(Virologus v) {
+		System.out.println(">[:Vitusdance].startTurnEffect()");
 		//kör elején háromszor random lépteti
 		for(int i=0;i<3;i++) {
 			v.move();

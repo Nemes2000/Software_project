@@ -145,6 +145,7 @@ public class Virologus extends AgensUsable {
 	}
 	
 	public void touch() {
+		System.out.println(">[:Virologus].touch()");
 		field.touching(this);
 	}
 }
