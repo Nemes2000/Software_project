@@ -1,12 +1,12 @@
 
-/*Skeleton osztály a program futása során felmerülő különböző szituációkat készít elő és indít el
- *Az események több osztály több függvényéből épűlnek fel
- *Ezek közötti kapcsolatot vizsgálja  
+/*Skeleton osztĂˇly a program futĂˇsa sorĂˇn felmerĂĽlĹ‘ kĂĽlĂ¶nbĂ¶zĹ‘ szituĂˇciĂłkat kĂ©szĂ­t elĹ‘ Ă©s indĂ­t el
+ *Az esemĂ©nyek tĂ¶bb osztĂˇly tĂ¶bb fĂĽggvĂ©nyĂ©bĹ‘l Ă©pĹ±lnek fel
+ *Ezek kĂ¶zĂ¶tti kapcsolatot vizsgĂˇlja  
  */
 import java.util.Scanner;
 
 public class Skeleton {
-	// egy virológus egy mezőről egy másik mezőre való léptetését prezentálja
+	// egy virolĂłgus egy mezĹ‘rĹ‘l egy mĂˇsik mezĹ‘re valĂł lĂ©ptetĂ©sĂ©t prezentĂˇlja
 	public void move() {
 		Field hely = new Field();
 		Field cel = new Field();
@@ -14,10 +14,10 @@ public class Skeleton {
 		virologus.setField(hely);
 
 		/*
-		 * kell Skeletonba a Game? Game game= new Game(); létrehozott virologus
-		 * hozzádása az összes entitt listájához game.addEntity(virulogus); //itt igy
-		 * kene de itt a felhasznalo kell valasszon ami eléggé funkcionalitás már(vagyis
-		 * a step()- függvény meg kell legyen írva konzolos választással.) game.step();
+		 * kell Skeletonba a Game? Game game= new Game(); lĂ©trehozott virologus
+		 * hozzĂˇdĂˇsa az Ă¶sszes entitt listĂˇjĂˇhoz game.addEntity(virulogus); //itt igy
+		 * kene de itt a felhasznalo kell valasszon ami elĂ©ggĂ© funkcionalitĂˇs mĂˇr(vagyis
+		 * a step()- fĂĽggvĂ©ny meg kell legyen Ă­rva konzolos vĂˇlasztĂˇssal.) game.step();
 		 */
 
 		virologus.move(cel);
@@ -53,7 +53,7 @@ public class Skeleton {
 		p.addMaterial(amino);
 		p.addMaterial(nukle);
 
-		System.out.println("Válassz egy ágenst amit el szeretnél keszíteni:");
+		System.out.println("VĂˇlassz egy Ăˇgenst amit el szeretnĂ©l keszĂ­teni:");
 		System.out.println("1.Kabitas");
 		System.out.println("2.Vitustanc");
 		System.out.println("3.Vedelem");
@@ -63,25 +63,25 @@ public class Skeleton {
 		switch (beolvasott) {
 		case 1:
 			StunCode codeStun = new StunCode();
-			virologus.learnGenetikCode(codeStun);
+			virologus.learnGeneticCode(codeStun);
 			addAgens(codeStun.createAgens(virologus));
 			break;
 		case 2:
 			VitusdanceCode codeVitus = new VitusdanceCode();
-			virologus.learnGenetikCode(codeVitus);
+			virologus.learnGeneticCode(codeVitus);
 			addAgens(codeVitus.createAgens(virologus));
 			break;
 		case 3:
 			ProtectionCode codeProt = new ProtectionCode();
-			virologus.learnGenetikCode(codeProt);
+			virologus.learnGeneticCode(codeProt);
 			addAgens(codeProt.createAgens(virologus));
 			break;
 		case 4:
 			ForgetCode codeForget = new ForgetCode();
-			virologus.learnGenetikCode(codeForget);
+			virologus.learnGeneticCode(codeForget);
 			addAgens(codeForget.createAgens(virologus));
 			break;
-		// NEM JÓ, ÁT KELL GONDOLNI.
+		// NEM JĂ“, Ă�T KELL GONDOLNI.
 		}
 	}
 
@@ -108,6 +108,7 @@ public class Skeleton {
 			case 4:
 				virologus.uRAttacked(new Forget(), virologus);
 				break;
+		}
 	}
 
 	// agens kenese ellensegen
@@ -158,8 +159,8 @@ public class Skeleton {
 	public void itemDrop() {
 		Virologus virologus = new Virologus();
 		Item item = new Item();
-		virologus.setItem(item);
-		virologus.leaveItem(item);
+		virologus.addItem(item);
+		virologus.leaveItem();
 	}
 
 	// anyag lopasa eset
@@ -184,7 +185,7 @@ public class Skeleton {
 		System.out.println("4 - Agens hasznalata magan");
 		System.out.println("5 - Agens hasznalata mason");
 		System.out.println("6 - Anyag gyujtes");
-		System.out.println("7 - Tárgy felvetel");
+		System.out.println("7 - TĂˇrgy felvetel");
 		System.out.println("8 - Targy lerakas");
 		System.out.println("9 - Lopas anyag");
 		System.out.println("9 - Lopas targy");
@@ -205,12 +206,12 @@ public class Skeleton {
 		boolean megy = true;
 		int beolvasott;
 		try (Scanner myInput = new Scanner(System.in)) { // ha esetleg hibas adatot kapna
-			// Egy végtelen ciklus a menü vezérléshez
+			// Egy vĂ©gtelen ciklus a menĂĽ vezĂ©rlĂ©shez
 			while (megy) {
 				menuPresent();
 				beolvasott = myInput.nextInt();
 
-				// menüpont kiválasztása
+				// menĂĽpont kivĂˇlasztĂˇsa
 				switch (beolvasott) {
 				case 1:
 					move();
@@ -254,7 +255,7 @@ public class Skeleton {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Menüpont kiválasztási hiba");
+			System.out.println("MenĂĽpont kivĂˇlasztĂˇsi hiba");
 		}
 	}
 }

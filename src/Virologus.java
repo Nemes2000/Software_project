@@ -158,4 +158,8 @@ public class Virologus extends AgensUsable {
 		System.out.println(">[:Virologus].touch()");
 		field.touching(this);
 	}
+	
+	public void setField(Field f) {
+		field = f;
+	}
 }
