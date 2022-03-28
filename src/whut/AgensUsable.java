@@ -1,3 +1,4 @@
+package whut;
 import java.util.ArrayList;
 
 public abstract class AgensUsable extends Entity{

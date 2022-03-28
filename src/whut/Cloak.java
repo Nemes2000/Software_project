@@ -1,6 +1,7 @@
+package whut;
 
 public class Cloak extends Item{
-	//visszaadja, hogy sikerült-e kivédeni az ágenskenést
+	//visszaadja, hogy sikerï¿½lt-e kivï¿½deni az ï¿½genskenï¿½st
 	public boolean canCastEffect() {
 		System.out.println(">[:Cloak].canCastEffect()");
 		return false;

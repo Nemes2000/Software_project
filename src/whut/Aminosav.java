@@ -1,3 +1,4 @@
+package whut;
 //egy konkr�t anyagt�pus�rt felel
 public class Aminosav extends Material {
 	// Konstruktor, amit az �s�vel egyenl�

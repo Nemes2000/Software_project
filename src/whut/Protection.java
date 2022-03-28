@@ -1,25 +1,26 @@
+package whut;
 
 public class Protection extends Agens{
 	
 	private int effectTime;
 	
-	//beállítja a kezdeti hatásidõt
+	//beï¿½llï¿½tja a kezdeti hatï¿½sidï¿½t
 	public Protection() {
 		effectTime = 3;
 	}
 	
 	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Protection].startTurnEffect()");
-		//csökkenti a hatásidõt, és ha lejárt, akkor kitörli a virológustól
+		//csï¿½kkenti a hatï¿½sidï¿½t, ï¿½s ha lejï¿½rt, akkor kitï¿½rli a virolï¿½gustï¿½l
 		if(--effectTime < 0) {
 			au.removeAgensOnMe(this);
 		}
 		
-		//még tud mozogni ezert igazzal ter vissza
+		//mï¿½g tud mozogni ezert igazzal ter vissza
 		return true;
 	}
 	
-	//ha megtámadják akkor megvédi mindenképp a viselõjét
+	//ha megtï¿½madjï¿½k akkor megvï¿½di mindenkï¿½pp a viselï¿½jï¿½t
 	@Override
 	public boolean defendEffect() {
 		System.out.println(">[:Protection].defendEffect()");

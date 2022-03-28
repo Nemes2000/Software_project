@@ -1,3 +1,4 @@
+package whut;
 import java.util.Random;
 
 //Egy anyagtulajdon�gai�rt felel

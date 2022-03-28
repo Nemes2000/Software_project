@@ -1,14 +1,15 @@
+package whut;
 
 public class Forget extends Agens{
 
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Forget].startTurnEffect()");
-		//kör elején elfelejtteti minden megtanult kódját
+		//kï¿½r elejï¿½n elfelejtteti minden megtanult kï¿½djï¿½t
 		au.forgetAll();
-		//kiotörli a gazdája listájából magát
+		//kiotï¿½rli a gazdï¿½ja listï¿½jï¿½bï¿½l magï¿½t
 		au.removeAgensOnMe(this);
-		//visszatér igazzal, mert tud még mozogni
+		//visszatï¿½r igazzal, mert tud mï¿½g mozogni
 		return true;
 	}
 }

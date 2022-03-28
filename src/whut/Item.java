@@ -1,7 +1,8 @@
+package whut;
 
 public class Item {
-	//ezeket a függvényeket overridolják(opcionálisan) a Itemek. 
-	//Alapértelmezetten olyan a visszatérési érték, hogy ne legyen hatása(pl.: alapból nem véd semmi, ezért a canCastEffect true)
+	//ezeket a fï¿½ggvï¿½nyeket overridoljï¿½k(opcionï¿½lisan) a Itemek. 
+	//Alapï¿½rtelmezetten olyan a visszatï¿½rï¿½si ï¿½rtï¿½k, hogy ne legyen hatï¿½sa(pl.: alapbï¿½l nem vï¿½d semmi, ezï¿½rt a canCastEffect true)
 	
 	public boolean canCastEffect() {
 	System.out.println(">[:Item].canCastEffect()");

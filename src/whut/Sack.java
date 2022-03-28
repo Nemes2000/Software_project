@@ -1,17 +1,18 @@
+package whut;
 
 public class Sack extends Item{
 	private int increase;
 	
-	//megnöveli a virológus anyag tárolókapacitását
-	//Virologus v - a virológus, akin kifejti hatását
+	//megnï¿½veli a virolï¿½gus anyag tï¿½rolï¿½kapacitï¿½sï¿½t
+	//Virologus v - a virolï¿½gus, akin kifejti hatï¿½sï¿½t
 	public void pickUpEffect(Virologus v) {
 		System.out.println(">[:Sack].pickUpEffect(v)");
 		Packet p = v.getPacket();
 		p.changeMaxMaterial(increase);
 	}
 	
-	//csökkenti a virológus anyag tárolókapacitását
-	//Virologus v - a virológus, akin kifejti hatását
+	//csï¿½kkenti a virolï¿½gus anyag tï¿½rolï¿½kapacitï¿½sï¿½t
+	//Virologus v - a virolï¿½gus, akin kifejti hatï¿½sï¿½t
 	public void lostEffect(Virologus v) {
 		System.out.println(">[:Sack].lostEffect(v)");
 		Packet p = v.getPacket();

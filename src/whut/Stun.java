@@ -1,9 +1,10 @@
+package whut;
 
 public class Stun extends Agens{
 
 	private int effectTime;
 	
-	//beállítja a kezdõ hatásértéket
+	//beï¿½llï¿½tja a kezdï¿½ hatï¿½sï¿½rtï¿½ket
 	public Stun() {
 		effectTime = 3;
 	}
@@ -11,18 +12,18 @@ public class Stun extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		System.out.println(">[:Stun].startTurnEffect()");
-		//csökkenti a hatásidõt, és ha lejárt, akkor kitörli a virológustól
+		//csï¿½kkenti a hatï¿½sidï¿½t, ï¿½s ha lejï¿½rt, akkor kitï¿½rli a virolï¿½gustï¿½l
 		if(--effectTime < 0) {
 			au.removeAgensOnMe(this);
-			//ha lejárt akkor már tud mozogni
+			//ha lejï¿½rt akkor mï¿½r tud mozogni
 			return true;
 		}
 		
-		//ha nem járt le még akkor nem tud mozogni
+		//ha nem jï¿½rt le mï¿½g akkor nem tud mozogni
 		return false;
 	}
 	
-	//stunnolt, tehát lehet lopni tõle
+	//stunnolt, tehï¿½t lehet lopni tï¿½le
 	@Override
 	public boolean canStealEffect() {
 		System.out.println(">[:Stun].canStealEffect()");

@@ -1,3 +1,4 @@
+package whut;
 
 public class Lab extends Field
 {

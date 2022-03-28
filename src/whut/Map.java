@@ -1,3 +1,4 @@
+package whut;
 import java.util.ArrayList;
 
 public class Map
