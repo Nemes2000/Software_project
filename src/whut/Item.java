@@ -17,8 +17,12 @@ public class Item {
 		System.out.println(">[:Item].lostEffect(v)");
 	}
 
-	public boolean fireBackEffect(Virologus tamado, Agens a) {
+	public boolean fireBackEffect(Virologus tamado, Virologus hasznalo, Agens a) {
 		System.out.println(">[:Item].fireBackEffect(tamado, a)");
+		return false;
+	}
+	
+	public boolean killEffect(Virologus v) {
 		return false;
 	}
 }

@@ -6,18 +6,16 @@ public class Virologus extends AgensUsable {
 
 	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
-	public void stealItem(ArrayList<Virologus> vs) {
+	public void stealItem(Virologus v) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		Virologus v = vs.get(0);
 		v.stealItemAttempt(this);
 		
 	}
 	
 	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
-	public void stealMaterial(ArrayList<Virologus> vs) {
+	public void stealMaterial(Virologus v) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		Virologus v = vs.get(0);
 		v.stealMaterialAttempt(this);
 		
 	}
@@ -66,9 +64,9 @@ public class Virologus extends AgensUsable {
 		}
 		if (canSteal) {
 			Packet p = v.getPacket();
-			ArrayList<Material> ms = packet.getMaterials();
+			ArrayList<Material> ms = p.getMaterials();
 			for (Material m : ms) {
-				packet.handleMaterialSeparate(m, p);
+				p.handleMaterialSeparate(m, p);
 			}
 		}
 	}
@@ -87,6 +85,7 @@ public class Virologus extends AgensUsable {
 	//Item mit - a t�rgy, amit elveszt
 	public void removeItem(Item mit) {
 		System.out.println(">[:Virologus].removeItem(mit)");
+		itemHave.remove(mit);
 		mit.lostEffect(this);
 	}
 	
@@ -146,7 +145,7 @@ public class Virologus extends AgensUsable {
 		if(!isProtected) {
 			boolean fireBacked = false;
 			for(Item it: itemHave){
-				if(it.fireBackEffect(v,ag)) {
+				if(it.fireBackEffect(v, this, ag)) {
 					fireBacked=true;
 				}
 			}
@@ -154,10 +153,20 @@ public class Virologus extends AgensUsable {
 			if(!fireBacked) {
 				addAgensOnMe(ag);
 			}
-			
-			
 		}
-		
+	}
+	
+	public void kill(Virologus v) {
+		boolean killed = false;
+		for (Item i : itemHave) {
+			killed = i.killEffect(v);
+			if (killed) break;
+		}
+	}
+	
+	public void die() {
+		field.remove(this);
+		game.removePlayer();
 	}
 	
 	public void touch() {
