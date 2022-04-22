@@ -1,10 +1,12 @@
 package whut;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public static class Runnable {
 	enum Actions{
 		ATTACK;
 		CREATEAGENS;
+		STEALITEM;
 	}
 	
 	private Virologus currentVirologus;
@@ -25,7 +27,7 @@ public static class Runnable {
 		
 	}
 	
-	//eclipse fos retgg
+	
 	
 	public void getInput(ArrayList<Actions> as, Virologus v) {
 		String[] readed
@@ -38,7 +40,7 @@ public static class Runnable {
 			case "touch":
 				break;
 			case "stealitem":
-				if (readed.length == 3) {
+				if (readed.length == 3 && as.contains(STEALITEM)) {
 					stealitem(readed);     //prototipus
 				}
 				else System.out.print("Hibás paraméterezés");
@@ -98,7 +100,7 @@ public static class Runnable {
 		
 	}
 	
-	
+	//init commands
 	public void start() {
 		String[] readed;
 		boolean megy = true;
@@ -142,7 +144,7 @@ public static class Runnable {
 			
 			case "startgame":
 				if (readed.length == 1) {
-					
+					game.run();
 				}
 				else System.out.print("Hibás paraméterezés");
 				break;
