@@ -92,7 +92,16 @@ public abstract class AgensUsable extends Entity{
 	@Override
 	public void step() {
 		if(roundDesc()) {
-			CommandInput.GetInput(Actions[]);
+			CommandInput.GetInput(Actions[],this);
+		}
+	}
+	//ennek kene egy parameter, hogy melyik agenst hasznalja
+	public void useAgens(Virologus v) {
+		
+	}
+	public void destroyMaterial(Packet p) {
+		for(Agens a : agensOnMe) {
+			a.destroyEffect(p);
 		}
 	}
 
