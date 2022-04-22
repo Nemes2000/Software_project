@@ -22,7 +22,7 @@ public static class Runnable {
 		
 	}
 	
-	//eclipse fos
+	//eclipse fos retgg
 	
 	public void getInput(ArrayList<Actions> as, Virologus v) {
 		String[] readed
