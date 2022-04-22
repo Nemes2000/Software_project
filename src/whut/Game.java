@@ -1,6 +1,8 @@
 package whut;
 import java.util.ArrayList;
 
+import javax.swing.text.html.parser.Entity;
+
 public class Game
 {
 	private Map map;
@@ -25,6 +27,7 @@ public class Game
 		System.out.println(">[:Game].oneRound()");
 		for(int i = 0;i<entity.size();++i)
 		{
+			Runnable.setCurrentVirologus(entity.get(i));
 			entity.get(i).step();
 		}
 	}

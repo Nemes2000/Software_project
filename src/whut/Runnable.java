@@ -7,7 +7,10 @@ public static class Runnable {
 		CREATEAGENS;
 	}
 	
-	
+	private Virologus currentVirologus;
+	public void setCurrentVirologus(Virologus v) {
+		currentVirologus=v;
+	}
 	
 	private Game game;
 	
