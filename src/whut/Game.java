@@ -9,6 +9,14 @@ public class Game
 	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	
+	
+	public Entity getEntityAt(int index) {
+		if(index<entity.size()&&index>=0) {
+			return entity.get(index);
+		}
+		return null;
+	}
+	
 	public Game()
 	{
 		initGame();

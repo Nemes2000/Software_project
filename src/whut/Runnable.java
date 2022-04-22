@@ -7,6 +7,7 @@ public static class Runnable {
 		ATTACK;
 		CREATEAGENS;
 		STEALITEM;
+		//...
 	}
 	
 	private Virologus currentVirologus;
@@ -24,13 +25,25 @@ public static class Runnable {
 	}
 	
 	public void stealitem(String[] input) {
-		
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='v') {
+				Iteam it = game.getEntityAt(number).getItem(input[2]);
+				if(it!=null) {
+					currentVirologus.stealItem(game.getEntityAt(number),it);
+				}
+				
+			}
+		}catch(NumberFormatException ex) {
+			
+		}
 	}
 	
 	
 	
 	public void getInput(ArrayList<Actions> as) {
-		String[] readed
+		String[] readed;
 		boolean megy = true;
 		while(megy) {
 			readed = read();

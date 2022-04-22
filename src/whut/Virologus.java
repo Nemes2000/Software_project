@@ -26,6 +26,9 @@ public class Virologus extends AgensUsable {
 	public Item getItem() {
 		return itemHave.get(0);
 	}
+	public Item getItem(String s) {
+		//itt az itemtõl típuslekérdezés kell de nincs jobb otletem
+	}
 	
 	//ellenï¿½rzi, hogy lehet-e tï¿½le tï¿½rgyat lopni, ï¿½s ha igen, akkor vï¿½grehajtja a lopï¿½st
 	//Virologus v - a virolï¿½gus, aki lopni prï¿½bï¿½l tï¿½le
