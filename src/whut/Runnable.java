@@ -29,7 +29,7 @@ public static class Runnable {
 	
 	
 	
-	public void getInput(ArrayList<Actions> as, Virologus v) {
+	public void getInput(ArrayList<Actions> as) {
 		String[] readed
 		boolean megy = true;
 		while(megy) {
