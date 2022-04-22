@@ -38,6 +38,12 @@ public class Game
 				System.out.println("A játékos megtanulta az összes genetikai kódot, és megnyerte a játékot.");
 		}
 	}
+	public void run() {
+		boolean megy = true;
+		while(megy) {
+			oneRound();
+		}
+	}
 	
 }
 

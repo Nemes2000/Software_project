@@ -1,7 +1,14 @@
 package whut;
 import java.util.Scanner;
 
-public class Runnable {
+public static class Runnable {
+	enum Actions{
+		ATTACK;
+		CREATEAGENS;
+	}
+	
+	
+	
 	private Game game;
 	
 	public String[] read() {
@@ -15,12 +22,13 @@ public class Runnable {
 		
 	}
 	
-	public void start() {
-		String[] readed;
+	
+	public void getInput(ArrayList<Actions> as, Virologus v) {
+		String[] readed
 		boolean megy = true;
 		while(megy) {
 			readed = read();
-			switch(readed[0]) {				//readed tömb 0.eleme maga a parancs
+			switch(readed[0]) {
 			case "info":						
 				break;
 			case "touch":
@@ -47,21 +55,6 @@ public class Runnable {
 				}
 				else System.out.print("Hibás paraméterezés");
 				break;
-			case "createfield":
-				if (readed.length == 1 || readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "setneighbour":
-				if (readed.length == 3) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "add":
-				if (readed.length == 3) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
 			case "move":
 				if (readed.length == 2) {
 				}
@@ -73,22 +66,6 @@ public class Runnable {
 				else System.out.print("Hibás paraméterezés");
 				break;
 			case "collect":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "load":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "save":
-				if (readed.length == 2) {
-					
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "create":
 				if (readed.length == 2) {
 				}
 				else System.out.print("Hibás paraméterezés");
@@ -109,6 +86,56 @@ public class Runnable {
 				}
 				else System.out.print("Hibás paraméterezés");
 				break;
+			}
+			
+			
+		}
+		
+		
+	}
+	
+	
+	public void start() {
+		String[] readed;
+		boolean megy = true;
+		while(megy) {
+			readed = read();
+			switch(readed[0]) {				//readed tömb 0.eleme maga a parancs
+			
+			
+			case "createfield":
+				if (readed.length == 1 || readed.length == 2) {
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			case "setneighbour":
+				if (readed.length == 3) {
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			case "add":
+				if (readed.length == 3) {
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			
+			case "load":
+				if (readed.length == 2) {
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			case "save":
+				if (readed.length == 2) {
+					
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			case "create":
+				if (readed.length == 2) {
+				}
+				else System.out.print("Hibás paraméterezés");
+				break;
+			
 			case "startgame":
 				if (readed.length == 1) {
 					
@@ -133,6 +160,7 @@ public class Runnable {
 				megy=false;
 				break;
 			}
+			
 		}
 	}
 }
