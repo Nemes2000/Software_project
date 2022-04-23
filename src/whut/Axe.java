@@ -10,4 +10,11 @@ public class Axe extends Item{
 		return true;
 	}
 
+	@Override
+	public boolean Check(String s) {
+		if(s.equals("Axe")) {
+			return true;
+		}
+		return false;
+	}
 }

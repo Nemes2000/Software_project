@@ -6,32 +6,24 @@ import whut.Runnable.Actions;
 
 public class Field
 {
-	private ArrayList<Entity> entity; // A mezőn található entity-k
+	private ArrayList<Virologus> vir; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
-	protected ArrayList<Actions> actionsHere;
+
 	
 	public Field()
 	{
-		entity = new ArrayList<Entity>(); //létrehozza a virológust
+		vir = new ArrayList<Virologus>(); //létrehozza a virológust
 		neighbor = new ArrayList<Field>();
-		loadactions();
+		
 	}
 	
-	public void loadactions()
-	{
-		actionsHere = new ArrayList<Actions>();
-		actionsHere.add(TOUCH);
-		actionsHere.add(CREATEAGENS);
-		actionsHere.add(STEALITEM);
-		actionsHere.add(STEALMATERIAL);
-		actionsHere.add(KILL);
-	}
+
 	
 	//visszaadja a virológusok listáját
-	public ArrayList<Entity> getVirologusok()
+	public ArrayList<Virologus> getVirologusok()
 	{
 		System.out.println(">[:Field].getVirologusok()");
-		return entity;
+		return vir;
 		
 	}
 	
@@ -39,14 +31,14 @@ public class Field
 	public void remove(Entity v)
 	{
 		System.out.println(">[:Field].remove(v)");
-		entity.remove(v);
+		vir.remove(v);
 	}
 	
 	//hozzáadja a virológust a listához
 	public void accept(Entity v)
 	{
 		System.out.println(">[:Field].accept(v)");
-		entity.add(v);
+		vir.add(v);
 	}
 	
 	//mező érintés esetén hívódik meg
@@ -54,7 +46,7 @@ public class Field
 	{
 		System.out.println(">[:Field].touching(v)");
 		//felsorolja a lehetséges cselekvéseket a felhasználónak
-		Runnable.getInput(actionsHere);
+		Runnable.getInput();
 	}
 	
 	//szomszédos mezők beállítása

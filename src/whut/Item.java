@@ -25,4 +25,8 @@ public class Item {
 	public boolean killEffect(Virologus v) {
 		return false;
 	}
+	
+	public boolean Check(String s) {
+		return false;
+	}
 }

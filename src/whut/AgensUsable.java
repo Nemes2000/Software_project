@@ -1,5 +1,6 @@
 package whut;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public abstract class AgensUsable extends Entity{
 	
@@ -81,7 +82,7 @@ public abstract class AgensUsable extends Entity{
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
 		System.out.println(">[:AgensUsable].forgetAll()");
-		geneticCode.removeAll();
+		geneticCode.removeAll(geneticCode);
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?

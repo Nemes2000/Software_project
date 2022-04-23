@@ -4,11 +4,16 @@ import java.util.ArrayList;
 public class Virologus extends AgensUsable {
 	private ArrayList<Item> itemHave = new ArrayList<Item>();
 
+	public int getItemNumber() {
+		return itemHave.size();
+	}
+	
+	
 	//megkï¿½rdezi a felhasznï¿½lï¿½t, hogy melyik virolï¿½gustï¿½l szeretne tï¿½rgyat lopni, ï¿½s megprï¿½bï¿½l lopni
 	//ArrayList<Virologus> vs - a virolï¿½gusok listï¿½ja, amelybï¿½l vï¿½laszthat a felhasznï¿½lï¿½
-	public void stealItem(Virologus v) {
+	public void stealItem(Virologus v,Item item) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		v.stealItemAttempt(this);
+		v.stealItemAttempt(this,item);
 		
 	}
 	
@@ -21,16 +26,19 @@ public class Virologus extends AgensUsable {
 	}
 	
 	//megkï¿½rdezi a felhasznï¿½lï¿½tï¿½l, hogy melyik tï¿½rgyat akarja cseï¿½lni, ï¿½s azt adja vissza
-	public Item getItem() {
-		return itemHave.get(0);
+	public Item getItem(String getThis) {
+		for(Item i : itemHave) {
+			if(i.Check(getThis)) {
+				return i;
+			}
+		}
+		return null;
 	}
-	public Item getItem(String s) {
-		//itt az itemtõl típuslekérdezés kell de nincs jobb otletem
-	}
+
 	
 	//ellenï¿½rzi, hogy lehet-e tï¿½le tï¿½rgyat lopni, ï¿½s ha igen, akkor vï¿½grehajtja a lopï¿½st
 	//Virologus v - a virolï¿½gus, aki lopni prï¿½bï¿½l tï¿½le
-	public void stealItemAttempt(Virologus v) {
+	public void stealItemAttempt(Virologus v,Item mit) {
 		System.out.println(">[:Virologus].stealItemAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
@@ -38,14 +46,10 @@ public class Virologus extends AgensUsable {
 				canSteal = true;
 		}
 		if (canSteal) {
-			if (itemHave.size() >= 3) {
-				Item mit = itemHave.get(0);
-				Item mire = v.getItem();
-				changeItem(mire, mit);
-				v.changeItem(mit, mire);
+			if (v.getItemNumber() == 3) {				
+				removeItem(0);
 				
 			} else {
-				Item mit = itemHave.get(0);
 				removeItem(mit);
 				v.addItem(mit);
 			}
