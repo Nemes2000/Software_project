@@ -2,8 +2,6 @@ package whut;
 
 import java.util.ArrayList;
 
-import whut.Runnable.Actions;
-
 public class EvilLab
 {
 	
@@ -18,7 +16,7 @@ public class EvilLab
 		//felajánlja a játékosnak a lehetséges cselekvéseket
 		Beardance br = new Beardance();
 		v.uRAttacked(br,null); //megtámadjad egy medvetáncal
-		Runnable.getInput();
+		MyRunnable.getInput();
 	}
 	
 }

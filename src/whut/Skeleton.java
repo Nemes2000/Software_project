@@ -1,9 +1,9 @@
-package whut;
+/*package whut;
 
 /*Skeleton osztály a program futása során felmerülő különböző szituációkat készít elő és indít el
  *Az események több osztály több függvényéből épűlnek fel
  *Ezek közötti kapcsolatot vizsgálja  
- */
+ 
 import java.util.Scanner;
 
 public class Skeleton {
@@ -232,7 +232,7 @@ public class Skeleton {
 		ellenseg.addItem(new Item());//adunk neki tárgyat amit ellopunk
 		System.out.println("Init vége!");
 
-		ellenseg.stealItemAttempt(virologus); //tárgy ellopása
+		//ellenseg.stealItemAttempt(virologus); //tárgy ellopása
 	}
 
 	// a menupontok kiirasa
@@ -323,4 +323,4 @@ public class Skeleton {
 			}
 		}catch(Exception e) {System.out.println("Input fail!");}
 	}
-}
+}*/

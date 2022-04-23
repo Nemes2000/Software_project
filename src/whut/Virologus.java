@@ -170,7 +170,7 @@ public class Virologus extends AgensUsable {
 	
 	public void die() {
 		field.remove(this);
-		game.removePlayer();
+		MyRunnable.getGame().removePlayer(this);
 	}
 	
 	public void touch() {
@@ -187,12 +187,13 @@ public class Virologus extends AgensUsable {
 		itemHave.add(i);
 	}
 	
-	@Override
+	
 	public void step() {
+		MyRunnable.setCurrentVirologus(this);
 		if(roundDesc()) {
-			CommandInput.GetInput(Actions[]= {MOVE,AGENSCREATE,TOUCH},this);
+			MyRunnable.getInput();
 		}
-		Runnable.getGame().endGame(geneticCode);
+		MyRunnable.getGame().endGame(geneticCode);
 	}
 	
 }

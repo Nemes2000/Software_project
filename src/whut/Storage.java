@@ -2,7 +2,6 @@ package whut;
 
 import java.util.ArrayList;
 
-import whut.Runnable.Actions;
 
 public class Storage extends Field
 {
@@ -12,19 +11,6 @@ public class Storage extends Field
 	{
 		super();
 		packet = new Packet();
-		loadactions();
-	}
-	
-	@Override
-	public void loadactions()
-	{
-		actionsHere = new ArrayList<Actions>();
-		actionsHere.add(TOUCH);
-		actionsHere.add(CREATEAGENS);
-		actionsHere.add(STEALITEM);
-		actionsHere.add(STEALMATERIAL);
-		actionsHere.add(KILL);
-		actionsHere.add(COLLECT);
 	}
 	
 	
@@ -33,7 +19,7 @@ public class Storage extends Field
 	{
 		System.out.println(">[:Storage].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
-		Runnable.getInput(actionsHere);
+		MyRunnable.getInput();
 	}
 	
 	public void setPacket(Packet p) {

@@ -2,7 +2,7 @@ package whut;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class AgensUsable extends Entity{
+public class AgensUsable extends Entity{
 	
 	private ArrayList<Agens> agens = new ArrayList<Agens>();
 	protected ArrayList<Agens> agensOnMe = new ArrayList<Agens>();

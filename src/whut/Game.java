@@ -1,14 +1,12 @@
 package whut;
 import java.util.ArrayList;
 
-import javax.swing.text.html.parser.Entity;
-
 public class Game
 {
 	private Map map;
-	ArrayList<Entity> entity;
+	ArrayList<? extends Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
-	
+	ArrayList<? extends AgensUsable> au;
 	
 	public Entity getEntityAt(int index) {
 		if(index<entity.size()&&index>=0) {
@@ -26,16 +24,17 @@ public class Game
 	{
 		System.out.println(">[:Game].initGame()");
 		map = new Map();
-		entity = new ArrayList<Entity>();
+		entity = new ArrayList<Virologus>();
 		allGeneticCode = new ArrayList<GeneticCode>();
 	}
 	
 	public void oneRound() // egy kör, összes entity
 	{
 		System.out.println(">[:Game].oneRound()");
-		for(int i = 0; i < entity.size();++i)
+		for(int i = 0;i<entity.size();++i)
 		{
-			entity.get(i).step();
+			  entity.get(i).step();
+		
 		}
 	}
 	
@@ -53,6 +52,10 @@ public class Game
 		while(megy) {
 			oneRound();
 		}
+	}
+	
+	public void removePlayer(Virologus v) {
+		entity.remove(v);
 	}
 	
 }

@@ -1,8 +1,6 @@
 package whut;
 import java.util.ArrayList;
 
-//import whut.Runnable.Actions;
-import whut.Runnable.Actions;
 
 public class Field
 {
@@ -14,7 +12,6 @@ public class Field
 	{
 		au = new ArrayList<AgensUsable>(); //létrehozza a virológust
 		neighbor = new ArrayList<Field>();
-		
 	}
 	
 
@@ -47,7 +44,7 @@ public class Field
 	{
 		System.out.println(">[:Field].touching(v)");
 		//felsorolja a lehetséges cselekvéseket a felhasználónak
-		Runnable.getInput();
+		MyRunnable.getInput();
 	}
 	
 	//szomszédos mezők beállítása

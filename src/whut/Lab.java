@@ -2,8 +2,6 @@ package whut;
 
 import java.util.ArrayList;
 
-import whut.Runnable.Actions;
-
 public class Lab extends Field
 {
 	private GeneticCode geneticCode;
@@ -11,26 +9,12 @@ public class Lab extends Field
 	public Lab()
 	{
 		super();
-		loadactions();
 	}
 	
 	public Lab(GeneticCode g)
 	{
 		super();
 		geneticCode = g;
-		loadactions();
-	}
-	
-	@Override
-	public void loadactions()
-	{
-		actionsHere = new ArrayList<Actions>();
-		actionsHere.add(TOUCH);
-		actionsHere.add(CREATEAGENS);
-		actionsHere.add(STEALITEM);
-		actionsHere.add(STEALMATERIAL);
-		actionsHere.add(KILL);
-		actionsHere.add(LEARN);
 	}
 	
 	
@@ -39,7 +23,7 @@ public class Lab extends Field
 	{
 		System.out.println(">[:Lab].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
-		Runnable.getInput(actionsHere);
+		MyRunnable.getInput();
 	}
 	
 	public void setGeneticCode(GeneticCode g) //genetikus kód beállítása
