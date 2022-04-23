@@ -35,8 +35,12 @@ public abstract class GeneticCode {
 	public ArrayList<Material> getCost(){
 		return cost;
 	}
+
 	
 	public boolean Check(String s) {
 		return false;
 	}
+
+
+
 }

@@ -42,8 +42,9 @@ public class MyRunnable {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
+				if(v==null)return;
 				Item it = v.getItem(input[2]);
-				if(it!=null) {
+				if(it!=null && currentVirologus.getField().getNeighbourhood().contains(v)) {
 					currentVirologus.stealItem(v, it);
 				}
 				
@@ -59,8 +60,9 @@ public class MyRunnable {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
-				Material mat = v.getMaterial(input[2]);
-				if(mat != null) {
+				if(v==null)return;
+				Material mat = v.getPacket().getMaterial(input[2]);
+				if(mat != null && currentVirologus.getField().getNeighbourhood().contains(v)) {
 					currentVirologus.stealMaterial(v, mat);
 				}
 				
@@ -70,23 +72,24 @@ public class MyRunnable {
 		}
 	}
 	
-	public static void useAgens(String[] input) {
+	public static void useagens(String[] input) {
 		String sub = input[1].substring(1);
 		try {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
-				Agens a = v.getMaterial(input[2]);
-				if(mat != null) {
-					currentVirologus.stealMaterial(v, mat);
+				Agens a = currentVirologus.getAgens(input[2]);
+				if(v!=null && a != null && currentVirologus.getField().getNeighbourhood().contains(v)) {
+					currentVirologus.useAgens(v,a);
 				}
 				
-			}
+			}	
 		}catch(NumberFormatException ex) {
 			System.out.print("Bad parameter!");
 		}
 	}
 	
+
 	public static void moveTo(String hova) {
 		try {
 			boolean moved = false;
@@ -102,8 +105,43 @@ public class MyRunnable {
 			}
 			if(!moved)
 				System.out.println("Bad parameter!");
-		} catch(NumberFormatException e)
+		} catch(NumberFormatException e) {
 			System.out.println("Bad parameter!");
+		}
+}
+
+	public static void kill(String[] input) {
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='v') {
+				Virologus v = (Virologus)(game.getEntityAt(number-1));
+				if(v!=null&&currentVirologus.getField().getNeighbourhood().contains(v)) {
+					currentVirologus.kill(v);
+				}
+			}
+			
+		}catch(NumberFormatException ex) {
+			
+		}
+	}
+	
+	public static void learn(String[] input) {
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='g') {
+				GeneticCode g = game.getGeneticCodeAt(number-1);
+				if(g!=null&&currentVirologus.getField().codeHere(g)) {
+					currentVirologus.learnGeneticCode(g);
+				}
+			}
+			
+			
+			
+		}catch(NumberFormatException ex){
+			
+		}
 	}
 	
 	public static void getInfo() {
@@ -226,23 +264,26 @@ public class MyRunnable {
 					break;
 				case "stealmaterial":
 					if (readed.length == 3) {
-						
+						stealmaterial(readed);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;
 				case "kill":
 					if (readed.length == 2) {
+						kill(readed);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;
 				case "useagens":
 					if (readed.length == 3) {
+						useagens(readed);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;
 				
 				case "learn":
 					if (readed.length == 2) {
+						learn(readed);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;

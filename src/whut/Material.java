@@ -33,4 +33,10 @@ public abstract class Material {
 		System.out.println(">[:Material].setValue(ujValue) :" + ujValue);
 		value = ujValue;
 	}
+	
+	
+	//a getType a belsõhöz kell ez a kulsó elereshez
+	public boolean Check(String s) {
+		return false;
+	}
 }

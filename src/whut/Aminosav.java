@@ -12,5 +12,12 @@ public class Aminosav extends Material {
 	protected String getType() {
 		return "Aminosav";
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("amino")) {
+			return true;
+		}
+		return false;
+	}
 
 }

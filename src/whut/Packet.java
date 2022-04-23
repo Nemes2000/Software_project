@@ -275,6 +275,14 @@ public class Packet
 		//System.out.println(">[:Packet].getMaterials()");
 		return materials;
 	}
+	public Material getMaterial(String s) {
+		for(Material m: materials) {
+			if(m.Check(s)) {
+				return m;
+			}
+		}
+		return null;
+	}
 	
 	//A parameterkent kapott anyagot hozzaadja a zsebhez
 	//MAterial mat - azon anyag amit a zsebhez adunk
