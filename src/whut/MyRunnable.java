@@ -136,9 +136,6 @@ public class MyRunnable {
 					currentVirologus.learnGeneticCode(g);
 				}
 			}
-			
-			
-			
 		}catch(NumberFormatException ex){
 			
 		}
