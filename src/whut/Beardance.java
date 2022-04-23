@@ -1,22 +1,25 @@
 package whut;
 
+import java.util.ArrayList;
+
 public class Beardance extends Agens{
 	@Override
-	public boolean startTurnEffect(Virologus v) {
+	public boolean startTurnEffect(AgensUsable v) {
 		infectAll(v.getField().getVirologusok(),v);
-		v.move(v.getField().getNeighborhood().get(0));
+		v.move(v.getField().getNeighbourhood().get(0));
 		infectAll(v.getField().getVirologusok(),v);		
 		return false;
 	}
 	@Override
 	public void destroyEffect(Packet p) {
-		p.handlePossiblyLostMaterial(p.getMaxMaterial());
+		p.handlePossibleLostMaterial(p.getMaxMaterial());
 	}
-	@Override
-	public void infectAll(ArrayList<Virologus> vs, Virologus v) {
-		for(Virologus vc : vs) {
+	
+	public void infectAll(ArrayList<AgensUsable> vs, AgensUsable a) {
+		for(AgensUsable vc : vs) {
 			Beardance b = new Beardance();
-			v.addAgens(b);
+			a.addAgens(b);
+			Virologus v = (Virologus)a;
 			vc.uRAttacked(b,v);		
 		}
 	}

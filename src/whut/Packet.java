@@ -283,5 +283,9 @@ public class Packet
 		System.out.println(">[:Packet].addMatarial");
 		this.materials.add(mat);
 	}
+	
+	public int getMaxMaterial() {
+		return maxPerMaterial;
+	}
 
 }

@@ -49,7 +49,7 @@ public abstract class AgensUsable extends Entity{
 		return canStep;
 	}
 	
-	//megt�madj�k ezt az agensusable-t
+	//megt�madjuk ezt az agensusable-t
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:AgensUsable].uRAttacked()");
 		//k�ld�t�lk kit�rli az �genst

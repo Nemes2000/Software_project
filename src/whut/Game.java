@@ -33,9 +33,8 @@ public class Game
 	public void oneRound() // egy kör, összes entity
 	{
 		System.out.println(">[:Game].oneRound()");
-		for(int i = 0;i<entity.size();++i)
+		for(int i = 0; i < entity.size();++i)
 		{
-			Runnable.setCurrentVirologus(entity.get(i));
 			entity.get(i).step();
 		}
 	}

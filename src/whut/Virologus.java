@@ -47,7 +47,7 @@ public class Virologus extends AgensUsable {
 		}
 		if (canSteal) {
 			if (v.getItemNumber() == 3) {				
-				removeItem(0);
+				removeItem(lll);
 				
 			} else {
 				removeItem(mit);

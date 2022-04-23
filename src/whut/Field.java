@@ -6,13 +6,13 @@ import whut.Runnable.Actions;
 
 public class Field
 {
-	private ArrayList<Virologus> vir; // A mezőn található entity-k
+	private ArrayList<AgensUsable> au; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
 
 	
 	public Field()
 	{
-		vir = new ArrayList<Virologus>(); //létrehozza a virológust
+		au = new ArrayList<AgensUsable>(); //létrehozza a virológust
 		neighbor = new ArrayList<Field>();
 		
 	}
@@ -20,10 +20,10 @@ public class Field
 
 	
 	//visszaadja a virológusok listáját
-	public ArrayList<Virologus> getVirologusok()
+	public ArrayList<AgensUsable> getVirologusok()
 	{
 		System.out.println(">[:Field].getVirologusok()");
-		return vir;
+		return au;
 		
 	}
 	
@@ -31,14 +31,15 @@ public class Field
 	public void remove(Entity v)
 	{
 		System.out.println(">[:Field].remove(v)");
-		vir.remove(v);
+		au.remove(v);
 	}
 	
 	//hozzáadja a virológust a listához
 	public void accept(Entity v)
 	{
 		System.out.println(">[:Field].accept(v)");
-		vir.add(v);
+		AgensUsable ag = (AgensUsable)v;
+		au.add(ag);
 	}
 	
 	//mező érintés esetén hívódik meg

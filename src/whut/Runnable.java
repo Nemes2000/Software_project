@@ -207,12 +207,12 @@ public class Runnable2 {
 		start();
 	}
 	
-	private Virologus currentVirologus;
+	private static Virologus currentVirologus;
 	public static void setCurrentVirologus(Virologus v) {
 		currentVirologus=v;
 	}
 	
-	private Game game;
+	private static Game game;
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {
@@ -240,7 +240,7 @@ public class Runnable2 {
 	
 	
 	
-	public static void getInput(ArrayList<Actions> as) {
+	public static void getInput() {
 		String[] readed;
 		boolean megy = true;
 		while(megy) {
