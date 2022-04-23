@@ -19,9 +19,9 @@ public class Virologus extends AgensUsable {
 	
 	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
-	public void stealMaterial(Virologus v) {
+	public void stealMaterial(Virologus v, Material mit) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		v.stealMaterialAttempt(this);
+		v.stealMaterialAttempt(this,mit);
 		
 	}
 	
@@ -58,7 +58,7 @@ public class Virologus extends AgensUsable {
 	
 	//ellen�rzi, hogy lehet-e t�le anyagot lopni, �s ha igen, akkor v�grehajtja a lop�st
 	//Virologus v - a virol�gus, aki lopni pr�b�l t�le
-	public void stealMaterialAttempt(Virologus v) {
+	public void stealMaterialAttempt(Virologus v,Material mit) {
 		System.out.println(">[:Virologus].stealMaterialAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
@@ -66,11 +66,11 @@ public class Virologus extends AgensUsable {
 				canSteal = true;
 		}
 		if (canSteal) {
-			Packet p = v.getPacket();
-			ArrayList<Material> ms = p.getMaterials();
-			for (Material m : ms) {
-				p.handleMaterialSeparate(m, p);
-			}
+			Packet p = v.getPacket();		
+			p.handleMaterialSeparate(mit, p);
+			ArrayList<Material> temp = new ArrayList<Material>();
+			temp.add(mit);
+			getPacket().decreaseMaterial(temp);
 		}
 	}
 	
@@ -194,5 +194,7 @@ public class Virologus extends AgensUsable {
 		}
 		MyRunnable.getGame().endGame(geneticCode);
 	}
+	
+	
 	
 }

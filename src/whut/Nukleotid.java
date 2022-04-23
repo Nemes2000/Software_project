@@ -15,5 +15,13 @@ public class Nukleotid extends Material
 		System.out.println(">[:Nukleotid].getType()");
 		return "Nukleotid";
 	}
+	
+	
+	public boolean Check(String s) {
+		if(s.equals("nukleotid")) {
+			return true;
+		}
+		return false;
+	}
 
 }

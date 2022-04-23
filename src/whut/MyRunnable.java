@@ -58,7 +58,7 @@ public class MyRunnable {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
-				Material mat = v.getMaterial(input[2]);
+				Material mat = v.getPacket().getMaterial(input[2]);
 				if(mat != null) {
 					currentVirologus.stealMaterial(v, mat);
 				}
