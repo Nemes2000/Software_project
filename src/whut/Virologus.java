@@ -198,5 +198,4 @@ public class Virologus extends AgensUsable {
 	public ArrayList<Item> getItemHave(){
 		return itemHave;
 	}
-		
 }

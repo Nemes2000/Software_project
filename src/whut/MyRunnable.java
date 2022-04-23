@@ -120,7 +120,6 @@ public class MyRunnable {
 					currentVirologus.kill(v);
 				}
 			}
-			
 		}catch(NumberFormatException ex) {
 			
 		}
@@ -136,7 +135,7 @@ public class MyRunnable {
 					currentVirologus.learnGeneticCode(g);
 				}
 			}
-		}catch(NumberFormatException ex){
+		} catch (NumberFormatException ex) {
 			
 		}
 	}
