@@ -1,15 +1,30 @@
 package whut;
 import java.util.ArrayList;
 
+//import whut.Runnable.Actions;
+import whut.Runnable.Actions;
+
 public class Field
 {
 	private ArrayList<Entity> entity; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
+	protected ArrayList<Actions> actionsHere;
 	
 	public Field()
 	{
 		entity = new ArrayList<Entity>(); //létrehozza a virológust
 		neighbor = new ArrayList<Field>();
+		loadactions();
+	}
+	
+	public void loadactions()
+	{
+		actionsHere = new ArrayList<Actions>();
+		actionsHere.add(TOUCH);
+		actionsHere.add(CREATEAGENS);
+		actionsHere.add(STEALITEM);
+		actionsHere.add(STEALMATERIAL);
+		actionsHere.add(KILL);
 	}
 	
 	//visszaadja a virológusok listáját
@@ -39,6 +54,7 @@ public class Field
 	{
 		System.out.println(">[:Field].touching(v)");
 		//felsorolja a lehetséges cselekvéseket a felhasználónak
+		Runnable.getInput(actionsHere);
 	}
 	
 	//szomszédos mezők beállítása

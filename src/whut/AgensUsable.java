@@ -6,7 +6,7 @@ public abstract class AgensUsable extends Entity{
 	private ArrayList<Agens> agens = new ArrayList<Agens>();
 	protected ArrayList<Agens> agensOnMe = new ArrayList<Agens>();
 	protected ArrayList<GeneticCode> geneticCode = new ArrayList<GeneticCode>();
-	protected Packet packet = new Packet();
+	protected Packet materialPacket = new Packet();
 	
 	
 	//list�khoz sim�n hozz�adja �s elveszi
@@ -30,7 +30,7 @@ public abstract class AgensUsable extends Entity{
 	
 	public Packet getPacket() {
 		System.out.println(">[:AgensUsable].getPacket()");
-		return packet;
+		return materialPacket;
 	}
 	
 
@@ -81,13 +81,23 @@ public abstract class AgensUsable extends Entity{
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
 		System.out.println(">[:AgensUsable].forgetAll()");
-		//geneticCode.removeAll();
+		geneticCode.removeAll();
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
 	public void increaseMaterial(Packet p) {
 		System.out.println(">[:AgensUsable].increaseMaterial()");
 		
+	}
+	
+	//ennek kene egy parameter, hogy melyik agenst hasznalja
+	public void useAgens(Virologus v) {
+		
+	}
+	public void destroyMaterial(Packet p) {
+		for(Agens a : agensOnMe) {
+			a.destroyEffect(p);
+		}
 	}
 
 }

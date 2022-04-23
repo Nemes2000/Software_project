@@ -4,18 +4,16 @@ import java.util.ArrayList;
 
 import whut.Runnable.Actions;
 
-public class Storage extends Field
+public class EvilLab
 {
-	private Packet packet;
+	protected ArrayList<Actions> actionsHere;
 	
-	public Storage()
+	public EvilLab()
 	{
 		super();
-		packet = new Packet();
 		loadactions();
 	}
 	
-	@Override
 	public void loadactions()
 	{
 		actionsHere = new ArrayList<Actions>();
@@ -24,21 +22,15 @@ public class Storage extends Field
 		actionsHere.add(STEALITEM);
 		actionsHere.add(STEALMATERIAL);
 		actionsHere.add(KILL);
-		actionsHere.add(COLLECT);
 	}
 	
-	
-	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		System.out.println(">[:Storage].touching(v)");
+		System.out.println(">[:EvilLab].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
+		Beardance br = new Beardance();
+		v.uRAttacked(br,null); //megtámadjad egy medvetáncal
 		Runnable.getInput(actionsHere);
 	}
 	
-	public void setPacket(Packet p) {
-		packet = p;
-	}
 }
-
-

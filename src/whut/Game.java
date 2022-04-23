@@ -1,11 +1,21 @@
 package whut;
 import java.util.ArrayList;
 
+import javax.swing.text.html.parser.Entity;
+
 public class Game
 {
 	private Map map;
 	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
+	
+	
+	public Entity getEntityAt(int index) {
+		if(index<entity.size()&&index>=0) {
+			return entity.get(index);
+		}
+		return null;
+	}
 	
 	public Game()
 	{
@@ -25,6 +35,7 @@ public class Game
 		System.out.println(">[:Game].oneRound()");
 		for(int i = 0;i<entity.size();++i)
 		{
+			Runnable.setCurrentVirologus(entity.get(i));
 			entity.get(i).step();
 		}
 	}
@@ -36,6 +47,12 @@ public class Game
 		{
 			if(all.containsAll(allGeneticCode));
 				System.out.println("A játékos megtanulta az összes genetikai kódot, és megnyerte a játékot.");
+		}
+	}
+	public void run() {
+		boolean megy = true;
+		while(megy) {
+			oneRound();
 		}
 	}
 	

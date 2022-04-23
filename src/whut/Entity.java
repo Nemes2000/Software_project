@@ -9,7 +9,7 @@ public class Entity {
 	}
 	
 	public void step() {
-		
+		Runnable.getInput(Actions[]= {MOVE},this);
 		
 	}
 	

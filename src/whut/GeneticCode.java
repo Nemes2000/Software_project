@@ -2,21 +2,21 @@ package whut;
 import java.util.ArrayList;
 import java.util.Random;
 
-//A megval�s�tott genetikus k�dok �soszt�lya
-//ArrayList<Material> cost - az elk�sz�t�s�hez sz�ks�ges anyagok
+//A megvalositott genetikus kodok ososztalya
+//ArrayList<Material> cost - az elkeszitesehez szukseges anyagok
 public abstract class GeneticCode {
 	protected ArrayList<Material> cost;
 	
-	//Konstruktor, melyben a cost-nak adok �rt�keket
+	//Konstruktor, melyben a cost-nak adok ertekeket
 	public GeneticCode() 
 	{
 		cost = new ArrayList<Material>();
 		Random rand = new Random();
-		//maximum k�t anyagba ker�lhet
+		//maximum ket anyagba kerülhet
 		int costDb = rand.nextInt(1);
 		for(int i = 0; i <= costDb; i++)
 		{
-			//gener�l egy random �rt�ket mely szerint aminosavat vagy nukleotidot hozunk l�tre
+			//general egy random erteket mely szerint aminosavat vagy nukleotidot hozunk letre
 			boolean melyiket = rand.nextBoolean();
 			Material mat;
 			if(melyiket)
@@ -27,8 +27,12 @@ public abstract class GeneticCode {
 		}	
 	}
 	
-	//ezen f�ggv�nyt meg kell val�sitania a lesz�rmazottaknak
-	//l�trehozza a megfelel� �genst, �s hozz�adja a param�terk�nt kapott �gens haszn�l�nak
-	//AgensUsable au - ezen entity fogja megkapni a l�trehozott �genst
+	//ezen fuggvenyt meg kell valositania a leszarmazottaknak
+	//letrehozza a megfelelo agenst, es hozzaadja a parameterkent kapott agens hasznalonak
+	//AgensUsable au - ezen entity fogja megkapni a letrehozott agenst
 	public abstract void createAgens(AgensUsable au);
+	
+	public ArrayList<Material> getCost(){
+		return cost;
+	}
 }

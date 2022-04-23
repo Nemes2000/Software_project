@@ -1,6 +1,8 @@
 package whut;
 import java.util.ArrayList;
 
+import whut.Runnable.Actions;
+
 public class Shelter extends Field
 {
 	private ArrayList<Item> items;
@@ -9,7 +11,22 @@ public class Shelter extends Field
 	{
 		super();
 		items = new ArrayList<Item>();
+		loadactions();
 	}
+	
+	@Override
+	public void loadactions()
+	{
+		actionsHere = new ArrayList<Actions>();
+		actionsHere.add(TOUCH);
+		actionsHere.add(CREATEAGENS);
+		actionsHere.add(STEALITEM);
+		actionsHere.add(STEALMATERIAL);
+		actionsHere.add(PICKUP);
+		actionsHere.add(LEAVE);
+		actionsHere.add(KILL);
+	}
+	
 	
 	//tölri a tárgyat a shelterről
 	@Override
@@ -32,6 +49,7 @@ public class Shelter extends Field
 	{
 		System.out.println(">[:Shelter].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
+		Runnable.getInput(actionsHere);
 	}
 	
 	public ArrayList<Item> getItems() {

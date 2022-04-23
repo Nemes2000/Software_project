@@ -1,35 +1,36 @@
 package whut;
 import java.util.Random;
 
-//Egy anyagtulajdon�gai�rt felel
-//int value - mennyi az anyag mennyis�ge
+//Egy anyagtulajdonsagaiert felel
+//int value - mennyi az anyag mennyisege
 public abstract class Material {
 	private int value;
 
-	// Konstruktor, be�ll�tja random az anyag �rt�k�t
+	// Konstruktor, beallitja random az anyag erteket
 	public Material()
 	{
 		Random rand = new Random();
-		value = rand.nextInt(5);
+		value = rand.nextInt(4) + 1;
 	}
 
-	// az anyag tipus�t adja vissza, csak a lesz�rmazottak val�s�tj�k meg
-	abstract protected String getType();
+	// az anyag tipusut adja vissza, csak a leszarmazottak valositjak meg
+	protected abstract String getType();
 
-	// megmondja, hogy a param�terk�nt kapott anyag hasonl� t�pus�-e mint ezen amyag
-	// Material mat1 - a kapott anyag, ezt hasonl�tja �ssze
+	// megmondja, hogy a parameterkent kapott anyag hasonlo tipusu-e mint ezen amyag
+	// Material mat1 - a kapott anyag, ezt hasonlitja ossze
 	public boolean isSame(Material mat1) {
 		return mat1.getType() == this.getType();
 	}
 
-	// visszadaja az anyag mennyis�g�t
+	// visszadaja az anyag mennyiseget
 	public int getValue() {
 		return value;
 	}
 
-	// be�ll�tja az anyag mennyis�g�t
-	// int ujValue - erre az �rt�kre lesz �ll�tva az anyag mennyis�ge
+	// beellitja az anyag mennyiseget
+	// int ujValue - erre az ertekre lesz allitva az anyag mennyisege
 	public void setValue(int ujValue) {
+		System.out.println(">[:Material].setValue(ujValue) :" + ujValue);
 		value = ujValue;
 	}
 }

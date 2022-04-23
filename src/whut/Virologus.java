@@ -6,18 +6,16 @@ public class Virologus extends AgensUsable {
 
 	//megkï¿½rdezi a felhasznï¿½lï¿½t, hogy melyik virolï¿½gustï¿½l szeretne tï¿½rgyat lopni, ï¿½s megprï¿½bï¿½l lopni
 	//ArrayList<Virologus> vs - a virolï¿½gusok listï¿½ja, amelybï¿½l vï¿½laszthat a felhasznï¿½lï¿½
-	public void stealItem(ArrayList<Virologus> vs) {
+	public void stealItem(Virologus v) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		Virologus v = vs.get(0);
 		v.stealItemAttempt(this);
 		
 	}
 	
 	//megkï¿½rdezi a felhasznï¿½lï¿½t, hogy melyik virolï¿½gustï¿½l szeretne tï¿½rgyat lopni, ï¿½s megprï¿½bï¿½l lopni
 	//ArrayList<Virologus> vs - a virolï¿½gusok listï¿½ja, amelybï¿½l vï¿½laszthat a felhasznï¿½lï¿½
-	public void stealMaterial(ArrayList<Virologus> vs) {
+	public void stealMaterial(Virologus v) {
 		System.out.println(">[:Virologus].stealItem(vs)");
-		Virologus v = vs.get(0);
 		v.stealMaterialAttempt(this);
 		
 	}
@@ -25,6 +23,9 @@ public class Virologus extends AgensUsable {
 	//megkï¿½rdezi a felhasznï¿½lï¿½tï¿½l, hogy melyik tï¿½rgyat akarja cseï¿½lni, ï¿½s azt adja vissza
 	public Item getItem() {
 		return itemHave.get(0);
+	}
+	public Item getItem(String s) {
+		//itt az itemtõl típuslekérdezés kell de nincs jobb otletem
 	}
 	
 	//ellenï¿½rzi, hogy lehet-e tï¿½le tï¿½rgyat lopni, ï¿½s ha igen, akkor vï¿½grehajtja a lopï¿½st
@@ -63,9 +64,9 @@ public class Virologus extends AgensUsable {
 		}
 		if (canSteal) {
 			Packet p = v.getPacket();
-			ArrayList<Material> ms = packet.getMaterials();
+			ArrayList<Material> ms = p.getMaterials();
 			for (Material m : ms) {
-				packet.handleMaterialSeparate(m, p);
+				p.handleMaterialSeparate(m, p);
 			}
 		}
 	}
@@ -84,6 +85,7 @@ public class Virologus extends AgensUsable {
 	//Item mit - a tï¿½rgy, amit elveszt
 	public void removeItem(Item mit) {
 		System.out.println(">[:Virologus].removeItem(mit)");
+		itemHave.remove(mit);
 		mit.lostEffect(this);
 	}
 	
@@ -143,7 +145,7 @@ public class Virologus extends AgensUsable {
 		if(!isProtected) {
 			boolean fireBacked = false;
 			for(Item it: itemHave){
-				if(it.fireBackEffect(v,ag)) {
+				if(it.fireBackEffect(v, this, ag)) {
 					fireBacked=true;
 				}
 			}
@@ -151,10 +153,20 @@ public class Virologus extends AgensUsable {
 			if(!fireBacked) {
 				addAgensOnMe(ag);
 			}
-			
-			
 		}
-		
+	}
+	
+	public void kill(Virologus v) {
+		boolean killed = false;
+		for (Item i : itemHave) {
+			killed = i.killEffect(v);
+			if (killed) break;
+		}
+	}
+	
+	public void die() {
+		field.remove(this);
+		game.removePlayer();
 	}
 	
 	public void touch() {
@@ -170,4 +182,13 @@ public class Virologus extends AgensUsable {
 	public void setItem(Item i) {
 		itemHave.add(i);
 	}
+	
+	@Override
+	public void step() {
+		if(roundDesc()) {
+			CommandInput.GetInput(Actions[]= {MOVE,AGENSCREATE,TOUCH},this);
+		}
+		Runnable.getGame().endGame(geneticCode);
+	}
+	
 }

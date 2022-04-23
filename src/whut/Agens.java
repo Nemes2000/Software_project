@@ -16,4 +16,8 @@ public class Agens {
 		System.out.println(">[:Agens].defendEffect()");
 		return false;
 	}
+	public void destroyEffect(Packet p) {
+		
+		return;
+	}
 }

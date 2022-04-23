@@ -1,14 +1,14 @@
 package whut;
-//egy konkr�t anyagt�pus�rt felel
+//egy konkret anyagtipusert felel
 public class Nukleotid extends Material
 {
-	//Konstruktor, amit az �s�vel egyenl�
+	//Konstruktor, amit az osevel egyenlo
 	public Nukleotid() {
 		super();
 	}
 	
-	//megval�s�tott f�ggv�ny, mely az �sben nincs implement�lva
-	//visszaadja a t�pus�t az anyagnak
+	//megvalasitott fuggveny, mely az osben nincs implementalva
+	//visszaadja a tipusat az anyagnak
 	@Override
 	protected String getType() 
 	{

@@ -10,57 +10,66 @@ public class Packet
 	private ArrayList<Material> materials = new ArrayList<Material>();
 	private int maxPerMaterial;
 	
-	//Konstruktor, alapb�l csak a zseb m�ret�t �llitja be
+	//Konstruktor, alapbol csak a zseb meretet allitja be
 	public Packet()
 	{
 		maxPerMaterial = 6;
 	}
 	
-	//T�rli a list�ban kapott anyagmennyis�get ezen zsebb�l
-	// ArrayList<Material> mats - ez az a lista amiket ki kell venni ebb�l a zsebb�l
-	//visszat�r�si �rt�ke azt mondja meg, hogy siker�lt-e levonni ezen zsebb�l a list�ban kapott anyagmennyis�geket
+	//Torli a listaban kapott anyagmennyiseget ezen zsebbol
+	// ArrayList<Material> mats - ez az a lista amiket ki kell venni ebbol a zsebbol
+	//visszateresi erteke azt mondja meg, hogy sikerult-e levonni ezen zsebbol a listaban kapott anyagmennyisegeket
 	public boolean decreaseMaterial(ArrayList<Material> mats) 
 	{	
 		System.out.println(">[:Packet].decreaseMaterial(mats)");
-		//le m�soljuk a zseb tartalm�t, hogy ha nem tudn�nk levonni akkor semmiss� tudjuk tenni a m�veletet
-		/*
+		//le masoljuk a zseb tartalmat, hogy ha nem tudnank levonni akkor semmisse tudjuk tenni a muveletet
 		ArrayList<Material> decreas = materials;
 		
-		
-		//v�gig megy�nk a kapott list�n
-		for(int i = 0; i<mats.size();i++) 
-		{
-			//v�gig megyunk ezen zseb anyagtartalm�n
-			for(int j = 0; j<decreas.size();i++)
-			{
-				//ha azonos anyagr�l van sz� akkor cs�kkentj�k a tartalm�t
-				if(mats.get(i).isSame(decreas.get(j)))
-				{
-					//ha ezen zseb �ppen soron l�v� anyag�nak mennyis�gb�l kevesebb van mint amennyi kellene
-					if(decreas.get(j).getValue() - mats.get(i).getValue() < 0) 
+		//addig megyunk amig az egyik lista ki nem urul
+		//ha a mats urul ki akkor meg van a kello anyag mennyiseg
+		//ha a decreas urul ki akkor pedig nincs elegendo anyagunk
+		while((mats.size() > 0) && (decreas.size() > 0)) {
+
+			int i = 0;
+			//vegig megyünk a kapott anyag listan
+			while(i < mats.size()) {
+				int j = 0;
+				//vegig megyunk a sajat listank masolatan
+				while(j < decreas.size()) {
+					//ha azonos tipusu anyagot talaltunk akkor tehetunk valamit
+					if(mats.get(i).isSame(decreas.get(j)))
 					{
-						mats.get(i).setValue(mats.get(i).getValue()-decreas.get(j).getValue());
-						decreas.remove(j);
-					}
-					
-					//ha elegend� van
-					else if(decreas.get(j).getValue() - mats.get(i).getValue() > 0)
-					{
-						decreas.get(j).setValue(decreas.get(j).getValue()-mats.get(i).getValue());
+						//ha ezen zseb eppen soron levo anyaganak mennyisegbol kevesebb van mint amennyi kellene
+						if(decreas.get(j).getValue() - mats.get(i).getValue() <= 0) 
+						{
+							mats.get(i).setValue(mats.get(i).getValue()-decreas.get(j).getValue());
+							
+							//toroljuk a zsebunkben levo anyagot mert elfogyott
+							decreas.remove(j--);
+						}
 						
-						//t�r�ljuk a kapott list�b�l az anyagot mert le lett vonva
-						mats.remove(i);
-						
-						//mivel az i �rt�ke nem v�ltozott de az eddigi elemet t�r�lt�k, 
-						//�gy most az i hely�re egy �j anyag ker�lt (r�vid�lt a lista)
-						//�s most arra is az eg�sz "this" zsebett �jra kell n�zn�nk 
-						j=0;
+						//ha elegendo van
+						else
+						{
+							decreas.get(j).setValue(decreas.get(j).getValue()-mats.get(i).getValue());
+							
+							//toroljuk a kapott listabol az anyagot mert le lett vonva
+							mats.get(i).setValue(0);
+						}
 					}
+					j++;
 				}
+				//ha le tudtuk vonni ezen zsebbol a kapott listabeli anyagot, akkor a kapott lista anyagat is toroljuk a levonando anyagok kozul
+				if(mats.get(i).getValue() == 0) {
+					mats.remove(i);
+					System.out.print(mats.size());
+				}
+				else
+					i++;
 			}
 		}
 		
-		//megn�zz�k hogy a legv�g�n maradt-e anyag a kapott list�ban
+		//megnezzuk hogy a legvegen maradt-e anyag a kapott listaban
 		if(mats.size()==0) {
 			System.out.println("Sikeresen levonta a nyersanyagokat.");
 			materials = decreas;
@@ -71,12 +80,10 @@ public class Packet
 			System.out.println("Sikertelenul vonta le a nyersanyagokat.");
 			return false;
 		}
-		 */
-		return true;
 	}
 	
-	//megv�ltoztatjuk a maximum t�rolhat� anyagmennyis�get anyagonk�nt
-	//int value - az �rt�k amivel megv�ltoztatjuk a maximum t�rolhat� anyagmennyis�get
+	//megvaltoztatjuk a maximum tarolhato anyagmennyiseget anyagonkont
+	//int value - az ertek amivel megvaltoztatjuk a maximum tarolhato anyagmennyiseget
 	public void changeMaxMaterial(int value) 
 	{
 		System.out.println(">[:Packet].changeMaxMaterial(value)");
@@ -84,8 +91,8 @@ public class Packet
 		maxPerMaterial += value;
 	}
 	
-	//lekezeli azt az esetet, hogy ha a zseb m�ret�nek cs�kkent�sekor anyagot is kellene kidobnunk a zsebb�l
-	//int value - az �rt�k amivel cs�kken a zseb max t�rol�si kapac�t�sa
+	//lekezeli azt az esetet, hogy ha a zseb meretenek csokkentesekor anyagot is kellene kidobnunk a zsebbol
+	//int value - az ertek amivel csokken a zseb max tarolasi kapacitasa
 	public void handlePossibleLostMaterial(int value)
 	{
 		System.out.println(">[:Packet].handlePossibleLostMaterial(value)");
@@ -93,7 +100,7 @@ public class Packet
 		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van
 		int matsMaterialADb = 0;  //mennyi aminosavunk van
 		
-		//v�gig megy�nk a zseb tartalm�n �s megsz�moljuk mib�l mennyink van
+		//vegig megyunk a zseb tartalman es megszamoljuk mibol mennyink van
 		for(Material m : materials) {
 			if(m.isSame(new Nukleotid()))
 				matsMaterialNDb += m.getValue();
@@ -101,65 +108,67 @@ public class Packet
 				matsMaterialADb += m.getValue();
 		}
 		
-		//ha t�bb aminosavunk van mint amennyi lehetne a zseb m�ret�nek lecs�kkent�se ut�n
+		//ha tobb aminosavunk van mint amennyi lehetne a zseb meretenek lecsokkentese utan
 		if(matsMaterialADb > maxPerMaterial-value)
 		{
-			System.out.println("Elveszett ennyi aminosav: "+(matsMaterialADb-maxPerMaterial-value));
+			System.out.println("Elveszett ennyi aminosav: "+(matsMaterialADb-maxPerMaterial+value));
 			Aminosav a = new Aminosav();
 			
-			//az ujonnan l�trehozott aminosav �rt�k�t be�ll�tjuk arra 
-			//amennyivel kellene cs�kkenteni a zseb aminosav k�szlet�t
-			a.setValue(matsMaterialADb-maxPerMaterial-value);
+			//az ujonnan letrehozott aminosav erteket beallitjuk arra 
+			//amennyivel kellene csokkenteni a zseb aminosav keszletet
+			a.setValue(matsMaterialADb-maxPerMaterial+value);
 			
-			//a f�ggv�ny param�terez�se miatt bele kell rakni egy list�ba ezen anyagot
+			//a fuggv�ny parameterezese miatt bele kell rakni egy listaba ezen anyagot
 			ArrayList<Material> m = new ArrayList<Material>();  
 			m.add(a);
 			
-			//levonjuk ezen zsebb�l a t�lcsordul�st
+			//levonjuk ezen zsebbol a tulcsordulast
 			this.decreaseMaterial(m);
 		}
-		//ha pedig nincs t�lcsordul�s akkor j�k vagyunk
+		//ha pedig nincs tulcsordulas akkor jok vagyunk
 		else
 			System.out.println("Nem veszett el aminosav");
 		
 		
-		//ha t�bb nukleotidunk van mint amennyi lehetne a zseb m�ret�nek lecs�kkent�se ut�n
+		//ha tobb nukleotidunk van mint amennyi lehetne a zseb meretenek lecsokkentese utan
 		if(matsMaterialNDb > maxPerMaterial-value)
 		{
-			System.out.println("Elveszett ennyi nukleotid: "+(matsMaterialNDb-maxPerMaterial-value));
+			System.out.println("Elveszett ennyi nukleotid: "+(matsMaterialNDb-maxPerMaterial+value));
 			Nukleotid a = new Nukleotid();
 			
-			//az ujonnan l�trehozott aminosav �rt�k�t be�ll�tjuk arra 
-			//amennyivel kellene cs�kkenteni a zseb aminosav k�szlet�t
-			a.setValue(matsMaterialADb-maxPerMaterial-value);
+			//az ujonnan letrehozott aminosav erteket beallitjuk arra 
+			//amennyivel kellene csokkenteni a zseb aminosav keszletet
+			a.setValue(matsMaterialNDb-maxPerMaterial+value);
 			
-			//a f�ggv�ny param�terez�se miatt bele kell rakni egy list�ba ezen anyagot
+			//a fuggveny parameterezese miatt bele kell rakni egy listaba ezen anyagot
 			ArrayList<Material> m = new ArrayList<Material>();
 			m.add(a);
 			
-			//levonjuk ezen zsebb�l a t�lcsordul�st
+			//levonjuk ezen zsebbol a tulcsordulast
 			this.decreaseMaterial(m);
 		}
-		//ha pedig nincs t�lcsordul�s akkor j�k vagyunk
+		//ha pedig nincs tulcsordulas akkor jok vagyunk
 		else
 			System.out.println("Nem veszett el nukleotid");
 
-		//�t�l�tjuk a zseb m�ret�t
+		//atalitjuk a zseb meretet
 		this.changeMaxMaterial(-value);
 	}
 	
-	//Mindig megh�v�dik amikor felvesz�nk egy anyagot
-	//abban az esetben ha egy anyagnak a m�rete nagyobb lenne mint amennyit fel tudn�nk venni azt le is kezeli
-	//Material mat - azon anyag amit fel akar venni a j�t�kos
-	//Packet pac - azon j�t�kos zsebe aki fel akarja venni az anyagot
+	//Mindig meghivodik amikor felveszunk egy anyagot
+	//abban az esetben ha egy anyagnak a merete nagyobb lenne mint amennyit fel tudnunk venni azt le is kezeli
+	//Material mat - azon anyag amit fel akar venni a jatekos
+	//Packet pac - azon jatekos zsebe aki fel akarja venni az anyagot
 	public void handleMaterialSeparate(Material mat, Packet pac) 
 	{
 		System.out.println(">[:Packet].handleMaterialSeparate(mat, pac)");
-		/*
-		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van
-		int matsMaterialADb = 0;  //mennyi aminosavunk van
 		
-		//v�gig megy�nk a kapott zseb tartalm�n �s megsz�moljuk mib�l mennyink van
+		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van a pac-ban
+		int matsMaterialADb = 0;  //mennyi aminosavunk van a pac-ban
+		int thismatsMaterialNDb = 0;  //mennyi nukleotidsavunk van a this-ben
+		int thismatsMaterialADb = 0;  //mennyi aminosavunk van a this-ben
+		
+		//vegig megyenk a kapott zseb tartalman es megszamoljuk mibol mennyink van
 		for(Material m : pac.getMaterials()) 
 		{
 			if(m.isSame(new Nukleotid()))
@@ -168,94 +177,111 @@ public class Packet
 				matsMaterialADb += m.getValue();
 		}
 		
-		//ebbe az anyagba fog felez�dni a kapott anyag ha kell
+		for(Material m : this.getMaterials()) 
+		{
+			if(m.isSame(new Nukleotid()))
+				thismatsMaterialNDb += m.getValue();
+			else
+				thismatsMaterialADb += m.getValue();
+		}
+		
+		//ebbe az anyagba fog felezodni a kapott anyag ha kell
 		Material m = null;
 		
-		//amennyiben nukleotidr�l van sz�
+		
+		//ha olyan mennyiseget adna meg amennyi nincs is a zsebben
+		if(mat.isSame(new Nukleotid()) && mat.getValue() > thismatsMaterialNDb) {
+			System.out.println("nincs ennyi anyag");
+			return;
+		}
+		if(mat.isSame(new Aminosav()) && mat.getValue() > thismatsMaterialADb) {
+			System.out.println("nincs ennyi anyag");
+			return;
+		}
+		
+		
+		//amennyiben nukleotidrol van szo
 		if(mat.isSame(new Nukleotid())) 
 		{
-			//�s nem tudjuk az eg�sz anyagot felvenni, mert kicsi a zseb m�rete
+			//es nem tudjuk az egesz anyagot felvenni, mert kicsi a zseb merete
 			if(matsMaterialNDb + mat.getValue() > maxPerMaterial) 
 			{
-				System.out.println("Fevette a Nukleotidot, de nem az eg�szet.");
+				System.out.println("Fevette a Nukleotidot, de nem az egeszet.");
 				
-				//megfelezz�k az anyagot
+				//megfelezzuk az anyagot
 				m = new Nukleotid();
 				
-				//azon �rt�kre �ll�tjuk be amit maxim�lisan fel tud venni
-				m.setValue(maxPerMaterial-matsMaterialNDb);
+				//azon ertekre allitjuk be amit maximalisan fel tud venni
+				m.setValue(maxPerMaterial - matsMaterialNDb);
 				
-				//ezen anyagot hozz�adjuk a kapott zsebhez
+				//ezen anyagot hozzaadjuk a kapott zsebhez
 				pac.addMaterial(m); 
 				
-				//az anyag �rt�k�t pedig lecs�kkentj�k
+				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialNDb));
 			}
-			//ha feltudja venni az eg�sz anyagot
+			//ha feltudja venni az egesz anyagot
 			else
 			{
 				System.out.println("Felvette az Nukleotidot.");
 				
-				//hozz�adjuk a kapott zsebhez az anyagot
+				//hozzaadjuk a kapott zsebhez az anyagot
 				pac.addMaterial(mat);
 			}
 		}
-		//amennyiben aminosavr�l van sz�
+		//amennyiben aminosavrol van szo
 		else
 		{	
-			//�s nem tudjuk az eg�sz anyagot felvenni, mert kicsi a zseb m�rete
+			//es nem tudjuk az egesz anyagot felvenni, mert kicsi a zseb merete
 			if(matsMaterialADb + mat.getValue() > maxPerMaterial) 
 			{
 				System.out.println("Sikeresen fevette az Aminosavat, de nem az eg�szet.");
 				m = new Aminosav();
 				
-				//azon �rt�kre �ll�tjuk be amit maxim�lisan fel tud venni
+				//azon ertekre allitjuk be amit maximalisan fel tud venni
 				m.setValue(maxPerMaterial-matsMaterialADb);
 				
-				//ezen anyagot hozz�adjuk a kapott zsebhez
+				//ezen anyagot hozzaadjuk a kapott zsebhez
 				pac.addMaterial(m); 
 				
-				//az anyag �rt�k�t pedig lecs�kkentj�k
+				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialADb));
 			}
-			//ha feltudja venni az eg�sz anyagot
+			//ha feltudja venni az egesz anyagot
 			else
 			{
 				System.out.println("Sikeresen felvette az Aminosavat.");
 				
-				//hozz�adjuk a kapott zsebhez az anyagot
+				//hozzaadjuk a kapott zsebhez az anyagot
 				pac.addMaterial(mat);
 			}
 		}
 			
-		//ha kett� lett v�lasztva az anyag
-		if(m != null) 
-		{
-			//kelleni fog majd az anyag kiv�tel�hez, a decreasMateral() f�ggv�ny param�tere miatt
-			ArrayList<Material> material = new ArrayList<Material>();
-			
-			//a megfelezett anyagot hozz�adjuk
-			material.add(m);
-			
-			// a megfelezett anyagot levonjuk ezen zsebb�l
-			this.decreaseMaterial(material);
-		}	
-	*/
+	
+		//kelleni fog majd az anyag kiv�tel�hez, a decreasMateral() fuggveny parametere miatt
+		ArrayList<Material> material = new ArrayList<Material>();
+		
+		//a megfelezett anyagot hozzaadjuk
+		material.add(mat);
+		
+		// a megfelezett anyagot levonjuk ezen zsebbol
+		this.decreaseMaterial(material);	
+	
 	}
 	
-	//vissza adja a zseb anyaglist�j�t
+	//vissza adja a zseb anyaglistajat
 	public ArrayList<Material> getMaterials() 
 	{
 		//System.out.println(">[:Packet].getMaterials()");
 		return materials;
 	}
 	
-	//A param�terk�nt kapott anyagot hozz�adja a zsebhez
+	//A parameterkent kapott anyagot hozzaadja a zsebhez
 	//MAterial mat - azon anyag amit a zsebhez adunk
 	public void addMaterial(Material mat)
 	{
 		System.out.println(">[:Packet].addMatarial");
 		this.materials.add(mat);
 	}
-	
+
 }
