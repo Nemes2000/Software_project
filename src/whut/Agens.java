@@ -17,7 +17,10 @@ public class Agens {
 		return false;
 	}
 	public void destroyEffect(Packet p) {
-		
 		return;
+	}
+
+	public boolean Check(String s) {
+		return false;
 	}
 }

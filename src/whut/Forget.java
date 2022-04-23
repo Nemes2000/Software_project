@@ -12,4 +12,10 @@ public class Forget extends Agens{
 		//visszat�r igazzal, mert tud m�g mozogni
 		return true;
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("Forget"))
+			return true;
+		return false;
+	}
 }

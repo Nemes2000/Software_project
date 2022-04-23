@@ -27,4 +27,10 @@ public class Protection extends Agens{
 		return true;
 	}
 	
+	public boolean Check(String s) {
+		if(s.equals("Protection"))
+			return true;
+		return false;
+	}
+	
 }

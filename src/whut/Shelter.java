@@ -32,7 +32,7 @@ public class Shelter extends Field
 	{
 		System.out.println(">[:Shelter].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInput();
+		MyRunnable.getInputAfterTouch();
 	}
 	
 	public ArrayList<Item> getItems() {

@@ -19,7 +19,7 @@ public class Storage extends Field
 	{
 		System.out.println(">[:Storage].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInput();
+		MyRunnable.getInputAfterTouch();
 	}
 	
 	public void setPacket(Packet p) {

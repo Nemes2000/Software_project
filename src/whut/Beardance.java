@@ -23,4 +23,10 @@ public class Beardance extends Agens{
 			vc.uRAttacked(b,v);		
 		}
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("Beardance"))
+			return true;
+		return false;
+	}
 }

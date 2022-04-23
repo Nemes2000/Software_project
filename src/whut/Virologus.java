@@ -9,7 +9,7 @@ public class Virologus extends AgensUsable {
 	}
 	
 	
-	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
+	//megkerdezi a felhasznalot, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
 	public void stealItem(Virologus v,Item item) {
 		System.out.println(">[:Virologus].stealItem(vs)");
@@ -46,10 +46,9 @@ public class Virologus extends AgensUsable {
 				canSteal = true;
 		}
 		if (canSteal) {
-			if (v.getItemNumber() == 3) {				
-				removeItem(lll);
-				
-			} else {
+			if (v.getItemNumber() == 3)			
+				removeItem(mit);
+			else {
 				removeItem(mit);
 				v.addItem(mit);
 			}
@@ -191,7 +190,7 @@ public class Virologus extends AgensUsable {
 	public void step() {
 		MyRunnable.setCurrentVirologus(this);
 		if(roundDesc()) {
-			MyRunnable.getInput();
+			MyRunnable.getInputFirstAct();
 		}
 		MyRunnable.getGame().endGame(geneticCode);
 	}

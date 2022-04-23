@@ -44,12 +44,11 @@ public class Field
 	{
 		System.out.println(">[:Field].touching(v)");
 		//felsorolja a lehetséges cselekvéseket a felhasználónak
-		MyRunnable.getInput();
+		MyRunnable.getInputAfterTouch();
 	}
 	
 	//szomszédos mezők beállítása
-	public void setNeighbourhood()
-	{
+	public void setNeighbourhood(){
 		System.out.println(">[:Field].setNeighbourhood()");
 		//skeletonnál még kézzel
 	}

@@ -26,4 +26,10 @@ public class Vitusdance extends Agens{
 		return true;
 	}
 	
+	public boolean Check(String s) {
+		if(s.equals("Vitusdance"))
+			return true;
+		return false;
+	}
+	
 }

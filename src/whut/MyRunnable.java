@@ -11,10 +11,13 @@ public class MyRunnable {
 		logFile.add(s);
 	}
 	
-	public static void Main(String args[]) {
+	public static void main(String args[]) {
 		logFile = new ArrayList<String>();
 		game = new Game();
 		start();
+	
+		//tesztek ide__________________________________________
+		
 	}
 	
 	private static Virologus currentVirologus;
@@ -37,9 +40,44 @@ public class MyRunnable {
 		try {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
-				Item it = game.getEntityAt(number).getItem(input[2]);
+				Virologus v = (Virologus)(game.getEntityAt(number-1));
+				Item it = v.getItem(input[2]);
 				if(it!=null) {
-					currentVirologus.stealItem(game.getEntityAt(number),it);
+					currentVirologus.stealItem(v, it);
+				}
+				
+			}
+		}catch(NumberFormatException ex) {
+			
+		}
+	}
+	
+	public static void stealmaterial(String[] input) {
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='v') {
+				Virologus v = (Virologus)(game.getEntityAt(number-1));
+				Material mat = v.getMaterial(input[2]);
+				if(mat != null) {
+					currentVirologus.stealMaterial(v, mat);
+				}
+				
+			}
+		}catch(NumberFormatException ex) {
+			
+		}
+	}
+	
+	public static void useAgens(String[] input) {
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='v') {
+				Virologus v = (Virologus)(game.getEntityAt(number-1));
+				Agens a = v.getMaterial(input[2]);
+				if(mat != null) {
+					currentVirologus.stealMaterial(v, mat);
 				}
 				
 			}
@@ -50,75 +88,108 @@ public class MyRunnable {
 	
 	
 	
-	public static void getInput() {
+	private static int steps; 
+	
+	public static void getInputFirstAct() {
 		String[] readed;
-		boolean megy = true;
-		while(megy) {
+		steps = 2;
+		while(steps > 0) {
 			readed = read();
 			switch(readed[0]) {
-			case "info":						
-				break;
-			case "touch":
-				break;
-			case "stealitem":
-				if (readed.length == 3) {
-					stealitem(readed);     //prototipus
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "stealmaterial":
-				if (readed.length == 3) {
-					
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "kill":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "useagens":
-				if (readed.length == 3) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "move":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "learn":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "collect":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "interact":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "pickup":
-				if (readed.length == 2) {
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "leave":
-				if (readed.length == 2) {
-					
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
+				case "newtest" :
+					start();
+					break;
+				case "info":
+					steps++;
+					getInfo();
+					break;
+				case "touch":
+					currentVirologus.getField().touching(currentVirologus);
+					break;
+				case "move":
+					if (readed.length == 2) {
+					//fuggveny meg van
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "create":
+					if (readed.length == 2) {
+					//agens ==>> meg van
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "finishturn" : 
+					steps = 0;
+					break;
 			}
-			
-			
+			steps--;
 		}
-		
-		
+	}
+	
+	public static void getInputAfterTouch() {
+		String[] readed;
+		int justinfo = 1;
+		while(justinfo > 0) {
+			readed = read();
+			switch(readed[0]) {
+				case "newtest" :
+					start();
+					break;
+				case "info":
+					justinfo++;
+					getInfo();
+					break;
+				case "stealitem":
+					if (readed.length == 3) {
+						stealitem(readed);     //prototipus
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "stealmaterial":
+					if (readed.length == 3) {
+						
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "kill":
+					if (readed.length == 2) {
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "useagens":
+					if (readed.length == 3) {
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				
+				case "learn":
+					if (readed.length == 2) {
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "collect":
+					if (readed.length == 2) {
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "pickup":
+					if (readed.length == 2) {
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "leave":
+					if (readed.length == 2) {
+						
+					}
+					else System.out.print("Hibás paraméterezés");
+					break;
+				case "finishturn" : 
+					justinfo = 0;
+					steps = 0;
+					break;
+			}
+			justinfo--;
+		}
 	}
 	
 	//init commands
@@ -142,6 +213,16 @@ public class MyRunnable {
 				break;
 			case "add":
 				if (readed.length == 3) {
+					switch(readed[1]) {
+						case "agens" : 
+							break;
+						case "material" : 
+							break;
+						case "geneticcode" : 
+							break;
+						case "item" : 
+							break;
+					}
 				}
 				else System.out.print("Hibás paraméterezés");
 				break;
@@ -154,11 +235,6 @@ public class MyRunnable {
 			case "save":
 				if (readed.length == 2) {
 					
-				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "create":
-				if (readed.length == 2) {
 				}
 				else System.out.print("Hibás paraméterezés");
 				break;

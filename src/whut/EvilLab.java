@@ -16,7 +16,7 @@ public class EvilLab
 		//felajánlja a játékosnak a lehetséges cselekvéseket
 		Beardance br = new Beardance();
 		v.uRAttacked(br,null); //megtámadjad egy medvetáncal
-		MyRunnable.getInput();
+		MyRunnable.getInputAfterTouch();
 	}
 	
 }

@@ -29,4 +29,10 @@ public class Stun extends Agens{
 		System.out.println(">[:Stun].canStealEffect()");
 		return true;
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("Stun"))
+			return true;
+		return false;
+	}
 }

@@ -23,7 +23,7 @@ public class Lab extends Field
 	{
 		System.out.println(">[:Lab].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInput();
+		MyRunnable.getInputAfterTouch();
 	}
 	
 	public void setGeneticCode(GeneticCode g) //genetikus kód beállítása
