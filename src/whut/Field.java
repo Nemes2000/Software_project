@@ -63,6 +63,9 @@ public class Field
 	public void removeItem(Item i) {}
 	public void addItem(Item i) {}
 	
+	public boolean codeHere(GeneticCode g) {
+		return false;
+	}
 	
 	
 }

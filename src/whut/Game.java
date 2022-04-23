@@ -7,10 +7,18 @@ public class Game
 	ArrayList<? extends Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	ArrayList<? extends AgensUsable> au;
+	ArrayList<GeneticCode> geneticCodes;
+	
 	
 	public Entity getEntityAt(int index) {
 		if(index<entity.size()&&index>=0) {
 			return entity.get(index);
+		}
+		return null;
+	}
+	public GeneticCode getGeneticCodeAt(int index) {
+		if(index<geneticCodes.size()&&index>=0) {
+			return geneticCodes.get(index);
 		}
 		return null;
 	}
@@ -26,6 +34,7 @@ public class Game
 		map = new Map();
 		entity = new ArrayList<Virologus>();
 		allGeneticCode = new ArrayList<GeneticCode>();
+		geneticCodes = new ArrayList<GeneticCode>();
 	}
 	
 	public void oneRound() // egy kör, összes entity

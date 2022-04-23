@@ -35,4 +35,5 @@ public abstract class GeneticCode {
 	public ArrayList<Material> getCost(){
 		return cost;
 	}
+
 }
