@@ -19,4 +19,10 @@ public class StunCode extends GeneticCode
 			au.addAgens(new Stun());
 		
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("ProtectionCode"))
+			return true;
+		return false;
+	}
 }

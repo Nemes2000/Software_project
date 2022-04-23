@@ -75,9 +75,20 @@ public class AgensUsable extends Entity{
 	}
 	
 	//megk�rdezi a felhaszn�l�t melyik genetik k�dot szeretn� �genss� alak�tani �s azt megcsin�lja
-	public void createAgens() {
+	public void createAgens(String mit) {
 		System.out.println(">[:AgensUsable].createAgens()");
-		geneticCode.get(1).createAgens(this);
+		boolean created = false;
+		int i = 0;
+		while(!created && i < geneticCode.size()) {
+			if(geneticCode.get(i).Check(mit)) {
+				geneticCode.get(i).createAgens(this);
+				created = true;
+			}
+			i++;
+		}
+		
+		if(!created)
+			System.out.println("Genetic code for " + mit + " not learned yet!");
 	}
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
@@ -100,5 +111,16 @@ public class AgensUsable extends Entity{
 			a.destroyEffect(p);
 		}
 	}
+	
+	public ArrayList<GeneticCode> getGeneticCodeHave(){
+		return geneticCode;
+	}
 
+	public ArrayList<Agens> getAgensHave(){
+		return agens;
+	}
+	
+	public ArrayList<Agens> getAgensOnMe(){
+		return agensOnMe;
+	}
 }

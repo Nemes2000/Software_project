@@ -195,4 +195,8 @@ public class Virologus extends AgensUsable {
 		MyRunnable.getGame().endGame(geneticCode);
 	}
 	
+	public ArrayList<Item> getItemHave(){
+		return itemHave;
+	}
+	
 }

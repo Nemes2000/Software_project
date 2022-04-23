@@ -18,4 +18,10 @@ public class ForgetCode extends GeneticCode
 		if(au.getPacket().decreaseMaterial(cost))
 			au.addAgens(new Protection());
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("FogetCode"))
+			return true;
+		return false;
+	}
 }

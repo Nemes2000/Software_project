@@ -18,4 +18,10 @@ public class VitusdanceCode extends GeneticCode
 		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Vitusdance());
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("VitusdanceCode"))
+			return true;
+		return false;
+	}
 }

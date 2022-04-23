@@ -26,6 +26,7 @@ public class MyRunnable {
 	}
 	
 	private static Game game;
+	
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {
@@ -48,7 +49,7 @@ public class MyRunnable {
 				
 			}
 		}catch(NumberFormatException ex) {
-			
+			System.out.print("Bad parameter!");
 		}
 	}
 	
@@ -65,7 +66,7 @@ public class MyRunnable {
 				
 			}
 		}catch(NumberFormatException ex) {
-			
+			System.out.print("Bad parameter!");
 		}
 	}
 	
@@ -82,11 +83,89 @@ public class MyRunnable {
 				
 			}
 		}catch(NumberFormatException ex) {
-			
+			System.out.print("Bad parameter!");
 		}
 	}
 	
+	public static void moveTo(String hova) {
+		try {
+			boolean moved = false;
+			String ch = hova.substring(1);
+			int melyik = Integer.parseInt(ch);
+			Field f = game.getMap().getFields().get(melyik);
+			if(hova.charAt(0) == 'f') {
+				for(Field ff : currentVirologus.getField().getNeighbourhood())
+				if(ff == f) {
+					currentVirologus.move(f);
+					moved = true;
+				}
+			}
+			if(!moved)
+				System.out.println("Bad parameter!");
+		} catch(NumberFormatException e)
+			System.out.println("Bad parameter!");
+	}
 	
+	public static void getInfo() {
+		System.out.print("Anygok: ");
+		for(Material mat : currentVirologus.getPacket().getMaterials()) {
+			System.out.print(mat.getType()+", ");
+		}
+		System.out.println();
+		
+		System.out.print("Itemek: ");
+		for(Item it : currentVirologus.getItemHave()) {
+			if(it.Check("Axe"))
+				System.out.print("Axe, ");
+			else if(it.Check("Cloak"))
+				System.out.print("Cloak, ");
+			else if(it.Check("Glove"))
+				System.out.print("Glove, ");
+			else
+				System.out.print("Sack, ");
+		}
+		System.out.println();
+		
+		System.out.print("Genetik kódok: ");
+		for(GeneticCode gc : currentVirologus.getGeneticCodeHave()) {
+			if(gc.Check("ProtectionCode"))
+				System.out.print("ProtectionCode, ");
+			else if(gc.Check("ForgetCode"))
+				System.out.print("ForgetCode, ");
+			else if(gc.Check("StunCode"))
+				System.out.print("StunCode, ");
+			else 
+				System.out.print("VitusdanceCode, ");
+		}
+		System.out.println();
+		
+		System.out.print("Ágensek: ");
+		for(Agens a : currentVirologus.getAgensHave()) {
+			if(a.Check("Protection"))
+				System.out.print("Protection, ");
+			else if(a.Check("Forget"))
+				System.out.print("Forget, ");
+			else if(a.Check("Stun"))
+				System.out.print("Stun, ");
+			else 
+				System.out.print("Vitusdance, ");
+		}
+		System.out.println();
+		
+		System.out.print("Ható ágensek: ");
+		for(Agens a : currentVirologus.getAgensOnMe()) {
+			if(a.Check("Protection"))
+				System.out.print("Protection, ");
+			else if(a.Check("Forget"))
+				System.out.print("Forget, ");
+			else if(a.Check("Stun"))
+				System.out.print("Stun, ");
+			else 
+				System.out.print("Vitusdance, ");
+		}
+		System.out.println();
+		
+	}
 	
 	private static int steps; 
 	
@@ -108,13 +187,13 @@ public class MyRunnable {
 					break;
 				case "move":
 					if (readed.length == 2) {
-					//fuggveny meg van
+						moveTo(readed[1]);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;
 				case "create":
 					if (readed.length == 2) {
-					//agens ==>> meg van
+						currentVirologus.createAgens(readed[1]);
 					}
 					else System.out.print("Hibás paraméterezés");
 					break;

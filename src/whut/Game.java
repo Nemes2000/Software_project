@@ -58,6 +58,10 @@ public class Game
 		entity.remove(v);
 	}
 	
+	public Map getMap() {
+		return map;
+	}
+	
 }
 
 

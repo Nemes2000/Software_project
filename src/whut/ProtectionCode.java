@@ -18,4 +18,10 @@ public class ProtectionCode extends GeneticCode
 		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Protection());
 	}
+	
+	public boolean Check(String s) {
+		if(s.equals("ProtectionCode"))
+			return true;
+		return false;
+	}
 }

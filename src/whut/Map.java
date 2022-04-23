@@ -10,4 +10,8 @@ public class Map
 		Fields = new ArrayList<Field>();
 	}
 	
+	public ArrayList<Field> getFields(){
+		return Fields;
+	}
+	
 }
