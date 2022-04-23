@@ -10,12 +10,17 @@ public static class Runnable {
 		//...
 	}
 	
+	public static void Main(String args[]) {
+		start();
+	}
+	
 	private Virologus currentVirologus;
 	public void setCurrentVirologus(Virologus v) {
 		currentVirologus=v;
 	}
 	
 	private Game game;
+	public Game getGame() {return game;}
 	
 	public String[] read() {
 		Scanner in = new Scanner(System.in);

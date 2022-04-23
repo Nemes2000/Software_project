@@ -182,4 +182,13 @@ public class Virologus extends AgensUsable {
 	public void setItem(Item i) {
 		itemHave.add(i);
 	}
+	
+	@Override
+	public void step() {
+		if(roundDesc()) {
+			CommandInput.GetInput(Actions[]= {MOVE,AGENSCREATE,TOUCH},this);
+		}
+		Runnable.getGame().endGame(geneticCode);
+	}
+	
 }

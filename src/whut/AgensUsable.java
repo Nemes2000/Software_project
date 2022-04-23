@@ -89,12 +89,7 @@ public abstract class AgensUsable extends Entity{
 		System.out.println(">[:AgensUsable].increaseMaterial()");
 		
 	}
-	@Override
-	public void step() {
-		if(roundDesc()) {
-			CommandInput.GetInput(Actions[],this);
-		}
-	}
+	
 	//ennek kene egy parameter, hogy melyik agenst hasznalja
 	public void useAgens(Virologus v) {
 		
