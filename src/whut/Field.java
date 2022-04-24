@@ -21,7 +21,6 @@ public class Field
 	{
 		System.out.println(">[:Field].getVirologusok()");
 		return au;
-		
 	}
 	
 	//törli a virológust a listából

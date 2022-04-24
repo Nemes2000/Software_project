@@ -503,7 +503,8 @@ public class MyRunnable {
 	public static void touch() {
 		Field f = currentVirologus.getField();
 		log("Field adatok:");
-		log("genetikai kodok: "+f.codeHere());
+		if (f.codeHere() != null)
+			log("genetikai kodok: "+f.codeHere());
 		String itemek = "Itemek: ";
 		ArrayList<Item> il = f.getItems();
 		if (il == null) 
@@ -529,6 +530,23 @@ public class MyRunnable {
 			}
 		}
 		log(anyagok);
+		
+		for (AgensUsable a : f.getVirologusok()) {
+			Virologus v = (Virologus) a;
+			log("v"+ getVirologusSzam(v));
+			String vAnyagok = "Anyagok: ";
+			ArrayList<Material> vml = v.getPacket().getMaterials();
+			if (vml != null){
+				for (Material m : vml)
+					vAnyagok.concat(m.toString()+" ");
+			}
+			log(vAnyagok);
+			String vItemek = "Itemek: ";
+			ArrayList<Item> vil = v.getItemHave();
+			for(Item i : vil)
+				vItemek.concat(i.toString());
+			log(vItemek);
+		}
 	}
 	
 	private static int steps; 
