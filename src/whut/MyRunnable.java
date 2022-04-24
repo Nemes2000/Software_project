@@ -299,31 +299,25 @@ public class MyRunnable {
 	
 	public static void collect(String[] input)
 	{
-		String sub = input[1].substring(1);
-		try {
-			int number = Integer.parseInt(sub);
-			boolean can = false;
-			Material mm;
-			if(input[1] == "amino")
-				mm = new Aminosav();
-			else
-				mm = new Nukleotid();
-			if(currentVirologus.getField().getPacket() != null) {
-				for(Material m : currentVirologus.getField().getPacket().getMaterials())
-					if(m.isSame(mm)) {
-						can = true;
-						currentVirologus.increaseMaterial(currentVirologus.getField().getPacket(), m);
-					}
-			} else
-				log("Cant collect "+input[1]);
-				
-			if(can)
-				log("v" + getVirologusSzam(currentVirologus) + " collected "+ input[1]);
-		}
-		catch (NumberFormatException ex) {
+		boolean can = false;
+		Material mm;
+		if(input[1].equals("amino"))
+			mm = new Aminosav();
+		else
+			mm = new Nukleotid();
+		
+		if(currentVirologus.getField().getPacket() != null) {
+			for(int i = 0; i < currentVirologus.getField().getPacket().getMaterials().size(); i++) {
+				if(currentVirologus.getField().getPacket().getMaterials().get(i).isSame(mm)) {
+					can = true;
+					currentVirologus.increaseMaterial(currentVirologus.getField().getPacket(), currentVirologus.getField().getPacket().getMaterials().get(i));
+				}
+			}
+		} else
+			log("Cant collect "+input[1]);
 			
-		}
-			
+		if(can)
+			log("v" + getVirologusSzam(currentVirologus) + " collected "+ input[1]);
 	}
 	
 	private static void addSomething(String[] readed) {

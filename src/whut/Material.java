@@ -20,7 +20,7 @@ public abstract class Material implements Serializable{
 	// megmondja, hogy a parameterkent kapott anyag hasonlo tipusu-e mint ezen amyag
 	// Material mat1 - a kapott anyag, ezt hasonlitja ossze
 	public boolean isSame(Material mat1) {
-		return mat1.getType() == this.getType();
+		return mat1.getType().equals(this.getType());
 	}
 
 	// visszadaja az anyag mennyiseget
