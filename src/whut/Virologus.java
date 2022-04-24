@@ -133,7 +133,8 @@ public class Virologus extends AgensUsable {
 		System.out.println(">[:Virologus].uRAttacked()");
 		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
 		//k�ld�t�lk kit�rli az �genst
-		v.removeAgens(ag);
+		if (v != null)
+			v.removeAgens(ag);
 		//ellen�rzi, hogy van-e v�dve valami �ltal
 		boolean isProtected = false;
 		for(Agens a : agensOnMe)
@@ -142,7 +143,7 @@ public class Virologus extends AgensUsable {
 				
 		//mivel virol�gus, ez�rt v�gigmegy az �gensein k�v�l az itemein is, hogy azok valamelyike megv�di-e
 		for(Item it : itemHave)
-			if(it.canCastEffect())
+			if(!it.canCastEffect())
 				isProtected=true;
 		
 		if(isProtected)
@@ -169,7 +170,13 @@ public class Virologus extends AgensUsable {
 		boolean killed = false;
 		for (Item i : itemHave) {
 			killed = i.killEffect(v);
-			if (killed) break;
+			if (killed) { 
+				MyRunnable.log("An enemy has been slain!");
+				break;
+			}
+		}
+		if (!killed) {
+			MyRunnable.log("You need an axe");
 		}
 	}
 	

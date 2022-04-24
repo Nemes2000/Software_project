@@ -1,0 +1,6 @@
+createfield
+placevirologus f1
+placevirologus f1
+startgame
+touch
+kill v2
