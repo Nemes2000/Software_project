@@ -170,7 +170,13 @@ public class Virologus extends AgensUsable {
 		boolean killed = false;
 		for (Item i : itemHave) {
 			killed = i.killEffect(v);
-			if (killed) break;
+			if (killed) { 
+				MyRunnable.log("An enemy has been slain!");
+				break;
+			}
+		}
+		if (!killed) {
+			MyRunnable.log("You need an axe");
 		}
 	}
 	

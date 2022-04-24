@@ -1,0 +1,15 @@
+createfield
+placevirologus f1
+placevirologus f1
+add forget v1
+add glove v2
+add packet v2
+add protectioncode v2
+startgame
+finishturn
+create protection
+touch
+useagens v2 protection
+finishturn
+touch
+useagens v2 forget
