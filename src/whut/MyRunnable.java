@@ -104,7 +104,7 @@ public class MyRunnable {
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
 				Agens a = currentVirologus.getAgens(input[2]);
-				if(v!=null && a != null && currentVirologus.getField().getNeighbourhood().contains(v)) {
+				if(v!=null && a != null && currentVirologus.getField().getVirologusok().contains(v)) {
 					currentVirologus.useAgens(v,a);
 				}
 				
