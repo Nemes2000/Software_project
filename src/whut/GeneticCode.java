@@ -1,10 +1,11 @@
 package whut;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 //A megvalositott genetikus kodok ososztalya
 //ArrayList<Material> cost - az elkeszitesehez szukseges anyagok
-public abstract class GeneticCode {
+public abstract class GeneticCode implements Serializable{
 	protected ArrayList<Material> cost;
 	
 	//Konstruktor, melyben a cost-nak adok ertekeket

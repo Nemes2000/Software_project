@@ -1,7 +1,8 @@
 package whut;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game
+public class Game implements Serializable
 {
 	private Map map;
 	ArrayList<Entity> entity;
@@ -73,6 +74,10 @@ public class Game
 	
 	public Map getMap() {
 		return map;
+	}
+	
+	public int getEntitySize(){
+		return entity.size();
 	}
 	
 }

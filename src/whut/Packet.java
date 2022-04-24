@@ -1,11 +1,12 @@
 package whut;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 //Egy zseb, ami zabben l�v� anyagok kezel�s��rt felel
 //ArrayList<Material> materials - a t�rolt anyagok list�ja
 //int maxPerMaterial - a maximum t�rolhat� anyagmennyis�g az egyes anyagt�pusokb�l
-public class Packet 
+public class Packet implements Serializable
 {
 	private ArrayList<Material> materials = new ArrayList<Material>();
 	private int maxPerMaterial;

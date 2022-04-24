@@ -1,7 +1,8 @@
 package whut;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Map
+public class Map implements Serializable
 {
 	private ArrayList<Field> Fields;
 	

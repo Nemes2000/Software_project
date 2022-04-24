@@ -1,11 +1,18 @@
 package whut;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MyRunnable {
 
 	private static ArrayList<String> logFile;
+	
 	public static void log(String s) {
 		System.out.println(s);
 		logFile.add(s);
@@ -15,9 +22,6 @@ public class MyRunnable {
 		logFile = new ArrayList<String>();
 		game = new Game();
 		start();
-	
-		//tesztek ide__________________________________________
-		
 	}
 	
 	private static Virologus currentVirologus;
@@ -50,7 +54,7 @@ public class MyRunnable {
 				
 			}
 		}catch(NumberFormatException ex) {
-			System.out.print("Bad parameter!");
+			log("Bad parameter!");
 		}
 	}
 	
@@ -68,7 +72,7 @@ public class MyRunnable {
 				
 			}
 		}catch(NumberFormatException ex) {
-			System.out.print("Bad parameter!");
+			log("Bad parameter!");
 		}
 	}
 	
@@ -95,18 +99,24 @@ public class MyRunnable {
 			boolean moved = false;
 			String ch = hova.substring(1);
 			int melyik = Integer.parseInt(ch);
-			Field f = game.getMap().getFields().get(melyik);
+			Field f = game.getMap().getFields().get(melyik-1);
 			if(hova.charAt(0) == 'f') {
-				for(Field ff : currentVirologus.getField().getNeighbourhood())
-				if(ff == f) {
-					currentVirologus.move(f);
-					moved = true;
-				}
+				ArrayList<Field> list = currentVirologus.getField().getNeighbourhood();
+				for(Field ff : list)
+					if(ff == f) {
+						currentVirologus.move(f);
+						moved = true;
+						for(int i = 0; i < game.getEntitySize(); i++)
+							if(game.getEntityAt(i) == currentVirologus) {
+								log("v"+(i+1)+" moved");
+								break;
+							}
+					}
 			}
 			if(!moved)
-				System.out.println("Bad parameter!");
+				log("Bad parameter!");
 		} catch(NumberFormatException e) {
-			System.out.println("Bad parameter!");
+			log("Bad parameter!");
 		}
 }
 
@@ -275,7 +285,7 @@ public class MyRunnable {
 		try {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='a' || input[1].charAt(0)=='n') { //egyszerűség kedvéért a szám legyen egyedi, pl a1,n2,a3,a4,n5 stb.
-				Material m = currentVirologus.getField().getPacket().getMaterials().get(number);
+				Material m = currentVirologus.getField().getPacket().getMaterials().get(number-1);
 				if(m!= null)
 				{
 					currentVirologus.increaseMaterial(currentVirologus.getField().getPacket());
@@ -286,6 +296,122 @@ public class MyRunnable {
 			
 		}
 			
+	}
+	
+	private static void addSomething(String[] readed) {
+		int szam = Character.getNumericValue(readed[2].charAt(1));  //virologus jelzo utani azonosito(hanyadik virologusra hasznaljuk a dolgot);
+		//az add utani parancs alapjan folytatodik
+		switch(readed[1]) {
+		case "cloak":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).addItem(new Cloak());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addItem(new Cloak());
+			}
+		break;
+		case "glove":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).addItem(new Glove());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addItem(new Glove());
+			}
+		break;
+		case "sack":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).addItem(new Sack());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addItem(new Sack());
+			}
+		break;
+		case "axe":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).addItem(new Axe());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addItem(new Axe());
+			}
+		break;
+		case "stuncode":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).setGeneticCode(new StunCode()); //setGeneticCodeot a Fieldbe is berakni ott nem csinal semmit
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new StunCode());
+			}
+		break;
+		case "vitusdancecode":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).setGeneticCode(new VitusdanceCode());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new VitusdanceCode());
+			}
+		break;
+		case "forgetcode":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).setGeneticCode(new ForgetCode());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new ForgetCode());
+			}
+		break;
+		case "protectioncode":
+			if(readed[2].charAt(0) == 'f') {   
+				game.getMap().getField(szam).setGeneticCode(new ProtectionCode());
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new ProtectionCode());
+			}
+		break;
+		
+		case "stun":
+			if(readed[2].charAt(0) == 'f') {
+				System.out.print("Nem lehet fieldhez adni agenst!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addAgens(new Stun());
+			}
+		break;
+		case "vitusdance":
+			if(readed[2].charAt(0) == 'f') {
+				System.out.print("Nem lehet fieldhez adni agenst!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addAgens(new Vitusdance());
+			}
+		break;
+		case "protection":
+			if(readed[2].charAt(0) == 'f') {
+				System.out.print("Nem lehet fieldhez adni agenst!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addAgens(new Protection());
+			}
+		break;
+		case "forget":
+			if(readed[2].charAt(0) == 'f') {
+				System.out.print("Nem lehet fieldhez adni agenst!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).addAgens(new Forget());
+			}
+		break;
+		case "aminosav":
+			Packet uja = new Packet();			
+			uja.addMaterial(new Aminosav());						
+			if(readed[2].charAt(0) == 'f') { 
+				if(game.getMap().getField(szam).getPacket() != null)
+					game.getMap().getField(szam).getPacket().addMaterial(new Aminosav());  //fieldnek egy addMaterialt kell letrehozni.
+				else
+					log("Bad parameter!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).increaseMaterial(uja);
+			}
+		break;
+		case "nukleotid":
+			Packet ujn = new Packet();			
+			ujn.addMaterial(new Aminosav());
+			if(readed[2].charAt(0) == 'f') {   
+				if(game.getMap().getField(szam).getPacket() != null)
+					game.getMap().getField(szam).getPacket().addMaterial(new Aminosav());  //fieldnek egy addMaterialt kell letrehozni.
+				else
+					log("Bad parameter!");
+			}else if(readed[2].charAt(0) == 'v') {
+				((Virologus)game.getEntityAt(szam)).increaseMaterial(ujn);
+			}
+		break;
+		}
 	}
 	
 	public static void leave(String[] input)
@@ -323,13 +449,16 @@ public class MyRunnable {
 					else System.out.print("Bad parameter!");
 					break;
 				case "create":
-					if (readed.length == 2) {
+					if (readed.length == 2)
 						currentVirologus.createAgens(readed[1]);
-					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "finishturn" : 
 					steps = 0;
+					break;
+				default : 
+					log("Bad parameter!");
 					break;
 			}
 			steps--;
@@ -353,54 +482,64 @@ public class MyRunnable {
 					if (readed.length == 3) {
 						stealitem(readed);     //prototipus
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "stealmaterial":
 					if (readed.length == 3) {
 						stealmaterial(readed);
 					}
-					else System.out.print("Bad parameter!");
-					break;
+					else 
+						log("Bad parameter!");
 				case "kill":
 					if (readed.length == 2) {
 						kill(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "useagens":
 					if (readed.length == 3) {
 						useagens(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				
 				case "learn":
 					if (readed.length == 2) {
 						learn(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "collect":
 					if (readed.length == 2) {
 						collect(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "pickup":
 					if (readed.length == 2) {
 						pickup(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else
+						log("Bad parameter!");
 					break;
 				case "leave":
 					if (readed.length == 2) {
 						leave(readed);
 					}
-					else System.out.print("Bad parameter!");
+					else 
+						log("Bad parameter!");
 					break;
 				case "finishturn" : 
 					justinfo = 0;
 					steps = 0;
+					break;
+				default : 
+					log("Bad parameter!");
 					break;
 			}
 			justinfo--;
@@ -420,53 +559,70 @@ public class MyRunnable {
 					createField(readed);
 					log("A field has been created!");
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			case "setneighbour":
 				if (readed.length == 3) {
 					setNeighbour(readed);
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			case "add":
 				if (readed.length == 3) {
-					switch(readed[1]) {
-						case "agens" : 
-							break;
-						case "material" : 
-							break;
-						case "geneticcode" : 
-							break;
-						case "item" : 
-							break;
-					}
+					addSomething(readed);
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			
 			case "load":
 				if (readed.length == 2) {
+					ObjectInputStream in;
+					try {
+						in = new ObjectInputStream(new FileInputStream(readed[1]));
+						game = (Game)in.readObject();
+						in.close();
+					} catch(FileNotFoundException fe) {
+						log("Bad parameter!");
+					} catch (IOException e) {
+						log("Bad parameter!");
+					} catch (ClassNotFoundException e) {
+						log("Bad file!");
+					}
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			case "save":
 				if (readed.length == 2) {
-					
+					ObjectOutputStream out;
+					try {
+						out = new ObjectOutputStream(new FileOutputStream(readed[1] + ".txt"));
+						out.writeObject(game);
+					} catch(Exception e) {
+						log("Bad parameter!");
+					}
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			
 			case "startgame":
 				if (readed.length == 1) {
+					log("Game started!");
 					game.run();
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			case "placevirologus":
 				if (readed.length == 2) {
 					placeVir(readed);
 				}
-				else System.out.print("Bad parameter!");
+				else 
+					log("Bad parameter!");
 				break;
 			case "newtest":
 				start();
@@ -475,9 +631,10 @@ public class MyRunnable {
 			case "close":
 				megy=false;
 				break;
+			default : 
+				log("Bad parameter!");
+				break;
 			}
-		
-		
 		}
 	}
 }

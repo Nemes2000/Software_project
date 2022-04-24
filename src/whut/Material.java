@@ -1,9 +1,10 @@
 package whut;
+import java.io.Serializable;
 import java.util.Random;
 
 //Egy anyagtulajdonsagaiert felel
 //int value - mennyi az anyag mennyisege
-public abstract class Material {
+public abstract class Material implements Serializable{
 	private int value;
 
 	// Konstruktor, beallitja random az anyag erteket
@@ -35,7 +36,7 @@ public abstract class Material {
 	}
 	
 	
-	//a getType a belsõhöz kell ez a kulsó elereshez
+	//a getType a belsï¿½hï¿½z kell ez a kulsï¿½ elereshez
 	public boolean Check(String s) {
 		return false;
 	}

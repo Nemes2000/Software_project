@@ -1,6 +1,8 @@
 package whut;
 
-public class Agens {
+import java.io.Serializable;
+
+public class Agens implements Serializable{
 	
 	//ezeket a f�ggv�nyeket overridolj�k(opcion�lisan) az �gensek. Alap�rtelmezetten olyan a visszat�r�si �rt�k, hogy ne legyen hat�sa(pl.: nem lehet csak �gy lopni, ez�rt a canStealEffect false)
 	

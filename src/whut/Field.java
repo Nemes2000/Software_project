@@ -37,6 +37,7 @@ public class Field
 		System.out.println(">[:Field].accept(v)");
 		AgensUsable ag = (AgensUsable)v;
 		au.add(ag);
+		v.setField(this);
 	}
 	
 	//mező érintés esetén hívódik meg
@@ -77,6 +78,10 @@ public class Field
 
 	public Item getItem(String getThis) {
 		return null;
+	}
+	
+	public void setGeneticCode(GeneticCode gc) {
+		MyRunnable.log("Ide nem rakhatsz!");
 	}
 	
 }
