@@ -336,55 +336,70 @@ public class MyRunnable {
 				log("A cloak has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addItem(new Cloak());
+				log("A cloak has been added to "+readed[2]);
 			}
 		break;
 		case "glove":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).addItem(new Glove());
+				log("A glove has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addItem(new Glove());
+				log("A glove has been added to "+readed[2]);
 			}
 		break;
 		case "sack":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).addItem(new Sack());
+				log("A sack has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addItem(new Sack());
+				log("A sack has been added to "+readed[2]);
 			}
 		break;
 		case "axe":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).addItem(new Axe());
+				log("A axe has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addItem(new Axe());
+				log("A axe has been added to "+readed[2]);
 			}
 		break;
 		case "stuncode":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).setGeneticCode(new StunCode()); //setGeneticCodeot a Fieldbe is berakni ott nem csinal semmit
+				log("A stuncode has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new StunCode());
+				log("A stuncode has been added to "+readed[2]);
 			}
 		break;
 		case "vitusdancecode":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).setGeneticCode(new VitusdanceCode());
+				log("A vitusdancecode has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new VitusdanceCode());
+				log("A vitusdancecode has been added to "+readed[2]);
 			}
 		break;
 		case "forgetcode":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).setGeneticCode(new ForgetCode());
+				log("A forgetcode has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new ForgetCode());
+				log("A forgetcode has been added to "+readed[2]);
 			}
 		break;
 		case "protectioncode":
 			if(readed[2].charAt(0) == 'f') {   
 				game.getMap().getField(szam).setGeneticCode(new ProtectionCode());
+				log("A protectioncode has been added to "+readed[2]);
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).learnGeneticCode(new ProtectionCode());
+				log("A protectioncode has been added to "+readed[2]);
 			}
 		break;
 		
@@ -393,6 +408,7 @@ public class MyRunnable {
 				log("Nem lehet fieldhez adni agenst!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addAgens(new Stun());
+				log("A stun has been added to "+readed[2]);
 			}
 		break;
 		case "vitusdance":
@@ -400,6 +416,7 @@ public class MyRunnable {
 				log("Nem lehet fieldhez adni agenst!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addAgens(new Vitusdance());
+				log("A vitusdance has been added to "+readed[2]);
 			}
 		break;
 		case "protection":
@@ -407,6 +424,7 @@ public class MyRunnable {
 				log("Nem lehet fieldhez adni agenst!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addAgens(new Protection());
+				log("A protection has been added to "+readed[2]);
 			}
 		break;
 		case "forget":
@@ -414,26 +432,33 @@ public class MyRunnable {
 				log("Nem lehet fieldhez adni agenst!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).addAgens(new Forget());
+				log("A forget has been added to "+readed[2]);
 			}
 		break;
 		case "aminosav":					
 			if(readed[2].charAt(0) == 'f') { 
-				if(game.getMap().getField(szam).getPacket() != null)
+				if(game.getMap().getField(szam).getPacket() != null) {
 					game.getMap().getField(szam).getPacket().addMaterial(new Aminosav());  //fieldnek egy addMaterialt kell letrehozni.
+					log("A aminosav has been added to "+readed[2]);
+				}
 				else
 					log("Bad parameter!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).getPacket().addMaterial(new Aminosav());
+				log("A aminosav has been added to "+readed[2]);
 			}
 		break;
 		case "nukleotid":
 			if(readed[2].charAt(0) == 'f') {   
-				if(game.getMap().getField(szam).getPacket() != null)
+				if(game.getMap().getField(szam).getPacket() != null) {
 					game.getMap().getField(szam).getPacket().addMaterial(new Nukleotid());  //fieldnek egy addMaterialt kell letrehozni.
+					log("A nukleotid has been added to "+readed[2]);
+				}
 				else
 					log("Bad parameter!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).getPacket().addMaterial(new Nukleotid());
+				log("A nukleotid has been added to "+readed[2]);
 			}
 		break;
 		case "packet":
@@ -446,12 +471,14 @@ public class MyRunnable {
 				if(game.getMap().getField(szam).getPacket() != null) {
 					game.getMap().getField(szam).getPacket().addMaterial(a);
 					game.getMap().getField(szam).getPacket().addMaterial(n);
+					log("A packet has been added to "+readed[2]);
 				}
 				else
 					log("Bad parameter!");
 			}else if(readed[2].charAt(0) == 'v') {
 				((Virologus)game.getEntityAt(szam)).getPacket().addMaterial(a);
 				((Virologus)game.getEntityAt(szam)).getPacket().addMaterial(n);
+				log("A packet has been added to "+readed[2]);
 			}
 			break;
 		default:
