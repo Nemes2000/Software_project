@@ -150,7 +150,7 @@ public class MyRunnable {
 			int number = Integer.parseInt(sub);
 			if(input[1].charAt(0)=='v') {
 				Virologus v = (Virologus)(game.getEntityAt(number-1));
-				if(v!=null&&currentVirologus.getField().getNeighbourhood().contains(v)) {
+				if(v!=null&&currentVirologus.getField().getVirologusok().contains(v)) {
 					currentVirologus.kill(v);
 				}
 			}
