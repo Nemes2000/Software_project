@@ -12,7 +12,7 @@ public class Axe extends Item{
 
 	@Override
 	public boolean Check(String s) {
-		if(s.equals("Axe")) {
+		if(s.equals("axe")) {
 			return true;
 		}
 		return false;

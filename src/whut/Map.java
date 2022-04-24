@@ -23,4 +23,8 @@ public class Map implements Serializable
 		return Fields.get(index);
 	}
 	
+	public int getSize() {
+		return Fields.size();
+	}
+	
 }

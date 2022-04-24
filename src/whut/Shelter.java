@@ -47,6 +47,7 @@ public class Shelter extends Field
 				return i;
 			}
 		}
+		MyRunnable.log("There is no "+ getThis + " here!");
 		return null;
 	}
 }

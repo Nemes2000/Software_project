@@ -1,6 +1,5 @@
 package whut;
 
-import java.util.ArrayList;
 
 public class Lab extends Field
 {
@@ -30,12 +29,9 @@ public class Lab extends Field
 	{
 		geneticCode = g;
 	}
-	
-	public boolean codeHere(GeneticCode g) {
-		if(geneticCode.equals(g))return true;
-		
-		
-		return false;
+	@Override
+	public GeneticCode codeHere() {
+		return geneticCode;
 	}
 }
 

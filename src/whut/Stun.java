@@ -31,7 +31,7 @@ public class Stun extends Agens{
 	}
 	
 	public boolean Check(String s) {
-		if(s.equals("Stun"))
+		if(s.equals("stun"))
 			return true;
 		return false;
 	}

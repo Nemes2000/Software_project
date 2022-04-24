@@ -11,4 +11,10 @@ public class Cloak extends Item{
 		if (n <= 823) return false;
 		return true;
 	}
+	
+	public boolean Check(String it) {
+		if(it.equals("cloak"))
+			return true;
+		return false;
+	}
 }

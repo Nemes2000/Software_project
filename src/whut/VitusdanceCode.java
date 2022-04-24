@@ -17,10 +17,12 @@ public class VitusdanceCode extends GeneticCode
 		//ha ki tudta "fizetni" az �gens haszn�l� az �gens l�trehoz�s d�j�t, akkor kap egyet
 		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Vitusdance());
+		else
+			MyRunnable.log("Not enough aminosav,nukleotid to create vitusdance");
 	}
 	
 	public boolean Check(String s) {
-		if(s.equals("VitusdanceCode"))
+		if(s.equals("vitusdance"))
 			return true;
 		return false;
 	}

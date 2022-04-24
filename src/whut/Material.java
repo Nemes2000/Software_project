@@ -11,7 +11,7 @@ public abstract class Material implements Serializable{
 	public Material()
 	{
 		Random rand = new Random();
-		value = rand.nextInt(4) + 1;
+		value = rand.nextInt(50) + 1;
 	}
 
 	// az anyag tipusut adja vissza, csak a leszarmazottak valositjak meg

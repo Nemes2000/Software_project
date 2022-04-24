@@ -46,13 +46,15 @@ public class Virologus extends AgensUsable {
 				canSteal = true;
 		}
 		if (canSteal) {
-			if (v.getItemNumber() == 3)			
+			if (v.getItemNumber() == 3)	
 				removeItem(mit);
 			else {
 				removeItem(mit);
 				v.addItem(mit);
+				MyRunnable.log(mit.toString()+" was stolen");
 			}
-		}
+		} else
+			MyRunnable.log("The item was not stolen");
 		
 	}
 	
@@ -71,7 +73,9 @@ public class Virologus extends AgensUsable {
 			ArrayList<Material> temp = new ArrayList<Material>();
 			temp.add(mit);
 			getPacket().decreaseMaterial(temp);
-		}
+			MyRunnable.log(mit.toString()+"was stolen");
+		} else
+			MyRunnable.log("This material was not stolen");
 	}
 	
 	//lecser�l egy t�rgyat a n�la l�v� t�rgyak k�z�l
@@ -102,9 +106,8 @@ public class Virologus extends AgensUsable {
 	
 	//felvesz egy t�rgyat, ha nincs helye, akkor kicser�li az egyiket
 	//ArrayList<Item> is - a t�rgyak list�ja, amib�l kiv�lasztja, hogy melyiket szeretn�
-	public void pickUpItem(ArrayList<Item> is) {
+	public void pickUpItem(Item mire) {
 		System.out.println(">[:Virologus].pickUpItem(is)");
-		Item mire = is.get(0);
 		if (itemHave.size() >= 3) {
 			Item mit = itemHave.get(0);
 			changeItem(mit, mire);
@@ -117,9 +120,8 @@ public class Virologus extends AgensUsable {
 	}
 	
 	//egy t�rgyat otthagy ahol van
-	public void leaveItem() {
+	public void leaveItem(Item mit) {
 		System.out.println(">[:Virologus].leaveItem()");
-		Item mit = itemHave.get(0);
 		field.addItem(mit);
 		removeItem(mit);
 	}
@@ -129,32 +131,36 @@ public class Virologus extends AgensUsable {
 	@Override
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:Virologus].uRAttacked()");
+		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
 		//k�ld�t�lk kit�rli az �genst
 		v.removeAgens(ag);
 		//ellen�rzi, hogy van-e v�dve valami �ltal
 		boolean isProtected = false;
-		for(Agens a : agensOnMe){
-			if(a.defendEffect()) {
+		for(Agens a : agensOnMe)
+			if(a.defendEffect())
 				isProtected=true;
-			}
-		}
+				
 		//mivel virol�gus, ez�rt v�gigmegy az �gensein k�v�l az itemein is, hogy azok valamelyike megv�di-e
-		for(Item it : itemHave){
-			if(it.canCastEffect()) {
+		for(Item it : itemHave)
+			if(it.canCastEffect())
 				isProtected=true;
-			}
-		}
+		
+		if(isProtected)
+			MyRunnable.log("Unsuccessfull attack!");
+		
 		//mivel virol�gus, ez�rt v�gigmegy az itemein, hogy valamelyik visszakeni-e
 		if(!isProtected) {
 			boolean fireBacked = false;
 			for(Item it: itemHave){
 				if(it.fireBackEffect(v, this, ag)) {
 					fireBacked=true;
+					MyRunnable.log("v"+MyRunnable.getVirologusSzam(this) + " attacked back with " + ag.toString());
 				}
 			}
 			//ha vissza sem keni, akkor hozz�adja a rajt l�v� �gensekhez
 			if(!fireBacked) {
 				addAgensOnMe(ag);
+				MyRunnable.log("v" + MyRunnable.getVirologusSzam(this)+" is now under " + ag.toString() + " effect");
 			}
 		}
 	}

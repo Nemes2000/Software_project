@@ -61,11 +61,15 @@ public class Field
 		return neighbor;
 	}
 
-	public void removeItem(Item i) {}
-	public void addItem(Item i) {}
+	public void removeItem(Item i) {
+		MyRunnable.log("Cant pickup item from here!");
+	}
+	public void addItem(Item i) {
+		MyRunnable.log("Cant leave item here!");
+	}
 	
-	public boolean codeHere(GeneticCode g) {
-		return false;
+	public GeneticCode codeHere() {
+		return null;
 	}
 	
 	public ArrayList<Item> getItems() {

@@ -16,4 +16,10 @@ public class Glove extends Item {
 		}
 		return true;
 	}
+	
+	public boolean Check(String it) {
+		if(it.equals("glove"))
+			return true;
+		return false;
+	}
 }

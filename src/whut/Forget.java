@@ -14,7 +14,7 @@ public class Forget extends Agens{
 	}
 	
 	public boolean Check(String s) {
-		if(s.equals("Forget"))
+		if(s.equals("forget"))
 			return true;
 		return false;
 	}

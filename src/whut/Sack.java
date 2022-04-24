@@ -18,4 +18,10 @@ public class Sack extends Item{
 		Packet p = v.getPacket();
 		p.handlePossibleLostMaterial(increase);
 	}
+	
+	public boolean Check(String it) {
+		if(it.equals("sack"))
+			return true;
+		return false;
+	}
 }

@@ -1,6 +1,5 @@
 package whut;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class AgensUsable extends Entity{
 	
@@ -13,7 +12,6 @@ public class AgensUsable extends Entity{
 	//list�khoz sim�n hozz�adja �s elveszi
 	public void addAgens(Agens a)
 	{
-		System.out.println("Uj felhasznalhato agens");
 		agens.add(a);
 	}
 	public void addAgensOnMe(Agens ag) {
@@ -88,7 +86,7 @@ public class AgensUsable extends Entity{
 		}
 		
 		if(!created)
-			System.out.println("Genetic code for " + mit + " not learned yet!");
+			MyRunnable.log("Genetic code for " + mit + " not learned yet!");
 	}
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
@@ -97,8 +95,9 @@ public class AgensUsable extends Entity{
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
-	public void increaseMaterial(Packet p) {
+	public void increaseMaterial(Packet p, Material m) {
 		System.out.println(">[:AgensUsable].increaseMaterial()");
+		p.handleMaterialSeparate(m, this.materialPacket);
 		
 	}
 	

@@ -24,6 +24,7 @@ public abstract class GeneticCode implements Serializable{
 				mat = new Aminosav();
 			else
 				mat = new Nukleotid();
+			mat.setValue(1);
 			cost.add(mat);
 		}	
 	}

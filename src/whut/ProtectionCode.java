@@ -17,10 +17,12 @@ public class ProtectionCode extends GeneticCode
 		//ha ki tudta "fizetni" az �gens haszn�l� az �gens l�trehoz�s d�j�t, akkor kap egyet
 		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Protection());
+		else
+			MyRunnable.log("Not enough aminosav,nukleotid to create protection");
 	}
 	
 	public boolean Check(String s) {
-		if(s.equals("ProtectionCode"))
+		if(s.equals("protection"))
 			return true;
 		return false;
 	}

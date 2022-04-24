@@ -14,7 +14,7 @@ public class Packet implements Serializable
 	//Konstruktor, alapbol csak a zseb meretet allitja be
 	public Packet()
 	{
-		maxPerMaterial = 6;
+		maxPerMaterial = 500;
 	}
 	
 	//Torli a listaban kapott anyagmennyiseget ezen zsebbol
@@ -72,15 +72,11 @@ public class Packet implements Serializable
 		
 		//megnezzuk hogy a legvegen maradt-e anyag a kapott listaban
 		if(mats.size()==0) {
-			System.out.println("Sikeresen levonta a nyersanyagokat.");
 			materials = decreas;
 			return true;
 		}
 		else
-		{
-			System.out.println("Sikertelenul vonta le a nyersanyagokat.");
 			return false;
-		}
 	}
 	
 	//megvaltoztatjuk a maximum tarolhato anyagmennyiseget anyagonkont
@@ -112,7 +108,6 @@ public class Packet implements Serializable
 		//ha tobb aminosavunk van mint amennyi lehetne a zseb meretenek lecsokkentese utan
 		if(matsMaterialADb > maxPerMaterial-value)
 		{
-			System.out.println("Elveszett ennyi aminosav: "+(matsMaterialADb-maxPerMaterial+value));
 			Aminosav a = new Aminosav();
 			
 			//az ujonnan letrehozott aminosav erteket beallitjuk arra 
@@ -126,15 +121,11 @@ public class Packet implements Serializable
 			//levonjuk ezen zsebbol a tulcsordulast
 			this.decreaseMaterial(m);
 		}
-		//ha pedig nincs tulcsordulas akkor jok vagyunk
-		else
-			System.out.println("Nem veszett el aminosav");
 		
 		
 		//ha tobb nukleotidunk van mint amennyi lehetne a zseb meretenek lecsokkentese utan
 		if(matsMaterialNDb > maxPerMaterial-value)
 		{
-			System.out.println("Elveszett ennyi nukleotid: "+(matsMaterialNDb-maxPerMaterial+value));
 			Nukleotid a = new Nukleotid();
 			
 			//az ujonnan letrehozott aminosav erteket beallitjuk arra 
@@ -148,9 +139,6 @@ public class Packet implements Serializable
 			//levonjuk ezen zsebbol a tulcsordulast
 			this.decreaseMaterial(m);
 		}
-		//ha pedig nincs tulcsordulas akkor jok vagyunk
-		else
-			System.out.println("Nem veszett el nukleotid");
 
 		//atalitjuk a zseb meretet
 		this.changeMaxMaterial(-value);
@@ -191,14 +179,11 @@ public class Packet implements Serializable
 		
 		
 		//ha olyan mennyiseget adna meg amennyi nincs is a zsebben
-		if(mat.isSame(new Nukleotid()) && mat.getValue() > thismatsMaterialNDb) {
-			System.out.println("nincs ennyi anyag");
+		if(mat.isSame(new Nukleotid()) && mat.getValue() > thismatsMaterialNDb)
 			return;
-		}
-		if(mat.isSame(new Aminosav()) && mat.getValue() > thismatsMaterialADb) {
-			System.out.println("nincs ennyi anyag");
+	
+		if(mat.isSame(new Aminosav()) && mat.getValue() > thismatsMaterialADb)
 			return;
-		}
 		
 		
 		//amennyiben nukleotidrol van szo
@@ -207,8 +192,6 @@ public class Packet implements Serializable
 			//es nem tudjuk az egesz anyagot felvenni, mert kicsi a zseb merete
 			if(matsMaterialNDb + mat.getValue() > maxPerMaterial) 
 			{
-				System.out.println("Fevette a Nukleotidot, de nem az egeszet.");
-				
 				//megfelezzuk az anyagot
 				m = new Nukleotid();
 				
@@ -224,8 +207,6 @@ public class Packet implements Serializable
 			//ha feltudja venni az egesz anyagot
 			else
 			{
-				System.out.println("Felvette az Nukleotidot.");
-				
 				//hozzaadjuk a kapott zsebhez az anyagot
 				pac.addMaterial(mat);
 			}
@@ -236,9 +217,6 @@ public class Packet implements Serializable
 			//es nem tudjuk az egesz anyagot felvenni, mert kicsi a zseb merete
 			if(matsMaterialADb + mat.getValue() > maxPerMaterial) 
 			{
-				System.out.println("Sikeresen fevette az Aminosavat, de nem az eg�szet.");
-				m = new Aminosav();
-				
 				//azon ertekre allitjuk be amit maximalisan fel tud venni
 				m.setValue(maxPerMaterial-matsMaterialADb);
 				
@@ -251,8 +229,6 @@ public class Packet implements Serializable
 			//ha feltudja venni az egesz anyagot
 			else
 			{
-				System.out.println("Sikeresen felvette az Aminosavat.");
-				
 				//hozzaadjuk a kapott zsebhez az anyagot
 				pac.addMaterial(mat);
 			}
@@ -267,7 +243,6 @@ public class Packet implements Serializable
 		
 		// a megfelezett anyagot levonjuk ezen zsebbol
 		this.decreaseMaterial(material);	
-	
 	}
 	
 	//vissza adja a zseb anyaglistajat
