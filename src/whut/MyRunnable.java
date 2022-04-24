@@ -30,14 +30,22 @@ public class MyRunnable {
 	}
 	
 	private static Game game;
-	
+	private static String file;
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {
-		Scanner in = new Scanner(System.in);
-		String read= in.nextLine();
-		String[] readed = read.split(" ");
-		return readed;
+		if(!testfromFile) {
+			Scanner in = new Scanner(System.in);
+			String read= in.nextLine();
+			String[] readed = read.split(" ");
+			return readed;
+		} else {
+			Scanner in = new Scanner(file);
+			String read= in.nextLine();
+			String[] readed = read.split(" ");
+			return readed;
+		}
+		
 	}
 	
 	public static void stealitem(String[] input) {
@@ -614,6 +622,8 @@ public class MyRunnable {
 		}
 	}
 	
+	private static boolean testfromFile = false;;
+	
 	//init commands
 	public static void start() {
 		game = new Game();
@@ -621,7 +631,14 @@ public class MyRunnable {
 		boolean megy = true;
 		while(megy) {
 			readed = read();
-			switch(readed[0]) {				//readed tömb 0.eleme maga a parancs		
+			switch(readed[0]) {
+			case "test" :
+				if(readed.length == 2) {
+					testfromFile = true;
+					file = readed[1];
+				} else if(readed.length == 1)
+					testfromFile = false;
+				break;
 			case "createfield":
 				if (readed.length == 1 || readed.length == 2) {
 					createField(readed);
