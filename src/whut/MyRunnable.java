@@ -506,14 +506,27 @@ public class MyRunnable {
 		log("genetikai kodok: "+f.codeHere());
 		String itemek = "Itemek: ";
 		ArrayList<Item> il = f.getItems();
-		for (Item i : il) {
-			itemek.concat(i.toString());
+		if (il == null) 
+			itemek.concat("-");
+		else {
+			for (Item i : il) {
+				itemek.concat(i.toString());
+			}
 		}
 		log(itemek);
 		String anyagok = "Anyagok: ";
-		ArrayList<Material> ml = f.getPacket().getMaterials();
-		for (Material m : ml) {
-			anyagok.concat(m.toString());
+		Packet p = f.getPacket();
+		if (p == null)
+			anyagok.concat("-");
+		else {
+			ArrayList<Material> ml = p.getMaterials();
+			if (ml == null)
+				anyagok.concat("-");
+			else {
+				for (Material m : ml) {
+					anyagok.concat(m.toString());
+				}
+			}
 		}
 		log(anyagok);
 	}
@@ -535,9 +548,10 @@ public class MyRunnable {
 					getInfo();
 					break;
 				case "touch":
-					if(steps > 0)
+					if(steps > 0) {
+						touch();
 						currentVirologus.getField().touching(currentVirologus);
-					touch();
+					}
 					break;
 				case "move":
 					if(steps > 0) {
