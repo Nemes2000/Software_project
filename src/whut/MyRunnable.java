@@ -229,59 +229,59 @@ public class MyRunnable {
 	public static void getInfo() {
 		String kimenet = "Anygok: ";
 		for(Material mat : currentVirologus.getPacket().getMaterials())
-			kimenet.concat(mat.getType()+", ");
+			kimenet = kimenet.concat(mat.getType()+", ");
 		
 		log(kimenet);
 
 		kimenet = "Itemek: ";
 		for(Item it : currentVirologus.getItemHave()) {
 			if(it.Check("axe"))
-				kimenet.concat("axe, ");
+				kimenet = kimenet.concat("axe, ");
 			else if(it.Check("cloak"))
-				kimenet.concat("cloak, ");
+				kimenet = kimenet.concat("cloak, ");
 			else if(it.Check("glove"))
-				kimenet.concat("glove, ");
+				kimenet = kimenet.concat("glove, ");
 			else
-				kimenet.concat("sack, ");
+				kimenet = kimenet.concat("sack, ");
 		}
 		log(kimenet);
 		
 		kimenet = "Genetik kodok: ";
 		for(GeneticCode gc : currentVirologus.getGeneticCodeHave()) {
 			if(gc.Check("protectionCode"))
-				kimenet.concat("protectionCode, ");
+				kimenet = kimenet.concat("protectionCode, ");
 			else if(gc.Check("forgetCode"))
-				kimenet.concat("forgetCode, ");
+				kimenet = kimenet.concat("forgetCode, ");
 			else if(gc.Check("stunCode"))
-				kimenet.concat("stunCode, ");
+				kimenet = kimenet.concat("stunCode, ");
 			else 
-				kimenet.concat("vitusdanceCode, ");
+				kimenet = kimenet.concat("vitusdanceCode, ");
 		}
 		log(kimenet);
 		
 		kimenet ="Agensek: ";
 		for(Agens a : currentVirologus.getAgensHave()) {
 			if(a.Check("protection"))
-				kimenet.concat("protection, ");
+				kimenet = kimenet.concat("protection, ");
 			else if(a.Check("forget"))
-				kimenet.concat("forget, ");
+				kimenet = kimenet.concat("forget, ");
 			else if(a.Check("stun"))
-				kimenet.concat("stun, ");
+				kimenet = kimenet.concat("stun, ");
 			else 
-				kimenet.concat("vitusdance, ");
+				kimenet = kimenet.concat("vitusdance, ");
 		}
 		log(kimenet);
 		
 		kimenet = "Hato agensek: ";
 		for(Agens a : currentVirologus.getAgensOnMe()) {
 			if(a.Check("protection"))
-				kimenet.concat("protection, ");
+				kimenet = kimenet.concat("protection, ");
 			else if(a.Check("forget"))
-				kimenet.concat("forget, ");
+				kimenet = kimenet.concat("forget, ");
 			else if(a.Check("stun"))
-				kimenet.concat("stun, ");
+				kimenet = kimenet.concat("stun, ");
 			else 
-				kimenet.concat("vitusdance, ");
+				kimenet = kimenet.concat("vitusdance, ");
 		}
 		log(kimenet);
 		
@@ -508,24 +508,24 @@ public class MyRunnable {
 		String itemek = "Itemek: ";
 		ArrayList<Item> il = f.getItems();
 		if (il == null) 
-			itemek.concat("-");
+			itemek = itemek.concat("-");
 		else {
 			for (Item i : il) {
-				itemek.concat(i.toString());
+				itemek = itemek.concat(i.toString());
 			}
 		}
 		log(itemek);
 		String anyagok = "Anyagok: ";
 		Packet p = f.getPacket();
 		if (p == null)
-			anyagok.concat("-");
+			anyagok = anyagok.concat("-");
 		else {
 			ArrayList<Material> ml = p.getMaterials();
 			if (ml == null)
-				anyagok.concat("-");
+				anyagok = anyagok.concat("-");
 			else {
 				for (Material m : ml) {
-					anyagok.concat(m.toString());
+					anyagok = anyagok.concat(m.toString());
 				}
 			}
 		}
@@ -538,13 +538,13 @@ public class MyRunnable {
 			ArrayList<Material> vml = v.getPacket().getMaterials();
 			if (vml != null){
 				for (Material m : vml)
-					vAnyagok.concat(m.toString()+" ");
+					vAnyagok = vAnyagok.concat(m.toString()+" ");
 			}
 			log(vAnyagok);
 			String vItemek = "Itemek: ";
 			ArrayList<Item> vil = v.getItemHave();
 			for(Item i : vil)
-				vItemek.concat(i.toString());
+				vItemek = vItemek.concat(i.toString());
 			log(vItemek);
 		}
 	}
@@ -602,7 +602,7 @@ public class MyRunnable {
 					for(Field f : n)
 						for(int i = 0; i < game.getMap().getSize(); i++)
 							if(f == game.getMap().getField(i))
-								kimenet.concat("f"+(i+1)+", ");
+								kimenet = kimenet.concat("f"+(i+1)+", ");
 					log(kimenet);
 					break;
 				default : 
@@ -693,7 +693,7 @@ public class MyRunnable {
 					for(Field f : n)
 						for(int i = 0; i < game.getMap().getSize(); i++)
 							if(f == game.getMap().getField(i))
-								kimenet.concat("f"+(i+1)+", ");
+								kimenet = kimenet.concat("f"+(i+1)+", ");
 					log(kimenet);
 						
 					break;
@@ -790,7 +790,7 @@ public class MyRunnable {
 						for(Field f : n)
 							for(int i = 0; i < game.getMap().getSize(); i++)
 								if(f == game.getMap().getField(i))
-									kimenet.concat("f"+(i+1)+", ");
+									kimenet = kimenet.concat("f"+(i+1)+", ");
 						log(kimenet);
 						game.run();
 					}
