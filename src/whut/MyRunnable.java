@@ -235,53 +235,53 @@ public class MyRunnable {
 
 		kimenet = "Itemek: ";
 		for(Item it : currentVirologus.getItemHave()) {
-			if(it.Check("Axe"))
-				kimenet.concat("Axe, ");
-			else if(it.Check("Cloak"))
-				kimenet.concat("Cloak, ");
-			else if(it.Check("Glove"))
-				kimenet.concat("Glove, ");
+			if(it.Check("axe"))
+				kimenet.concat("axe, ");
+			else if(it.Check("cloak"))
+				kimenet.concat("cloak, ");
+			else if(it.Check("glove"))
+				kimenet.concat("glove, ");
 			else
-				kimenet.concat("Sack, ");
+				kimenet.concat("sack, ");
 		}
 		log(kimenet);
 		
 		kimenet = "Genetik kodok: ";
 		for(GeneticCode gc : currentVirologus.getGeneticCodeHave()) {
-			if(gc.Check("ProtectionCode"))
-				kimenet.concat("ProtectionCode, ");
-			else if(gc.Check("ForgetCode"))
-				kimenet.concat("ForgetCode, ");
-			else if(gc.Check("StunCode"))
-				kimenet.concat("StunCode, ");
+			if(gc.Check("protectionCode"))
+				kimenet.concat("protectionCode, ");
+			else if(gc.Check("forgetCode"))
+				kimenet.concat("forgetCode, ");
+			else if(gc.Check("stunCode"))
+				kimenet.concat("stunCode, ");
 			else 
-				kimenet.concat("VitusdanceCode, ");
+				kimenet.concat("vitusdanceCode, ");
 		}
 		log(kimenet);
 		
 		kimenet ="Agensek: ";
 		for(Agens a : currentVirologus.getAgensHave()) {
-			if(a.Check("Protection"))
-				kimenet.concat("Protection, ");
-			else if(a.Check("Forget"))
-				kimenet.concat("Forget, ");
-			else if(a.Check("Stun"))
-				kimenet.concat("Stun, ");
+			if(a.Check("protection"))
+				kimenet.concat("protection, ");
+			else if(a.Check("forget"))
+				kimenet.concat("forget, ");
+			else if(a.Check("stun"))
+				kimenet.concat("stun, ");
 			else 
-				kimenet.concat("Vitusdance, ");
+				kimenet.concat("vitusdance, ");
 		}
 		log(kimenet);
 		
 		kimenet = "Hato agensek: ";
 		for(Agens a : currentVirologus.getAgensOnMe()) {
-			if(a.Check("Protection"))
-				kimenet.concat("Protection, ");
-			else if(a.Check("Forget"))
-				kimenet.concat("Forget, ");
-			else if(a.Check("Stun"))
-				kimenet.concat("Stun, ");
+			if(a.Check("protection"))
+				kimenet.concat("protection, ");
+			else if(a.Check("forget"))
+				kimenet.concat("forget, ");
+			else if(a.Check("stun"))
+				kimenet.concat("stun, ");
 			else 
-				kimenet.concat("Vitusdance, ");
+				kimenet.concat("vitusdance, ");
 		}
 		log(kimenet);
 		
