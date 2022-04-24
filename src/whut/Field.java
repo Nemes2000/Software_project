@@ -1,8 +1,9 @@
 package whut;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Field
+public class Field implements Serializable
 {
 	private ArrayList<AgensUsable> au; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők

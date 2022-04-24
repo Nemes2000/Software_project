@@ -2,8 +2,7 @@ package whut;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game implements Serializable
-{
+public class Game implements Serializable {
 	private Map map;
 	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;

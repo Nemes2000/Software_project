@@ -1,5 +1,6 @@
 package whut;
 
+import java.io.Serializable;
 
 public class Lab extends Field
 {

@@ -248,11 +248,11 @@ public class MyRunnable {
 		
 		kimenet = "Genetik kodok: ";
 		for(GeneticCode gc : currentVirologus.getGeneticCodeHave()) {
-			if(gc.Check("protectionCode"))
+			if(gc.Check("protection"))
 				kimenet = kimenet.concat("protectionCode, ");
-			else if(gc.Check("forgetCode"))
+			else if(gc.Check("forget"))
 				kimenet = kimenet.concat("forgetCode, ");
-			else if(gc.Check("stunCode"))
+			else if(gc.Check("stun"))
 				kimenet = kimenet.concat("stunCode, ");
 			else 
 				kimenet = kimenet.concat("vitusdanceCode, ");
@@ -585,7 +585,7 @@ public class MyRunnable {
 						if (readed.length == 2)
 							currentVirologus.createAgens(readed[1]);
 						else 
-							log("Bad parameter!");
+							log("Bad parameter! rossz");
 						if(currentVirologus.getAgensHave().size() == elozo)
 							log("");
 						else
@@ -605,6 +605,27 @@ public class MyRunnable {
 								kimenet = kimenet.concat("f"+(i+1)+", ");
 					log(kimenet);
 					break;
+				case "save":
+					if (readed.length == 2) {
+						ObjectOutputStream out;
+						try {
+							if(0 > 1) {
+								log("Bad parameter!");
+							} else {
+								out = new ObjectOutputStream(new FileOutputStream(readed[1] + ".txt"));
+								out.writeObject(game);
+								log("v"+getVirologusSzam(currentVirologus)+" saved the game! to "+ readed[1]);
+								out.close();
+							}
+						} catch(Exception e) {
+							e.printStackTrace();
+							log("Bad parameter!");
+						}
+					}
+					else 
+						log("Bad parameter!");
+					break;
+				
 				default : 
 					log("Bad parameter!");
 					break;
@@ -721,6 +742,26 @@ public class MyRunnable {
 					scanner = new Scanner(readed[1]);
 				}
 				break;
+			case "load":
+				if (readed.length == 2) {
+					ObjectInputStream in;
+					try {
+						in = new ObjectInputStream(new FileInputStream(readed[1]));
+						game = (Game)in.readObject();
+						log("New map added!");
+						game.run();
+						in.close();
+					} catch(FileNotFoundException fe) {
+						log("Bad parameter!");
+					} catch (IOException e) {
+						log("Bad file!");
+					} catch (ClassNotFoundException e) {
+						log("Bad file!");
+					}
+				}
+				else 
+					log("Bad parameter!");
+				break;
 			case "createfield":
 				if (readed.length == 1 || readed.length == 2) {
 					createField(readed);
@@ -743,39 +784,6 @@ public class MyRunnable {
 				else 
 					log("Bad parameter!");
 				break;
-			
-			case "load":
-				if (readed.length == 2) {
-					ObjectInputStream in;
-					try {
-						in = new ObjectInputStream(new FileInputStream(readed[1]));
-						game = (Game)in.readObject();
-						in.close();
-					} catch(FileNotFoundException fe) {
-						log("Bad parameter!");
-					} catch (IOException e) {
-						log("Bad parameter!");
-					} catch (ClassNotFoundException e) {
-						log("Bad file!");
-					}
-				}
-				else 
-					log("Bad parameter!");
-				break;
-			case "save":
-				if (readed.length == 2) {
-					ObjectOutputStream out;
-					try {
-						out = new ObjectOutputStream(new FileOutputStream(readed[1] + ".txt"));
-						out.writeObject(game);
-					} catch(Exception e) {
-						log("Bad parameter!");
-					}
-				}
-				else 
-					log("Bad parameter!");
-				break;
-			
 			case "startgame":
 				if (readed.length == 1) {
 					log("Game started!");
