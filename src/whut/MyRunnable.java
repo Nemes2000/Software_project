@@ -30,7 +30,7 @@ public class MyRunnable {
 	}
 	
 	private static Game game;
-	private static String file;
+	private static Scanner scanner;
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {
@@ -40,10 +40,16 @@ public class MyRunnable {
 			String[] readed = read.split(" ");
 			return readed;
 		} else {
-			Scanner in = new Scanner(file);
-			String read= in.nextLine();
-			String[] readed = read.split(" ");
-			return readed;
+			if(scanner.hasNextLine()) {
+				String read= scanner.nextLine();
+				String[] readed = read.split(" ");
+				return readed;
+			} else {
+				scanner.close();
+				testfromFile = false;
+				return null;
+			}
+			
 		}
 		
 	}
@@ -635,9 +641,8 @@ public class MyRunnable {
 			case "test" :
 				if(readed.length == 2) {
 					testfromFile = true;
-					file = readed[1];
-				} else if(readed.length == 1)
-					testfromFile = false;
+					scanner = new Scanner(readed[1]);
+				}
 				break;
 			case "createfield":
 				if (readed.length == 1 || readed.length == 2) {
