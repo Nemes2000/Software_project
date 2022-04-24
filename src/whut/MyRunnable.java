@@ -500,6 +500,24 @@ public class MyRunnable {
 			MyRunnable.log("Bad parameter!");
 	}
 	
+	public static void touch() {
+		Field f = currentVirologus.getField();
+		log("Field adatok:");
+		log("genetikai kodok: "+f.codeHere());
+		String itemek = "Itemek: ";
+		ArrayList<Item> il = f.getItems();
+		for (Item i : il) {
+			itemek.concat(i.toString());
+		}
+		log(itemek);
+		String anyagok = "Anyagok: ";
+		ArrayList<Material> ml = f.getPacket().getMaterials();
+		for (Material m : ml) {
+			anyagok.concat(m.toString());
+		}
+		log(anyagok);
+	}
+	
 	private static int steps; 
 	private static boolean tartKor;
 	public static void getInputFirstAct() {
@@ -519,7 +537,7 @@ public class MyRunnable {
 				case "touch":
 					if(steps > 0)
 						currentVirologus.getField().touching(currentVirologus);
-					///kirni a dolgokat-------------------------
+					touch();
 					break;
 				case "move":
 					if(steps > 0) {
@@ -729,16 +747,21 @@ public class MyRunnable {
 			case "startgame":
 				if (readed.length == 1) {
 					log("Game started!");
-					game.run();
-					log("player in row: v" + getVirologusSzam(currentVirologus));
-					getInfo();
-					ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
-					String kimenet = "Player can move to: ";
-					for(Field f : n)
-						for(int i = 0; i < game.getMap().getSize(); i++)
-							if(f == game.getMap().getField(i))
-								kimenet.concat("f"+(i+1)+", ");
-					log(kimenet);
+					currentVirologus = (Virologus)game.getEntityAt(0);
+					if (currentVirologus == null)
+						log("There's no virologus in play");
+					else {
+						log("player in row: v" + getVirologusSzam(currentVirologus));
+						getInfo();
+						ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
+						String kimenet = "Player can move to: ";
+						for(Field f : n)
+							for(int i = 0; i < game.getMap().getSize(); i++)
+								if(f == game.getMap().getField(i))
+									kimenet.concat("f"+(i+1)+", ");
+						log(kimenet);
+						game.run();
+					}
 				}
 				else 
 					log("Bad parameter!");
