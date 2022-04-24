@@ -67,6 +67,17 @@ public class Field
 		return false;
 	}
 	
+	public ArrayList<Item> getItems() {
+		return null;
+	}
+	
+	public Packet getPacket() {
+		return null;
+	}
+
+	public Item getItem(String getThis) {
+		return null;
+	}
 	
 }
 

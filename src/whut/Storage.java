@@ -25,6 +25,11 @@ public class Storage extends Field
 	public void setPacket(Packet p) {
 		packet = p;
 	}
+	
+	@Override
+	public Packet getPacket() {
+		return packet;
+	}
 }
 
 

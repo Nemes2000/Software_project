@@ -259,6 +259,45 @@ public class MyRunnable {
 		
 	}
 	
+	public static void pickup(String[] input)
+	{
+		String sub = input[1];
+		Item it = currentVirologus.getField().getItem(sub);
+		if(it!=null)
+		{
+			currentVirologus.pickUpItem(currentVirologus.getField().getItems());
+		}
+	}
+	
+	public static void collect(String[] input)
+	{
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='a' || input[1].charAt(0)=='n') { //egyszerűség kedvéért a szám legyen egyedi, pl a1,n2,a3,a4,n5 stb.
+				Material m = currentVirologus.getField().getPacket().getMaterials().get(number);
+				if(m!= null)
+				{
+					currentVirologus.increaseMaterial(currentVirologus.getField().getPacket());
+				}
+			}
+		}
+		catch (NumberFormatException ex) {
+			
+		}
+			
+	}
+	
+	public static void leave(String[] input)
+	{
+		String sub = input[1];
+		Item it = currentVirologus.getItem(sub);
+		if(it!= null)
+		{
+			currentVirologus.leaveItem(); //legelsőt dobja, lehet nem kéne akkor paraméter a commandhoz
+		}
+	}
+	
 	private static int steps; 
 	
 	public static void getInputFirstAct() {
@@ -343,17 +382,19 @@ public class MyRunnable {
 					break;
 				case "collect":
 					if (readed.length == 2) {
+						collect(readed);
 					}
 					else System.out.print("Bad parameter!");
 					break;
 				case "pickup":
 					if (readed.length == 2) {
+						pickup(readed);
 					}
 					else System.out.print("Bad parameter!");
 					break;
 				case "leave":
 					if (readed.length == 2) {
-						
+						leave(readed);
 					}
 					else System.out.print("Bad parameter!");
 					break;

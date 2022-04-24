@@ -34,9 +34,20 @@ public class Shelter extends Field
 		//felajánlja a játékosnak a lehetséges cselekvéseket
 		MyRunnable.getInputAfterTouch();
 	}
-	
+
+	@Override
 	public ArrayList<Item> getItems() {
 		return items;
+	}
+	
+	@Override
+	public Item getItem(String getThis) {
+		for(Item i : items) {
+			if(i.Check(getThis)) {
+				return i;
+			}
+		}
+		return null;
 	}
 }
 
