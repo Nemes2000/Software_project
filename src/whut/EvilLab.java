@@ -2,7 +2,7 @@ package whut;
 
 import java.util.ArrayList;
 
-public class EvilLab
+public class EvilLab extends Lab
 {
 	
 	public EvilLab()

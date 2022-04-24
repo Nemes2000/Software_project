@@ -140,6 +140,64 @@ public class MyRunnable {
 		}
 	}
 	
+	public static void createField(String[] input) {
+		if (input.length == 1) {
+			game.getMap().addField(new Field());
+		}
+		else {
+			switch(input[1]) {
+				case "shelter":
+					game.getMap().addField(new Shelter());
+					break;
+				case "storage":
+					game.getMap().addField(new Storage());
+					break;
+				case "lab":
+					game.getMap().addField(new Lab());
+					break;
+				case "evillab":
+					game.getMap().addField(new EvilLab());
+					break;
+				default:
+					System.out.print("Bad parameter!");
+			}
+		}
+	}
+	
+	public static void setNeighbour(String[] input) {
+		String sub = input[1].substring(1);
+		String sub2 = input[2].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			int number2 = Integer.parseInt(sub2);
+			if(input[1].charAt(0)=='f') {
+				Field f1 = game.getMap().getField(number-1);
+				Field f2 = game.getMap().getField(number2-1);
+				f1.setNeighbour(f2);
+				f2.setNeighbour(f1);
+				System.out.print(input[1]+" is now connected to "+input[2]+ "!");
+			}
+		} catch (NumberFormatException ex) {
+			
+		}
+	}
+	
+	public static void placeVir(String[] input) {
+		String sub = input[1].substring(1);
+		try {
+			int number = Integer.parseInt(sub);
+			if(input[1].charAt(0)=='f') {
+				Virologus v = new Virologus();
+				game.addPlayer(v);
+				game.getMap().getField(number-1).accept(v);
+				System.out.print("A Virologus has been added to "+input[1]+"!");
+			}
+			
+		} catch (NumberFormatException ex) {
+			
+		}
+	}
+	
 	public static void getInfo() {
 		System.out.print("Anygok: ");
 		for(Material mat : currentVirologus.getPacket().getMaterials()) {
@@ -160,7 +218,7 @@ public class MyRunnable {
 		}
 		System.out.println();
 		
-		System.out.print("Genetik kódok: ");
+		System.out.print("Genetik kodok: ");
 		for(GeneticCode gc : currentVirologus.getGeneticCodeHave()) {
 			if(gc.Check("ProtectionCode"))
 				System.out.print("ProtectionCode, ");
@@ -173,7 +231,7 @@ public class MyRunnable {
 		}
 		System.out.println();
 		
-		System.out.print("Ágensek: ");
+		System.out.print("Agensek: ");
 		for(Agens a : currentVirologus.getAgensHave()) {
 			if(a.Check("Protection"))
 				System.out.print("Protection, ");
@@ -186,7 +244,7 @@ public class MyRunnable {
 		}
 		System.out.println();
 		
-		System.out.print("Ható ágensek: ");
+		System.out.print("Hato agensek: ");
 		for(Agens a : currentVirologus.getAgensOnMe()) {
 			if(a.Check("Protection"))
 				System.out.print("Protection, ");
@@ -223,13 +281,13 @@ public class MyRunnable {
 					if (readed.length == 2) {
 						moveTo(readed[1]);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "create":
 					if (readed.length == 2) {
 						currentVirologus.createAgens(readed[1]);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "finishturn" : 
 					steps = 0;
@@ -256,48 +314,48 @@ public class MyRunnable {
 					if (readed.length == 3) {
 						stealitem(readed);     //prototipus
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "stealmaterial":
 					if (readed.length == 3) {
 						stealmaterial(readed);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "kill":
 					if (readed.length == 2) {
 						kill(readed);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "useagens":
 					if (readed.length == 3) {
 						useagens(readed);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				
 				case "learn":
 					if (readed.length == 2) {
 						learn(readed);
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "collect":
 					if (readed.length == 2) {
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "pickup":
 					if (readed.length == 2) {
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "leave":
 					if (readed.length == 2) {
 						
 					}
-					else System.out.print("Hibás paraméterezés");
+					else System.out.print("Bad parameter!");
 					break;
 				case "finishturn" : 
 					justinfo = 0;
@@ -310,6 +368,7 @@ public class MyRunnable {
 	
 	//init commands
 	public static void start() {
+		game = new Game();
 		String[] readed;
 		boolean megy = true;
 		while(megy) {
@@ -317,15 +376,16 @@ public class MyRunnable {
 			switch(readed[0]) {				//readed tömb 0.eleme maga a parancs		
 			case "createfield":
 				if (readed.length == 1 || readed.length == 2) {
-					
+					createField(readed);
 					log("A field has been created!");
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			case "setneighbour":
 				if (readed.length == 3) {
+					setNeighbour(readed);
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			case "add":
 				if (readed.length == 3) {
@@ -340,40 +400,36 @@ public class MyRunnable {
 							break;
 					}
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			
 			case "load":
 				if (readed.length == 2) {
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			case "save":
 				if (readed.length == 2) {
 					
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			
 			case "startgame":
 				if (readed.length == 1) {
 					game.run();
 				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			case "placevirologus":
 				if (readed.length == 2) {
-					
+					placeVir(readed);
 				}
-				else System.out.print("Hibás paraméterezés");
-				break;
-			case "finishturn":
-				if (readed.length == 1) {
-					
-				}
-				else System.out.print("Hibás paraméterezés");
+				else System.out.print("Bad parameter!");
 				break;
 			case "newtest":
+				start();
+				megy = false;
 				break;
 			case "close":
 				megy=false;

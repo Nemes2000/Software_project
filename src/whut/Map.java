@@ -14,4 +14,12 @@ public class Map
 		return Fields;
 	}
 	
+	public void addField(Field f) {
+		Fields.add(f);
+	}
+	
+	public Field getField(int index) {
+		return Fields.get(index);
+	}
+	
 }

@@ -48,8 +48,8 @@ public class Field
 	}
 	
 	//szomszédos mezők beállítása
-	public void setNeighbourhood(){
-		System.out.println(">[:Field].setNeighbourhood()");
+	public void setNeighbour(Field f){
+		neighbor.add(f);
 		//skeletonnál még kézzel
 	}
 	
