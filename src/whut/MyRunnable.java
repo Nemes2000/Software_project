@@ -506,15 +506,26 @@ public class MyRunnable {
 		log("genetikai kodok: "+f.codeHere());
 		String itemek = "Itemek: ";
 		ArrayList<Item> il = f.getItems();
-		for (Item i : il) {
-			itemek.concat(i.toString());
+		if(il!=null) {
+			for (Item i : il) {
+				itemek.concat(i.toString());
+			}
 		}
+		
 		log(itemek);
 		String anyagok = "Anyagok: ";
-		ArrayList<Material> ml = f.getPacket().getMaterials();
-		for (Material m : ml) {
-			anyagok.concat(m.toString());
+		Packet pack = f.getPacket();
+		ArrayList<Material> ml = new ArrayList<Material>();
+		if(pack!=null) {
+			ml = pack.getMaterials();
 		}
+		
+		if(ml!=null) {
+			for (Material m : ml) {
+				anyagok.concat(m.toString());
+			}
+		}
+		
 		log(anyagok);
 	}
 	
