@@ -11,7 +11,6 @@ public class Entity implements Serializable{
 	}
 	
 	public void step() {
-		//Runnable.getInput();
 		
 	}
 	

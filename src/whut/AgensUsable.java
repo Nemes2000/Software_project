@@ -37,15 +37,13 @@ public class AgensUsable extends Entity{
 	//ha egy �gens is leb�n�t�, akkor false-ot add vissza
 	public boolean roundDesc() {
 		System.out.println(">[:AgensUsable].roundDesc()");
-		boolean canStep = true;
 		//minden startTurneffect lefut, akkor is, ha m�r volt stunnol�
 		for(int i = 0; i < agensOnMe.size(); i++){
 			if(!agensOnMe.get(i).startTurnEffect(this)) {
-				//.----torles
-				canStep=false;
+				 return false;
 			}
 		}
-		return canStep;
+		return true;
 	}
 	
 	//megt�madjuk ezt az agensusable-t

@@ -217,6 +217,8 @@ public class Packet implements Serializable
 			//es nem tudjuk az egesz anyagot felvenni, mert kicsi a zseb merete
 			if(matsMaterialADb + mat.getValue() > maxPerMaterial) 
 			{
+				m = new Aminosav();
+				
 				//azon ertekre allitjuk be amit maximalisan fel tud venni
 				m.setValue(maxPerMaterial-matsMaterialADb);
 				

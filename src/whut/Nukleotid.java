@@ -12,7 +12,7 @@ public class Nukleotid extends Material
 	@Override
 	protected String getType() 
 	{
-		System.out.println(">[:Nukleotid].getType()");
+		//System.out.println(">[:Nukleotid].getType()");
 		return "Nukleotid";
 	}
 	

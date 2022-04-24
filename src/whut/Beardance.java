@@ -5,8 +5,10 @@ import java.util.ArrayList;
 public class Beardance extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable v) {
+		MyRunnable.log("ittttt");
 		infectAll(v.getField().getVirologusok(),v);
-		v.move(v.getField().getNeighbourhood().get(0));
+		if(v.getField().getNeighbourhood().size() > 0)
+			v.move(v.getField().getNeighbourhood().get(0));
 		infectAll(v.getField().getVirologusok(),v);		
 		return false;
 	}
@@ -17,10 +19,12 @@ public class Beardance extends Agens{
 	
 	public void infectAll(ArrayList<AgensUsable> vs, AgensUsable a) {
 		for(AgensUsable vc : vs) {
-			Beardance b = new Beardance();
-			a.addAgens(b);
-			Virologus v = (Virologus)a;
-			vc.uRAttacked(b,v);		
+			if(vc != a) {
+				Beardance b = new Beardance();
+				a.addAgens(b);
+				Virologus v = (Virologus)a;
+				vc.uRAttacked(b,v);		
+			}
 		}
 	}
 	

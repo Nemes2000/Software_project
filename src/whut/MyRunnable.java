@@ -65,7 +65,7 @@ public class MyRunnable {
 					return;
 				}
 				Item it = v.getItem(input[2]);
-				if(it!=null && currentVirologus.getField().getNeighbourhood().contains(v)) {
+				if(it!=null && currentVirologus.getField().getVirologusok().contains(v)) {
 					currentVirologus.stealItem(v, it);
 				} else
 					log("This item cant be found at v"+ getVirologusSzam(v));
@@ -267,8 +267,10 @@ public class MyRunnable {
 				kimenet = kimenet.concat("forget, ");
 			else if(a.Check("stun"))
 				kimenet = kimenet.concat("stun, ");
-			else 
+			else if(a.Check("vitusdance"))
 				kimenet = kimenet.concat("vitusdance, ");
+			else
+				kimenet = kimenet.concat("beardance, ");
 		}
 		log(kimenet);
 		
@@ -280,8 +282,10 @@ public class MyRunnable {
 				kimenet = kimenet.concat("forget, ");
 			else if(a.Check("stun"))
 				kimenet = kimenet.concat("stun, ");
-			else 
+			else if(a.Check("vitusdance"))
 				kimenet = kimenet.concat("vitusdance, ");
+			else 
+				kimenet = kimenet.concat("beardance, ");
 		}
 		log(kimenet);
 		
@@ -458,9 +462,8 @@ public class MyRunnable {
 		case "packet":
 			Nukleotid n = new Nukleotid();
 			Aminosav a = new Aminosav();
-			int max = ((Virologus)game.getEntityAt(szam)).getPacket().getMaxMaterial();
-			n.setValue(max);
-			a.setValue(max);
+			n.setValue(500);
+			a.setValue(500);
 			if(readed[2].charAt(0) == 'f') {   
 				if(game.getMap().getField(szam).getPacket() != null) {
 					game.getMap().getField(szam).getPacket().addMaterial(a);

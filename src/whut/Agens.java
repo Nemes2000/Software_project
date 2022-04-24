@@ -15,7 +15,7 @@ public class Agens implements Serializable{
 		return true;
 	}
 	public boolean defendEffect() {
-		System.out.println(">[:Agens].defendEffect()");
+		//System.out.println(">[:Agens].defendEffect()");
 		return false;
 	}
 	public void destroyEffect(Packet p) {

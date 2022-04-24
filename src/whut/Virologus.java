@@ -12,7 +12,7 @@ public class Virologus extends AgensUsable {
 	//megkerdezi a felhasznalot, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
 	public void stealItem(Virologus v,Item item) {
-		System.out.println(">[:Virologus].stealItem(vs)");
+		//System.out.println(">[:Virologus].stealItem(vs)");
 		v.stealItemAttempt(this,item);
 		
 	}
@@ -20,7 +20,7 @@ public class Virologus extends AgensUsable {
 	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
 	public void stealMaterial(Virologus v, Material mit) {
-		System.out.println(">[:Virologus].stealItem(vs)");
+		//System.out.println(">[:Virologus].stealItem(vs)");
 		v.stealMaterialAttempt(this,mit);
 		
 	}
@@ -132,9 +132,7 @@ public class Virologus extends AgensUsable {
 	public void uRAttacked(Agens ag, Virologus v) {
 		System.out.println(">[:Virologus].uRAttacked()");
 		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
-		//k�ld�t�lk kit�rli az �genst
-		if (v != null)
-			v.removeAgens(ag);
+		
 		//ellen�rzi, hogy van-e v�dve valami �ltal
 		boolean isProtected = false;
 		for(Agens a : agensOnMe)
@@ -186,7 +184,7 @@ public class Virologus extends AgensUsable {
 	}
 	
 	public void touch() {
-		System.out.println(">[:Virologus].touch()");
+		//System.out.println(">[:Virologus].touch()");
 		field.touching(this);
 	}
 	

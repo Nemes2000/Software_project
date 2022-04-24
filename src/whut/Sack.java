@@ -1,7 +1,7 @@
 package whut;
 
 public class Sack extends Item{
-	private int increase;
+	private int increase = 200;
 	
 	//megn�veli a virol�gus anyag t�rol�kapacit�s�t
 	//Virologus v - a virol�gus, akin kifejti hat�s�t

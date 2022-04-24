@@ -81,6 +81,7 @@ public class Field implements Serializable
 	}
 
 	public Item getItem(String getThis) {
+		MyRunnable.log("Cant pickup "+getThis+" from here!");
 		return null;
 	}
 	
