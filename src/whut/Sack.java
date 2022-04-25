@@ -6,7 +6,6 @@ public class Sack extends Item{
 	//megn�veli a virol�gus anyag t�rol�kapacit�s�t
 	//Virologus v - a virol�gus, akin kifejti hat�s�t
 	public void pickUpEffect(Virologus v) {
-		System.out.println(">[:Sack].pickUpEffect(v)");
 		Packet p = v.getPacket();
 		p.changeMaxMaterial(increase);
 	}
@@ -14,7 +13,6 @@ public class Sack extends Item{
 	//cs�kkenti a virol�gus anyag t�rol�kapacit�s�t
 	//Virologus v - a virol�gus, akin kifejti hat�s�t
 	public void lostEffect(Virologus v) {
-		System.out.println(">[:Sack].lostEffect(v)");
 		Packet p = v.getPacket();
 		p.handlePossibleLostMaterial(increase);
 	}

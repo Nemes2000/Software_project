@@ -22,7 +22,6 @@ public class Packet implements Serializable
 	//visszateresi erteke azt mondja meg, hogy sikerult-e levonni ezen zsebbol a listaban kapott anyagmennyisegeket
 	public boolean decreaseMaterial(ArrayList<Material> mats) 
 	{	
-		System.out.println(">[:Packet].decreaseMaterial(mats)");
 		//le masoljuk a zseb tartalmat, hogy ha nem tudnank levonni akkor semmisse tudjuk tenni a muveletet
 		ArrayList<Material> decreas = materials;
 		
@@ -63,7 +62,6 @@ public class Packet implements Serializable
 				//ha le tudtuk vonni ezen zsebbol a kapott listabeli anyagot, akkor a kapott lista anyagat is toroljuk a levonando anyagok kozul
 				if(mats.get(i).getValue() == 0) {
 					mats.remove(i);
-					System.out.print(mats.size());
 				}
 				else
 					i++;
@@ -83,8 +81,6 @@ public class Packet implements Serializable
 	//int value - az ertek amivel megvaltoztatjuk a maximum tarolhato anyagmennyiseget
 	public void changeMaxMaterial(int value) 
 	{
-		System.out.println(">[:Packet].changeMaxMaterial(value)");
-		System.out.println("Az anyag tarolas nott:"+value+"-val");
 		maxPerMaterial += value;
 	}
 	
@@ -92,7 +88,7 @@ public class Packet implements Serializable
 	//int value - az ertek amivel csokken a zseb max tarolasi kapacitasa
 	public void handlePossibleLostMaterial(int value)
 	{
-		System.out.println(">[:Packet].handlePossibleLostMaterial(value)");
+
 		
 		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van
 		int matsMaterialADb = 0;  //mennyi aminosavunk van
@@ -150,7 +146,6 @@ public class Packet implements Serializable
 	//Packet pac - azon jatekos zsebe aki fel akarja venni az anyagot
 	public void handleMaterialSeparate(Material mat, Packet pac) 
 	{
-		System.out.println(">[:Packet].handleMaterialSeparate(mat, pac)");
 		
 		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van a pac-ban
 		int matsMaterialADb = 0;  //mennyi aminosavunk van a pac-ban
@@ -250,7 +245,6 @@ public class Packet implements Serializable
 	//vissza adja a zseb anyaglistajat
 	public ArrayList<Material> getMaterials() 
 	{
-		//System.out.println(">[:Packet].getMaterials()");
 		return materials;
 	}
 	public Material getMaterial(String s) {
@@ -266,7 +260,6 @@ public class Packet implements Serializable
 	//MAterial mat - azon anyag amit a zsebhez adunk
 	public void addMaterial(Material mat)
 	{
-		System.out.println(">[:Packet].addMatarial");
 		this.materials.add(mat);
 	}
 	

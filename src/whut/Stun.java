@@ -11,7 +11,6 @@ public class Stun extends Agens{
 	
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
-		System.out.println(">[:Stun].startTurnEffect()");
 		//cs�kkenti a hat�sid�t, �s ha lej�rt, akkor kit�rli a virol�gust�l
 		if(--effectTime < 0) {
 			au.removeAgensOnMe(this);
@@ -26,7 +25,6 @@ public class Stun extends Agens{
 	//stunnolt, teh�t lehet lopni t�le
 	@Override
 	public boolean canStealEffect() {
-		System.out.println(">[:Stun].canStealEffect()");
 		return true;
 	}
 	

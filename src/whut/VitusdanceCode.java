@@ -13,7 +13,6 @@ public class VitusdanceCode extends GeneticCode
 	@Override
 	public void createAgens(AgensUsable au)
 	{
-		System.out.println(">[:VitusdanceCode].createAgens(au)");
 		//ha ki tudta "fizetni" az �gens haszn�l� az �gens l�trehoz�s d�j�t, akkor kap egyet
 		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Vitusdance());

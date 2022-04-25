@@ -31,7 +31,6 @@ public abstract class Material implements Serializable{
 	// beellitja az anyag mennyiseget
 	// int ujValue - erre az ertekre lesz allitva az anyag mennyisege
 	public void setValue(int ujValue) {
-		System.out.println(">[:Material].setValue(ujValue) :" + ujValue);
 		value = ujValue;
 	}
 	

@@ -15,7 +15,6 @@ public class Shelter extends Field
 	@Override
 	public void removeItem(Item i)
 	{
-		System.out.println(">[:Shelter].removeItem(i)");
 		items.remove(i);
 	}
 	
@@ -23,14 +22,12 @@ public class Shelter extends Field
 	@Override
 	public void addItem(Item i)
 	{
-		System.out.println(">[:Shelter].addItem(i)");
 		items.add(i);
 	}
 	
 	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		System.out.println(">[:Shelter].touching(v)");
 		//felajánlja a játékosnak a lehetséges cselekvéseket
 		MyRunnable.getInputAfterTouch();
 	}

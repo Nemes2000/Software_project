@@ -15,7 +15,6 @@ public class Entity implements Serializable{
 	}
 	
 	public void move(Field cel) {
-		System.out.println("[Entity].Move");
 		cel.accept(this);
 		field.remove(this);
 	}

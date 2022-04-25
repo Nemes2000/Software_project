@@ -12,7 +12,6 @@ public class Virologus extends AgensUsable {
 	//megkerdezi a felhasznalot, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
 	public void stealItem(Virologus v,Item item) {
-		//System.out.println(">[:Virologus].stealItem(vs)");
 		v.stealItemAttempt(this,item);
 		
 	}
@@ -20,7 +19,6 @@ public class Virologus extends AgensUsable {
 	//megk�rdezi a felhaszn�l�t, hogy melyik virol�gust�l szeretne t�rgyat lopni, �s megpr�b�l lopni
 	//ArrayList<Virologus> vs - a virol�gusok list�ja, amelyb�l v�laszthat a felhaszn�l�
 	public void stealMaterial(Virologus v, Material mit) {
-		//System.out.println(">[:Virologus].stealItem(vs)");
 		v.stealMaterialAttempt(this,mit);
 		
 	}
@@ -39,7 +37,6 @@ public class Virologus extends AgensUsable {
 	//ellen�rzi, hogy lehet-e t�le t�rgyat lopni, �s ha igen, akkor v�grehajtja a lop�st
 	//Virologus v - a virol�gus, aki lopni pr�b�l t�le
 	public void stealItemAttempt(Virologus v,Item mit) {
-		System.out.println(">[:Virologus].stealItemAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
 			if (a.canStealEffect())
@@ -61,7 +58,6 @@ public class Virologus extends AgensUsable {
 	//ellen�rzi, hogy lehet-e t�le anyagot lopni, �s ha igen, akkor v�grehajtja a lop�st
 	//Virologus v - a virol�gus, aki lopni pr�b�l t�le
 	public void stealMaterialAttempt(Virologus v,Material mit) {
-		System.out.println(">[:Virologus].stealMaterialAttempt(v)");
 		boolean canSteal = false;
 		for(Agens a : agensOnMe) {
 			if (a.canStealEffect())
@@ -82,7 +78,6 @@ public class Virologus extends AgensUsable {
 	//Item mit - a t�rgy, amit lecser�l
 	//Item mire - a t�rgy, amire cser�li
 	public void changeItem(Item mit, Item mire) {
-		System.out.println(">[:Virologus].changeItem(mit, mire)");
 		this.removeItem(mit);
 		this.addItem(mire);
 		
@@ -91,7 +86,6 @@ public class Virologus extends AgensUsable {
 	//elt�vol�t egy t�rgyat a n�la l�v� t�rgyak k�z�l
 	//Item mit - a t�rgy, amit elveszt
 	public void removeItem(Item mit) {
-		System.out.println(">[:Virologus].removeItem(mit)");
 		itemHave.remove(mit);
 		mit.lostEffect(this);
 	}
@@ -99,7 +93,6 @@ public class Virologus extends AgensUsable {
 	//hozz�ad egy t�rgyat a n�la l�v� t�rgyakhoz
 	//Item mit - a t�rgy, amit megkap
 	public void addItem(Item mit) {
-		System.out.println(">[:Virologus].addItem(mit)");
 		itemHave.add(mit);
 		mit.pickUpEffect(this);
 	}
@@ -107,7 +100,6 @@ public class Virologus extends AgensUsable {
 	//felvesz egy t�rgyat, ha nincs helye, akkor kicser�li az egyiket
 	//ArrayList<Item> is - a t�rgyak list�ja, amib�l kiv�lasztja, hogy melyiket szeretn�
 	public void pickUpItem(Item mire) {
-		System.out.println(">[:Virologus].pickUpItem(is)");
 		if (itemHave.size() >= 3) {
 			Item mit = itemHave.get(0);
 			changeItem(mit, mire);
@@ -121,7 +113,6 @@ public class Virologus extends AgensUsable {
 	
 	//egy t�rgyat otthagy ahol van
 	public void leaveItem(Item mit) {
-		System.out.println(">[:Virologus].leaveItem()");
 		field.addItem(mit);
 		removeItem(mit);
 	}
@@ -130,7 +121,6 @@ public class Virologus extends AgensUsable {
 	//megt�madj�k az adott virol�gust
 	@Override
 	public void uRAttacked(Agens ag, Virologus v) {
-		System.out.println(">[:Virologus].uRAttacked()");
 		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
 		
 		if (v == this) {
@@ -189,7 +179,6 @@ public class Virologus extends AgensUsable {
 	}
 	
 	public void touch() {
-		//System.out.println(">[:Virologus].touch()");
 		field.touching(this);
 	}
 	

@@ -20,21 +20,18 @@ public class Field implements Serializable
 	//visszaadja a virológusok listáját
 	public ArrayList<AgensUsable> getVirologusok()
 	{
-		System.out.println(">[:Field].getVirologusok()");
 		return au;
 	}
 	
 	//törli a virológust a listából
 	public void remove(Entity v)
 	{
-		System.out.println(">[:Field].remove(v)");
 		au.remove(v);
 	}
 	
 	//hozzáadja a virológust a listához
 	public void accept(Entity v)
 	{
-		System.out.println(">[:Field].accept(v)");
 		Virologus ag = (Virologus)v;
 		au.add(ag);
 		v.setField(this);
@@ -43,7 +40,6 @@ public class Field implements Serializable
 	//mező érintés esetén hívódik meg
 	public void touching(Virologus v)
 	{
-		System.out.println(">[:Field].touching(v)");
 		//felsorolja a lehetséges cselekvéseket a felhasználónak
 		MyRunnable.getInputAfterTouch();
 	}
@@ -57,7 +53,6 @@ public class Field implements Serializable
 	//visszaadja a szomszéd mezők listáját
 	public ArrayList<Field> getNeighbourhood()
 	{
-		System.out.println(">[:Field].getNeighbourhood()");
 		return neighbor;
 	}
 

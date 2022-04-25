@@ -15,20 +15,16 @@ public class AgensUsable extends Entity{
 		agens.add(a);
 	}
 	public void addAgensOnMe(Agens ag) {
-		System.out.println("Uj agens kerult ra");
 		agensOnMe.add(ag);
 	}
 	public void removeAgens(Agens ag) {
-		System.out.println("Egy felhasznalhato agens kitorlodott");
 		agens.remove(ag);
 	}
 	public void removeAgensOnMe(Agens ag) {
-		System.out.println("Egy rajta levo agens kitorlodott");
 		agensOnMe.remove(ag);
 	}
 	
 	public Packet getPacket() {
-		System.out.println(">[:AgensUsable].getPacket()");
 		return materialPacket;
 	}
 	
@@ -36,7 +32,6 @@ public class AgensUsable extends Entity{
 	
 	//ha egy �gens is leb�n�t�, akkor false-ot add vissza
 	public boolean roundDesc() {
-		System.out.println(">[:AgensUsable].roundDesc()");
 		//minden startTurneffect lefut, akkor is, ha m�r volt stunnol�
 		for(int i = 0; i < agensOnMe.size(); i++){
 			if(!agensOnMe.get(i).startTurnEffect(this)) {
@@ -48,7 +43,6 @@ public class AgensUsable extends Entity{
 	
 	//megt�madjuk ezt az agensusable-t
 	public void uRAttacked(Agens ag, Virologus v) {
-		System.out.println(">[:AgensUsable].uRAttacked()");
 		//k�ld�t�lk kit�rli az �genst
 		v.removeAgens(ag);
 		//ellen�rzi, hogy van-e v�dve valami �ltal
@@ -67,13 +61,11 @@ public class AgensUsable extends Entity{
 	
 	//megtanul egy genetikk�dot
 	public void learnGeneticCode(GeneticCode gc) {
-		System.out.println(">[:AgensUsable].learnGeneticCode()");
 		geneticCode.add(gc);
 	}
 	
 	//megk�rdezi a felhaszn�l�t melyik genetik k�dot szeretn� �genss� alak�tani �s azt megcsin�lja
 	public void createAgens(String mit) {
-		System.out.println(">[:AgensUsable].createAgens()");
 		boolean created = false;
 		int i = 0;
 		while(!created && i < geneticCode.size()) {
@@ -89,13 +81,11 @@ public class AgensUsable extends Entity{
 	}
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
-		System.out.println(">[:AgensUsable].forgetAll()");
 		geneticCode.removeAll(geneticCode);
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
 	public void increaseMaterial(Packet p, Material m) {
-		System.out.println(">[:AgensUsable].increaseMaterial()");
 		p.handleMaterialSeparate(m, this.materialPacket);
 		
 	}

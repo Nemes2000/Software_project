@@ -13,7 +13,6 @@ public class EvilLab extends Lab
 	{
 		if(!elhasznalt) {
 			elhasznalt = true;
-			System.out.println(">[:EvilLab].touching(v)");
 			//felajánlja a játékosnak a lehetséges cselekvéseket
 			Beardance br = new Beardance();
 			v.uRAttacked(br,null); //megtámadjad egy medvetáncal
