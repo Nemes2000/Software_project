@@ -13,7 +13,6 @@ public class ForgetCode extends GeneticCode
 	@Override
 	public void createAgens(AgensUsable au)
 	{
-		System.out.println(">[:ForgetCode].createAgens(au)");
 		//ha ki tudta "fizetni" az agens hasznal�o az agens letrehozas dijat, akkor kap egyet
 		if(au.getPacket().decreaseMaterial(cost))
 			au.addAgens(new Protection());

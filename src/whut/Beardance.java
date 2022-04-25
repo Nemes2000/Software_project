@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Beardance extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable v) {
-		MyRunnable.log("ittttt");
 		infectAll(v.getField().getVirologusok(),v);
 		if(v.getField().getNeighbourhood().size() > 0)
 			v.move(v.getField().getNeighbourhood().get(0));

@@ -6,13 +6,7 @@ public class Entity implements Serializable{
 
 	protected Field field;
 	
-	public Entity() {
-		
-	}
-	
-	public void step() {
-		
-	}
+	public void step() {}
 	
 	public void move(Field cel) {
 		System.out.println("[Entity].Move");
