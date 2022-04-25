@@ -23,5 +23,9 @@ public class Nukleotid extends Material
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return "nukleotid";
+	}
 
 }

@@ -26,4 +26,8 @@ public class ProtectionCode extends GeneticCode
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "protectioncode";
+	}
 }

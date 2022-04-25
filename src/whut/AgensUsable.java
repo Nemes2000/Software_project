@@ -103,7 +103,7 @@ public class AgensUsable extends Entity{
 	//ennek kene egy parameter, hogy melyik agenst hasznalja
 	public void useAgens(Virologus v, Agens ag) {
 		agens.remove(ag);
-		v.uRAttacked(ag, v);
+		v.uRAttacked(ag, (Virologus)this);
 	}
 	public void destroyMaterial(Packet p) {
 		for(Agens a : agensOnMe) {

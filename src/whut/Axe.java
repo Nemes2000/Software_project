@@ -17,4 +17,8 @@ public class Axe extends Item{
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return "axe";
+	}
 }

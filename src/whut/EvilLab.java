@@ -22,4 +22,8 @@ public class EvilLab extends Lab
 		
 	}
 	
+	public String toString() {
+		return "evillab";
+	}
+	
 }

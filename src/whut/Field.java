@@ -89,5 +89,9 @@ public class Field implements Serializable
 		MyRunnable.log("Ide nem rakhatsz!");
 	}
 	
+	public String toString() {
+		return "field";
+	}
+	
 }
 

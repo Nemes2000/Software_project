@@ -33,4 +33,8 @@ public class Protection extends Agens{
 		return false;
 	}
 	
+	public String toString() {
+		return "protection";
+	}
+	
 }

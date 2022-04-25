@@ -1,5 +1,6 @@
 package whut;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -95,7 +96,7 @@ public class MyRunnable {
 					return;
 				}
 				Material mat = v.getPacket().getMaterial(input[2]);
-				if(mat != null && currentVirologus.getField().getNeighbourhood().contains(v)) {
+				if(mat != null && currentVirologus.getField().getVirologusok().contains(v)) {
 					currentVirologus.stealMaterial(v, mat);
 				} else
 					log("This materila cant be found at v"+ getVirologusSzam(v));
@@ -517,7 +518,7 @@ public class MyRunnable {
 			itemek = itemek.concat("-");
 		else {
 			for (Item i : il) {
-				itemek = itemek.concat(i.toString());
+				itemek = itemek.concat(i.toString()+" ");
 			}
 		}
 		log(itemek);
@@ -531,7 +532,7 @@ public class MyRunnable {
 				anyagok = anyagok.concat("-");
 			else {
 				for (Material m : ml) {
-					anyagok = anyagok.concat(m.toString());
+					anyagok = anyagok.concat(m.toString()+" ");
 				}
 			}
 		}
@@ -550,7 +551,7 @@ public class MyRunnable {
 			String vItemek = "Itemek: ";
 			ArrayList<Item> vil = v.getItemHave();
 			for(Item i : vil)
-				vItemek = vItemek.concat(i.toString());
+				vItemek = vItemek.concat(i.toString()+" ");
 			log(vItemek);
 		}
 	}
@@ -757,7 +758,12 @@ public class MyRunnable {
 			case "test" :
 				if(readed.length == 2) {
 					testfromFile = true;
-					scanner = new Scanner(readed[1]);
+					File file = new File("test"+readed[1]+".txt");
+					try {
+						scanner = new Scanner(file);
+					} catch (FileNotFoundException e) {
+						
+					}
 				}
 				break;
 			case "load":

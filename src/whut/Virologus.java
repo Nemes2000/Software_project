@@ -133,33 +133,38 @@ public class Virologus extends AgensUsable {
 		System.out.println(">[:Virologus].uRAttacked()");
 		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
 		
-		//ellen�rzi, hogy van-e v�dve valami �ltal
-		boolean isProtected = false;
-		for(Agens a : agensOnMe)
-			if(a.defendEffect())
-				isProtected=true;
+		if (v == this) {
+			addAgensOnMe(ag);
+			MyRunnable.log("v" + MyRunnable.getVirologusSzam(this)+" is now under " + ag.toString() + " effect");
+		} else {
+		
+			//ellen�rzi, hogy van-e v�dve valami �ltal
+			boolean isProtected = false;
+			for(Agens a : agensOnMe)
+				if(a.defendEffect())
+					isProtected=true;
 				
-		//mivel virol�gus, ez�rt v�gigmegy az �gensein k�v�l az itemein is, hogy azok valamelyike megv�di-e
-		for(Item it : itemHave)
-			if(!it.canCastEffect())
-				isProtected=true;
+			//mivel virol�gus, ez�rt v�gigmegy az �gensein k�v�l az itemein is, hogy azok valamelyike megv�di-e
+			for(Item it : itemHave)
+				if(!it.canCastEffect())
+					isProtected=true;
 		
-		if(isProtected)
-			MyRunnable.log("Unsuccessfull attack!");
+			if(isProtected)
+				MyRunnable.log("Unsuccessfull attack!");
 		
-		//mivel virol�gus, ez�rt v�gigmegy az itemein, hogy valamelyik visszakeni-e
-		if(!isProtected) {
-			boolean fireBacked = false;
-			for(Item it: itemHave){
-				if(it.fireBackEffect(v, this, ag)) {
-					fireBacked=true;
-					MyRunnable.log("v"+MyRunnable.getVirologusSzam(this) + " attacked back with " + ag.toString());
-				}
+			//mivel virol�gus, ez�rt v�gigmegy az itemein, hogy valamelyik visszakeni-e
+			if(!isProtected) {
+				boolean fireBacked = false;
+				for(Item it: itemHave){
+					if(it.fireBackEffect(v, this, ag)) {
+						fireBacked=true;
+					}
 			}
-			//ha vissza sem keni, akkor hozz�adja a rajt l�v� �gensekhez
+				//ha vissza sem keni, akkor hozz�adja a rajt l�v� �gensekhez
 			if(!fireBacked) {
 				addAgensOnMe(ag);
 				MyRunnable.log("v" + MyRunnable.getVirologusSzam(this)+" is now under " + ag.toString() + " effect");
+			}
 			}
 		}
 	}

@@ -26,4 +26,8 @@ public class VitusdanceCode extends GeneticCode
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "vitusdancecode";
+	}
 }

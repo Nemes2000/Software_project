@@ -50,6 +50,10 @@ public class Shelter extends Field
 		MyRunnable.log("There is no "+ getThis + " here!");
 		return null;
 	}
+	
+	public String toString() {
+		return "shelter";
+	}
 }
 
 
