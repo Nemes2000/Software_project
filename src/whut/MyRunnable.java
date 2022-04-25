@@ -632,7 +632,7 @@ public class MyRunnable {
 							} else {
 								out = new ObjectOutputStream(new FileOutputStream(readed[1] + ".txt"));
 								out.writeObject(game);
-								log("v"+getVirologusSzam(currentVirologus)+" saved the game! to "+ readed[1]);
+								log("v"+getVirologusSzam(currentVirologus)+" saved the game!");
 								out.close();
 							}
 						} catch(Exception e) {

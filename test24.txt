@@ -1,7 +1,0 @@
-createfield
-placevirologus f1
-placevirologus f1
-add axe v1
-startgame
-touch
-kill v2
