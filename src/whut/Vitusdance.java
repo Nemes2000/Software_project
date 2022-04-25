@@ -5,7 +5,8 @@ import java.util.Random;
 public class Vitusdance extends Agens{
 	
 	
-	
+	//A kör elején hívódik meg, a paraméterül kapott virológust 3-szor egy random szomszédos mezõre mozgatja, majd kitörli magát. 
+	//Mindig igazzal tér vissza, mert a hatás után még mozoghat.
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		//kï¿½r elejï¿½n hï¿½romszor random lï¿½pteti

@@ -1,5 +1,8 @@
 package whut;
 
+
+//A fertõzõ laboratórium mezõ nyilvántartásáért felel. 
+//Kezeli a mezõn történõ interakciók megvalósulását. Kezeli a virológusok megfertõzését.
 public class EvilLab extends Lab
 {
 	private boolean elhasznalt = false;
@@ -8,7 +11,8 @@ public class EvilLab extends Lab
 	{
 		super();
 	}
-
+ 
+	//Létrehoz egy medvetánc ágenst, és megtámadja vele a virológust, ezzel „megfertõzve” õt.
 	public void touching(Virologus v) //mezÅ‘ Ã©rintÃ©sekor
 	{
 		if(!elhasznalt) {

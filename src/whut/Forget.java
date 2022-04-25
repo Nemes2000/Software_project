@@ -2,6 +2,8 @@ package whut;
 
 public class Forget extends Agens{
 
+	//Meghívja a paraméterül kapott virológus forgetAll() függvényét, amivel a virológus elfelejti az általa ismert összes genetikai kódot. 
+	//Ezután kitörli a paraméterül kapott virológuson ható ágensek közül.
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
 		//kï¿½r elejï¿½n elfelejtteti minden megtanult kï¿½djï¿½t

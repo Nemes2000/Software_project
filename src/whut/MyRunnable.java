@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Ez a fõ osztály ez kezeli a tesztesetek és a játékok indítását
 public class MyRunnable {
 
 	private static ArrayList<String> logFile;
@@ -79,6 +80,7 @@ public class MyRunnable {
 
     }
 	
+	//A stealitem bemenetet kezeli le
 	public static void stealitem(String[] input) {
 		String sub = input[1].substring(1);
 		try {
@@ -100,6 +102,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A stealmaterial bemenetet kezeli le
 	public static void stealmaterial(String[] input) {
 		String sub = input[1].substring(1);
 		try {
@@ -122,6 +125,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A useagens bemenetet kezeli le
 	public static void useagens(String[] input) {
 		String sub = input[1].substring(1);
 		try {
@@ -139,7 +143,7 @@ public class MyRunnable {
 		}
 	}
 	
-
+	//A move bemenetet kezeli le
 	public static void moveTo(String hova) {
 		try {
 			boolean moved = false;
@@ -162,6 +166,7 @@ public class MyRunnable {
 		}
 }
 	
+	//Visszaagja a paraméterként kapott virológus számát
 	public static int getVirologusSzam(Virologus v) {
 		for(int i = 0; i < game.getEntity().size(); i++)
 			if(game.getEntityAt(i) == v)
@@ -169,6 +174,7 @@ public class MyRunnable {
 		return -1;
 	}
 
+	//A kill bemenetet kezeli le
 	public static void kill(String[] input) {
 		String sub = input[1].substring(1);
 		try {
@@ -184,6 +190,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A learn bemenetet kezeli le
 	public static void learn() {
 		if(null != currentVirologus.getField().codeHere()) {
 			currentVirologus.learnGeneticCode(currentVirologus.getField().codeHere());
@@ -193,6 +200,7 @@ public class MyRunnable {
 			log("Bad parameter!");
 	}
 	
+	//A createfield bemenetet kezeli le
 	public static void createField(String[] input) {
 		if (input.length == 1) {
 			game.getMap().addField(new Field());
@@ -217,6 +225,7 @@ public class MyRunnable {
 		}
 	}
 	
+	////A setneighbour bemenetet kezeli le
 	public static void setNeighbour(String[] input) {
 		String sub = input[1].substring(1);
 		String sub2 = input[2].substring(1);
@@ -235,6 +244,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A placevirologus bemenetet kezeli le
 	public static void placeVir(String[] input) {
 		String sub = input[1].substring(1);
 		try {
@@ -251,6 +261,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A info bemenetet kezeli le
 	public static void getInfo() {
 		String kimenet = "Anygok: ";
 		for(Material mat : currentVirologus.getPacket().getMaterials())
@@ -316,6 +327,7 @@ public class MyRunnable {
 		
 	}
 	
+	//A pickup bemenetet kezeli le
 	public static void pickup(String[] input)
 	{
 		String sub = input[1];
@@ -326,6 +338,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A collect bemenetet kezeli le
 	public static void collect(String[] input)
 	{
 		boolean can = false;
@@ -349,6 +362,7 @@ public class MyRunnable {
 			log("v" + getVirologusSzam(currentVirologus) + " collected "+ input[1]);
 	}
 	
+	//A add bemenetet kezeli le
 	private static void addSomething(String[] readed) {
 		int szam = Character.getNumericValue(readed[2].charAt(1)) - 1;  //virologus jelzo utani azonosito(hanyadik virologusra hasznaljuk a dolgot);
 		//az add utani parancs alapjan folytatodik
@@ -509,6 +523,7 @@ public class MyRunnable {
 		}
 	}
 	
+	//A leave bemenetet kezeli le
 	public static void leave(String[] input)
 	{
 		String sub = input[1];
@@ -522,6 +537,7 @@ public class MyRunnable {
 			MyRunnable.log("Bad parameter!");
 	}
 	
+	//A touch bemenetet kezeli le
 	public static void touch() {
 		Field f = currentVirologus.getField();
 		log("Field adatok:");

@@ -3,6 +3,10 @@ package whut;
 import java.util.ArrayList;
 
 public class Beardance extends Agens{
+	
+	//A mezõn amin áll a paraméterül kapott virológus megfertõz minden virológust, majd a paraméterül kapott virológust egy random szomszédos mezõre mozgatja. 
+	//Ezután az új mezõn is megfertõz mindenkit. 
+	//Végül hamissal tér vissza, mivel a birtokos virológus mást nem csinálhat a körében.
 	@Override
 	public boolean startTurnEffect(AgensUsable v) {
 		infectAll(v.getField().getVirologusok(),v);
@@ -11,11 +15,16 @@ public class Beardance extends Agens{
 		infectAll(v.getField().getVirologusok(),v);		
 		return false;
 	}
+	
+	//A paraméterül kapott csomagnak lekéri a maximális értékét, majd a maximális értékébõl levonja ezt az értéket, ezzel nullára állítva.
 	@Override
 	public void destroyEffect(Packet p) {
 		p.handlePossibleLostMaterial(p.getMaxMaterial());
 	}
 	
+	//A paraméterül kapott virológuslistából mindenkit megfertõz Beardance ágenssel az alábbi módon: 
+	//Csinál egy Beardance ágenst, amit odaad a paraméterül kapott virológusnak. 
+	//Ezután a lista elem virológust a viselõ virológus nevében a csinált ágenssel megtámadja.
 	public void infectAll(ArrayList<AgensUsable> vs, AgensUsable a) {
 		for(AgensUsable vc : vs) {
 			if(vc != a) {

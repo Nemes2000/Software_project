@@ -25,6 +25,10 @@ public class Shelter extends Field
 		items.add(i);
 	}
 	
+	
+	//A paraméterként megadott virológus megérinti a mezõt. 
+	//Megjelentíti a játékosnak a lehetséges cselekvéseket, majd a kiválasztott cselekvés alapján indítja el a megfelelõ folyamatot a virológusnál. 
+	//Lehetséges cselekvések: tárgylopás, anyaglopás, ágenshasználat, tárgyfelvétel, tárgy lerakás.
 	@Override
 	public void touching(Virologus v) //mezÅ‘ Ã©rintÃ©sekor
 	{
