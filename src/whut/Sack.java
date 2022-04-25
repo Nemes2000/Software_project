@@ -24,4 +24,8 @@ public class Sack extends Item{
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "sack";
+	}
 }

@@ -35,4 +35,8 @@ public class Stun extends Agens{
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "stun";
+	}
 }

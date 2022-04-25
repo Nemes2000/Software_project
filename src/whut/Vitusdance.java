@@ -32,4 +32,8 @@ public class Vitusdance extends Agens{
 		return false;
 	}
 	
+	public String toString() {
+		return "vitusdance";
+	}
+	
 }

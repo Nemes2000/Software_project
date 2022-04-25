@@ -34,5 +34,9 @@ public class Lab extends Field
 	public GeneticCode codeHere() {
 		return geneticCode;
 	}
+	
+	public String toString() {
+		return "lab";
+	}
 }
 

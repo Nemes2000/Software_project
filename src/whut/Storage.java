@@ -28,6 +28,10 @@ public class Storage extends Field
 	public Packet getPacket() {
 		return packet;
 	}
+	
+	public String toString() {
+		return "storage";
+	}
 }
 
 

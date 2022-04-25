@@ -18,4 +18,8 @@ public class Forget extends Agens{
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "forget";
+	}
 }

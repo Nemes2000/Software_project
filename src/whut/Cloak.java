@@ -17,4 +17,8 @@ public class Cloak extends Item{
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "cloak";
+	}
 }

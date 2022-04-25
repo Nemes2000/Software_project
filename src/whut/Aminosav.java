@@ -19,5 +19,9 @@ public class Aminosav extends Material {
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return "amino";
+	}
 
 }

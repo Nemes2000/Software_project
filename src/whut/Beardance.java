@@ -33,4 +33,8 @@ public class Beardance extends Agens{
 			return true;
 		return false;
 	}
+	
+	public String toString() {
+		return "beardance";
+	}
 }
