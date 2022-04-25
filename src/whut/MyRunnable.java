@@ -627,7 +627,7 @@ public class MyRunnable {
 					if (readed.length == 2) {
 						ObjectOutputStream out;
 						try {
-							if(0 > 1) {
+							if(readed[1].contains(".")) {
 								log("Bad parameter!");
 							} else {
 								out = new ObjectOutputStream(new FileOutputStream(readed[1] + ".txt"));
