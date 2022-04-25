@@ -1,5 +1,0 @@
-createfield
-createfield
-placevirologus f1
-startgame
-move f1
