@@ -12,6 +12,15 @@ import java.util.Scanner;
 public class MyRunnable {
 
 	private static ArrayList<String> logFile;
+	private static boolean started = true;
+	
+	public static void setStart(boolean mire) {
+		started = mire;
+	}
+	
+	public static boolean getStart() {
+		return started;
+	}
 	
 	public static void log(String s) {
 		System.out.println(s);
@@ -138,7 +147,7 @@ public class MyRunnable {
 }
 	
 	public static int getVirologusSzam(Virologus v) {
-		for(int i = 0; i < game.getEntitySize(); i++)
+		for(int i = 0; i < game.getEntity().size(); i++)
 			if(game.getEntityAt(i) == v)
 				return i+1;
 		return -1;
@@ -556,6 +565,8 @@ public class MyRunnable {
 			readed = read();
 			switch(readed[0]) {
 				case "newtest" :
+					started = true;
+					game = new Game();
 					start();
 					break;
 				case "info":
@@ -592,6 +603,15 @@ public class MyRunnable {
 				case "finishturn" : 
 					steps = 0;
 					tartKor = false;
+					int ii;
+					for(ii = 0; currentVirologus != game.getEntity().get(ii) && ii<game.getEntity().size(); ii++);
+					if(ii < game.getEntity().size()) {
+						if(ii+1 != game.getEntity().size())
+							currentVirologus = (Virologus)game.getEntity().get(ii+1);
+						else
+							currentVirologus = (Virologus)game.getEntity().get(0);
+					}
+						
 					log("player in row: v" + getVirologusSzam(currentVirologus));
 					getInfo();
 					ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
@@ -638,6 +658,8 @@ public class MyRunnable {
 			readed = read();
 			switch(readed[0]) {
 				case "newtest" :
+					started = true;
+					game = new Game();
 					start();
 					break;
 				case "info":
@@ -727,7 +749,6 @@ public class MyRunnable {
 	
 	//init commands
 	public static void start() {
-		game = new Game();
 		String[] readed;
 		boolean megy = true;
 		while(megy) {
@@ -811,6 +832,8 @@ public class MyRunnable {
 					log("Bad parameter!");
 				break;
 			case "newtest":
+				started = true;
+				game = new Game();
 				start();
 				megy = false;
 				break;

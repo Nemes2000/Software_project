@@ -35,7 +35,7 @@ public class Field implements Serializable
 	public void accept(Entity v)
 	{
 		System.out.println(">[:Field].accept(v)");
-		AgensUsable ag = (AgensUsable)v;
+		Virologus ag = (Virologus)v;
 		au.add(ag);
 		v.setField(this);
 	}
