@@ -682,6 +682,7 @@ public class MyRunnable {
 					}
 					else 
 						log("Bad parameter!");
+					break;
 				case "kill":
 					if (readed.length == 2) {
 						kill(readed);
@@ -769,10 +770,8 @@ public class MyRunnable {
                     String path;
                     try {
                         path = new java.io.File(".").getCanonicalPath();
-                        path = path.replace('\', '\\');
-                        log(path+"\\test"+readed[1]+".txt");
-                        File file = new File(path+"\test"+readed[1]+".txt");
-
+                        path = path.replace("\\", "\\\\");
+                        File file = new File(path+"\\\\test"+readed[1]+".txt");
                         try {
                             scanner = new Scanner(file);
                         } catch (FileNotFoundException e) {

@@ -34,7 +34,7 @@ public class Game implements Serializable {
 		allGeneticCode.add(new ProtectionCode());
 		allGeneticCode.add(new VitusdanceCode());
 		if(MyRunnable.getStart()) {
-			System.out.println("Szerente egy random pályát? Igen:y , Nem : n");
+			System.out.println("Szerente egy random palyat? Igen:y , Nem : n");
 			Scanner sc = new Scanner(System.in);
 			String random = sc.nextLine();
 			if(random.equals("y"))
