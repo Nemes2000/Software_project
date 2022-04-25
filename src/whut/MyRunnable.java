@@ -25,13 +25,26 @@ public class MyRunnable {
 	
 	public static void log(String s) {
 		System.out.println(s);
-		logFile.add(s);
 	}
 	
 	public static void main(String args[]) {
 		logFile = new ArrayList<String>();
 		game = new Game();
-		start();
+		if(!started) {
+			currentVirologus = (Virologus)game.getEntity().get(0);
+			log("player in row: v" + getVirologusSzam(currentVirologus));
+			getInfo();
+			ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
+			String kimenet = "Player can move to: ";
+			for(Field f : n)
+				for(int i = 0; i < game.getMap().getSize(); i++)
+					if(f == game.getMap().getField(i))
+						kimenet = kimenet.concat("f"+(i+1)+", ");
+			log(kimenet);
+			getInputFirstAct();
+		}
+		else
+			start();
 	}
 	
 	private static Virologus currentVirologus;
@@ -44,25 +57,27 @@ public class MyRunnable {
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {
-		if(!testfromFile) {
-			Scanner in = new Scanner(System.in);
-			String read= in.nextLine();
-			String[] readed = read.split(" ");
-			return readed;
-		} else {
-			if(scanner.hasNextLine()) {
-				String read= scanner.nextLine();
-				String[] readed = read.split(" ");
-				return readed;
-			} else {
-				scanner.close();
-				testfromFile = false;
-				return null;
-			}
-			
-		}
-		
-	}
+        if(!testfromFile) {
+            Scanner in = new Scanner(System.in);
+            String read= in.nextLine();
+            String[] readed = read.split(" ");
+            return readed;
+        } else {
+            if(scanner.hasNextLine()) {
+                String read= scanner.nextLine();
+                String[] readed = read.split(" ");
+                return readed;
+            } else {
+                scanner.close();
+                testfromFile = false;
+                String[] eof = new String[1];
+                eof[0]="newtest";
+                return eof;
+            }
+
+        }
+
+    }
 	
 	public static void stealitem(String[] input) {
 		String sub = input[1].substring(1);
@@ -680,6 +695,7 @@ public class MyRunnable {
 					}
 					else 
 						log("Bad parameter!");
+					break;
 				case "kill":
 					if (readed.length == 2) {
 						kill(readed);
@@ -756,16 +772,32 @@ public class MyRunnable {
 			readed = read();
 			switch(readed[0]) {
 			case "test" :
-				if(readed.length == 2) {
-					testfromFile = true;
-					File file = new File("test"+readed[1]+".txt");
-					try {
-						scanner = new Scanner(file);
-					} catch (FileNotFoundException e) {
-						
-					}
-				}
-				break;
+                if(readed.length == 2) {
+            int testNum;
+			try{
+			testNum = Integer.parseInt(readed[1]);
+			}catch(NumberFormatException ex){break;}
+			if(testNum<1 || testNum>44||testNum==4||testNum==32)break;
+
+                    testfromFile = true;
+                    String path;
+                    try {
+                        path = new java.io.File(".").getCanonicalPath();
+                        path = path.replace("\\", "\\\\");
+                        File file = new File(path+"\\\\test"+readed[1]+".txt");
+                        try {
+                            scanner = new Scanner(file);
+                        } catch (FileNotFoundException e) {
+
+                        }
+                    } catch (IOException e1) {
+
+                    }
+
+
+
+                }
+                break;
 			case "load":
 				if (readed.length == 2) {
 					ObjectInputStream in;

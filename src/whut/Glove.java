@@ -7,7 +7,6 @@ public class Glove extends Item {
 	//Agens a - az �gens, amit visszaken
 	@Override
 	public boolean fireBackEffect(Virologus tamado, Virologus hasznalo, Agens a) {
-		System.out.println(">[:Item].fireBackEffect(tamado, a)");
 		if (tamado != null) {
 			MyRunnable.log("v"+MyRunnable.getVirologusSzam(hasznalo) + " attacked back with " + a.toString());
 			tamado.uRAttacked(a, null);

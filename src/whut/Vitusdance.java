@@ -8,7 +8,6 @@ public class Vitusdance extends Agens{
 	
 	@Override
 	public boolean startTurnEffect(AgensUsable au) {
-		System.out.println(">[:Vitusdance].startTurnEffect()");
 		//k�r elej�n h�romszor random l�pteti
 		Field all;
 		ArrayList<Field> osszesSzomszed = new ArrayList<Field>();

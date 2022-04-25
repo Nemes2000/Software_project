@@ -10,7 +10,6 @@ public class Protection extends Agens{
 	}
 	
 	public boolean startTurnEffect(AgensUsable au) {
-		System.out.println(">[:Protection].startTurnEffect()");
 		//cs�kkenti a hat�sid�t, �s ha lej�rt, akkor kit�rli a virol�gust�l
 		if(--effectTime < 0) {
 			au.removeAgensOnMe(this);
@@ -23,7 +22,6 @@ public class Protection extends Agens{
 	//ha megt�madj�k akkor megv�di mindenk�pp a visel�j�t
 	@Override
 	public boolean defendEffect() {
-		System.out.println(">[:Protection].defendEffect()");
 		return true;
 	}
 	
