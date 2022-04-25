@@ -87,7 +87,7 @@ public class MyRunnable {
 					return;
 				}
 				Material mat = v.getPacket().getMaterial(input[2]);
-				if(mat != null && currentVirologus.getField().getNeighbourhood().contains(v)) {
+				if(mat != null && currentVirologus.getField().getVirologusok().contains(v)) {
 					currentVirologus.stealMaterial(v, mat);
 				} else
 					log("This materila cant be found at v"+ getVirologusSzam(v));
@@ -509,7 +509,7 @@ public class MyRunnable {
 			itemek = itemek.concat("-");
 		else {
 			for (Item i : il) {
-				itemek = itemek.concat(i.toString());
+				itemek = itemek.concat(i.toString()+" ");
 			}
 		}
 		log(itemek);
@@ -523,7 +523,7 @@ public class MyRunnable {
 				anyagok = anyagok.concat("-");
 			else {
 				for (Material m : ml) {
-					anyagok = anyagok.concat(m.toString());
+					anyagok = anyagok.concat(m.toString()+" ");
 				}
 			}
 		}
@@ -542,7 +542,7 @@ public class MyRunnable {
 			String vItemek = "Itemek: ";
 			ArrayList<Item> vil = v.getItemHave();
 			for(Item i : vil)
-				vItemek = vItemek.concat(i.toString());
+				vItemek = vItemek.concat(i.toString()+" ");
 			log(vItemek);
 		}
 	}
