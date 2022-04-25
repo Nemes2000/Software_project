@@ -1,5 +1,6 @@
 package whut;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -736,7 +737,12 @@ public class MyRunnable {
 			case "test" :
 				if(readed.length == 2) {
 					testfromFile = true;
-					scanner = new Scanner(readed[1]);
+					File file = new File("test"+readed[1]+".txt");
+					try {
+						scanner = new Scanner(file);
+					} catch (FileNotFoundException e) {
+						
+					}
 				}
 				break;
 			case "load":
