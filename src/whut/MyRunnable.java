@@ -29,6 +29,7 @@ public class MyRunnable {
 	}
 	
 	public static void main(String args[]) {
+		System.out.println("test");
 		logFile = new ArrayList<String>();
 		game = new Game();
 		if(!started) {
