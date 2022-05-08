@@ -683,11 +683,10 @@ public class MyRunnable {
 		}
 	}
 	
-	public static void getInputAfterTouch() {
-		String[] readed;
+	public static void getInputAfterTouch(String[] readed) {
 		int justinfo = 1;
 		while(justinfo > 0) {
-			readed = read();
+
 			switch(readed[0]) {
 				case "newtest" :
 					started = true;

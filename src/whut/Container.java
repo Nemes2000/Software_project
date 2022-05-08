@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class Container extends JPanel {
     private ArrayList<Icon> icons = new ArrayList<Icon>();
+
+
+
+
     private String containerText = new String();
 
     public Container(String cT){containerText = cT;}
@@ -25,6 +29,7 @@ public class Container extends JPanel {
         for(int i = icons.size()-1;i>=0&&i>icons.size()-6;i--){
             this.add(icons.get(i));
         }
+
     }
 
 
