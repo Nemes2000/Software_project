@@ -36,10 +36,12 @@ public class Game implements Serializable {
 			MyRunnable.log("Szerente egy random palyat? Igen:y , Nem : n");
 			Scanner sc = new Scanner(System.in);
 			String random = sc.nextLine();
-			if(random.equals("y"))
+			if(random.equals("y")) {
 				createGame();
+				MyRunnable.setStart(false);
+			}
 		}
-		MyRunnable.setStart(false);
+		
 	}
 	
 	public void createGame() {
