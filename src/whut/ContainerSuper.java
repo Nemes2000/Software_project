@@ -20,6 +20,7 @@ public class ContainerSuper extends JPanel {
         this.add(new JLabel(containerSuperText));
         for(Container c : containers){
             this.add(c);
+            c.draw();
         }
     }
 

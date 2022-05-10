@@ -13,6 +13,7 @@ public class ButtonListContainer extends JPanel {
 	
 	public ButtonListContainer() {
 		this.setLayout(new FlowLayout());
+		
 	}
 	
 	public void addButton(String buttonT) {
@@ -21,6 +22,7 @@ public class ButtonListContainer extends JPanel {
 		tmp.setActionCommand(buttonT);
 		
 		buttons.add(tmp);
+		this.add(tmp);
 	}
 	
 	public void draw() {

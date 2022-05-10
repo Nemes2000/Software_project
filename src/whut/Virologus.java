@@ -4,6 +4,11 @@ import java.util.ArrayList;
 public class Virologus extends AgensUsable {
 	private ArrayList<Item> itemHave = new ArrayList<Item>();
 
+	public Virologus() {
+		this.attach(new VirologusObserver(this));
+		
+	}
+	
 	public int getItemNumber() {
 		return itemHave.size();
 	}
