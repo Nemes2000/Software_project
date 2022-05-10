@@ -2,7 +2,7 @@ package whut;
 
 import java.io.Serializable;
 
-public class Entity implements Serializable{
+public class Entity extends View implements Serializable{
 
 	protected Field field;
 	

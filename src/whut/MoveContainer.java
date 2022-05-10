@@ -21,6 +21,9 @@ public class MoveContainer extends JPanel {
 		button.setText("Move");
 		button.setActionCommand("move");
 		this.setLayout(new FlowLayout());
+		this.add(label);
+		this.add(cb);
+		this.add(button);
 	}
 	
 	public void draw(){

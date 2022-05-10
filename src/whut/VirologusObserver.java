@@ -1,11 +1,18 @@
 package whut;
 
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 public class VirologusObserver implements Observer{
     private ContainerSuper cs;
     Virologus v;
+    
+    public VirologusObserver(Virologus _v) {
+    	v = _v;
+    }
+    
     public void setVirologus(Virologus vir){v=vir;}
     
     public void update() {
@@ -49,7 +56,7 @@ public class VirologusObserver implements Observer{
         for(Agens a : agensesOn){
             as.add(a.toString());
         }
-
+        drawLeft(is, as, gs, ss, aos, nukNum, aminoNum);
 
     }
 
@@ -105,6 +112,8 @@ public class VirologusObserver implements Observer{
         cs.addContainer(c5);
 
         cs.draw();
+        JFrame frame = MyRunnable.getFrame();
+        frame.add(cs, BorderLayout.WEST);
     }
 
 
@@ -129,7 +138,9 @@ public class VirologusObserver implements Observer{
         for(Item i : items){
             is.add(i.toString());
         }
+        drawRight(ss, is, nukNum,  aminoNum);
     }
+    
     public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){
         Virologus selectedVir;
         //selectedVir = ...

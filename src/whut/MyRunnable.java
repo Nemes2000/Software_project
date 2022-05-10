@@ -10,14 +10,24 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 //Ez a f� oszt�ly ez kezeli a tesztesetek �s a j�t�kok ind�t�s�t
 public class MyRunnable {
-
+	private static JFrame frame;
 	private static ArrayList<String> logFile;
 	private static boolean started = true;
 	
 	public static void setStart(boolean mire) {
 		started = mire;
+	}
+	
+	public static void setFrame(JFrame f) {
+		frame = f;
+	}
+	
+	public static JFrame getFrame() {
+		return frame;
 	}
 	
 	public static boolean getStart() {

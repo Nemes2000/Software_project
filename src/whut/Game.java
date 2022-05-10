@@ -37,9 +37,10 @@ public class Game extends View implements Serializable {
 		allGeneticCode.add(new VitusdanceCode());
 		
 		createGame();
+		MyRunnable.setGame(this);
 		attach(new GameObserver(this));
 		
-		//MyRunnable.setGame(this);
+		
 		//MyRunnable.startInfo();
 		//MyRunnable.getInputFirstAct();
 	}
