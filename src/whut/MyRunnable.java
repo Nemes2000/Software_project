@@ -173,6 +173,13 @@ public class MyRunnable {
 				return i+1;
 		return -1;
 	}
+	
+	public static int getFieldSzam(Field f) {
+		for(int i = 0; i < game.getMap().getSize(); i++)
+			if(game.getMap().getField(i) == f)
+				return i+1;
+		return -1;
+	}
 
 	//A kill bemenetet kezeli le
 	public static void kill(String[] input) {
@@ -683,11 +690,10 @@ public class MyRunnable {
 		}
 	}
 	
-	public static void getInputAfterTouch() {
-		String[] readed;
+	public static void getInputAfterTouch(String[] readed) {
 		int justinfo = 1;
 		while(justinfo > 0) {
-			readed = read();
+
 			switch(readed[0]) {
 				case "newtest" :
 					started = true;
