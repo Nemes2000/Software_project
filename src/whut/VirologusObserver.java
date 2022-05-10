@@ -123,7 +123,30 @@ public class VirologusObserver {
         }
     }
     public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){
+        Virologus selectedVir;
+        //selectedVir = ...
+        cs = new ContainerSuper("V"+/*selectedVir.getNum()*/"player's stats:");
+        Container c1 = new Container("Items:");
+        for(String s : is){
+            String[] command = new String[2];
+            command[0] = "stealitem";
+            command[1] = s;
+            c1.addIcon(new Icon(command,s));
+        }
+        cs.addContainer(c1);
 
+        Container c2 = new Container("Material:");
+        String[] tmp1 = new String[2];
+        String[] tmp2 = new String[2];
+        tmp1[0]= tmp2[0]="stealmaterial";
+        tmp1[1] = "amino";
+        tmp2[1]= "nukleotid";
+        c2.addIcon(new Icon(tmp1,"amino"));
+        c2.addIcon(new Icon(tmp2,"nukleotid"));
+        c2.add(new JLabel(Integer.toString(nukNum)));
+        c2.add(new JLabel(Integer.toString(aminoNum)));
+        cs.addContainer(c2);
+        cs.draw();
     }
 
 }
