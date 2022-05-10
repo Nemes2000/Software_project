@@ -15,8 +15,7 @@ public class Storage extends Field
 	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInputAfterTouch();
+
 	}
 	
 	public void setPacket(Packet p) {

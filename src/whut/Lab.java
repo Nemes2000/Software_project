@@ -21,8 +21,7 @@ public class Lab extends Field
 	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInputAfterTouch();
+
 	}
 	
 	public void setGeneticCode(GeneticCode g) //genetikus kód beállítása

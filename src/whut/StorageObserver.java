@@ -19,7 +19,7 @@ public class StorageObserver implements Observer {
             }else{
                 nukNum+=m.getValue();
             }
-
+            ss.add(m.toString());
        }
        draw(nukNum,aminoNum);
     }

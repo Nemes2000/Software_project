@@ -32,8 +32,7 @@ public class Shelter extends Field
 	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInputAfterTouch();
+
 	}
 
 	@Override

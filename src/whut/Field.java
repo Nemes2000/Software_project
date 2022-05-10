@@ -40,8 +40,7 @@ public class Field implements Serializable
 	//mező érintés esetén hívódik meg
 	public void touching(Virologus v)
 	{
-		//felsorolja a lehetséges cselekvéseket a felhasználónak
-		MyRunnable.getInputAfterTouch();
+
 	}
 	
 	//szomszédos mezők beállítása

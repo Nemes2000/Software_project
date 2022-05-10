@@ -34,6 +34,7 @@ public class VirologusObserver {
             }else{
                 nukNum+=m.getValue();
             }
+            ss.add(m.toString());
 
         }
         ArrayList<Agens> agensesOn = v.getAgensOnMe();
@@ -113,7 +114,7 @@ public class VirologusObserver {
             }else{
                 nukNum+=m.getValue();
             }
-            ss.add(m.toString());//ez mashol kimaradt
+            ss.add(m.toString());
 
         }
         ArrayList<Item> items = v.getItemHave();
