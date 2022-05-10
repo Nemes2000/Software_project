@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//Ez a fõ osztály ez kezeli a tesztesetek és a játékok indítását
+//Ez a fï¿½ osztï¿½ly ez kezeli a tesztesetek ï¿½s a jï¿½tï¿½kok indï¿½tï¿½sï¿½t
 public class MyRunnable {
 
 	private static ArrayList<String> logFile;
@@ -28,9 +28,9 @@ public class MyRunnable {
 		System.out.println(s);
 	}
 	
-	public static void main(String args[]) {
+	public void Main() {
 		logFile = new ArrayList<String>();
-		game = new Game();
+		//game = new Game();
 		if(!started) {
 			currentVirologus = (Virologus)game.getEntity().get(0);
 			log("player in row: v" + getVirologusSzam(currentVirologus));
@@ -166,7 +166,7 @@ public class MyRunnable {
 		}
 }
 	
-	//Visszaagja a paraméterként kapott virológus számát
+	//Visszaagja a paramï¿½terkï¿½nt kapott virolï¿½gus szï¿½mï¿½t
 	public static int getVirologusSzam(Virologus v) {
 		for(int i = 0; i < game.getEntity().size(); i++)
 			if(game.getEntityAt(i) == v)
@@ -759,16 +759,7 @@ public class MyRunnable {
 					justinfo = 0;
 					steps = 0;
 					tartKor = false;
-					log("player in row: v" + getVirologusSzam(currentVirologus));
-					getInfo();
-					ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
-					String kimenet = "Player can move to: ";
-					for(Field f : n)
-						for(int i = 0; i < game.getMap().getSize(); i++)
-							if(f == game.getMap().getField(i))
-								kimenet = kimenet.concat("f"+(i+1)+", ");
-					log(kimenet);
-						
+					startInfo();
 					break;
 				default : 
 					log("Bad parameter!");
@@ -863,15 +854,7 @@ public class MyRunnable {
 					if (currentVirologus == null)
 						log("There's no virologus in play");
 					else {
-						log("player in row: v" + getVirologusSzam(currentVirologus));
-						getInfo();
-						ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
-						String kimenet = "Player can move to: ";
-						for(Field f : n)
-							for(int i = 0; i < game.getMap().getSize(); i++)
-								if(f == game.getMap().getField(i))
-									kimenet = kimenet.concat("f"+(i+1)+", ");
-						log(kimenet);
+						startInfo();
 						game.run();
 					}
 				}
@@ -899,5 +882,22 @@ public class MyRunnable {
 				break;
 			}
 		}
+	}
+	
+	public static void startInfo() {
+		log("player in row: v" + getVirologusSzam(currentVirologus));
+		getInfo();
+		ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
+		String kimenet = "Player can move to: ";
+		for(Field f : n)
+			for(int i = 0; i < game.getMap().getSize(); i++)
+				if(f == game.getMap().getField(i))
+					kimenet = kimenet.concat("f"+(i+1)+", ");
+		log(kimenet);
+	}
+	
+	public static void setGame(Game gg) {
+		game = gg;
+		currentVirologus = (Virologus)game.getEntityAt(0);
 	}
 }

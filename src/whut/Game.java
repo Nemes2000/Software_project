@@ -9,6 +9,7 @@ public class Game implements Serializable {
 	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	ArrayList<? extends AgensUsable> au;
+	private int players;
 	
 	
 	public Entity getEntityAt(int index) {
@@ -18,8 +19,9 @@ public class Game implements Serializable {
 		return null;
 	}
 	
-	public Game()
+	public Game(int _players)
 	{
+		players = _players;
 		initGame();
 	}
 	
@@ -32,21 +34,14 @@ public class Game implements Serializable {
 		allGeneticCode.add(new StunCode());
 		allGeneticCode.add(new ProtectionCode());
 		allGeneticCode.add(new VitusdanceCode());
-		if(MyRunnable.getStart()) {
-			MyRunnable.log("Szerente egy random palyat? Igen:y , Nem : n");
-			Scanner sc = new Scanner(System.in);
-			String random = sc.nextLine();
-			if(random.equals("y")) {
-				createGame();
-				MyRunnable.setStart(false);
-			}
-		}
-		
+		createGame();
+		MyRunnable.setGame(this);
+		MyRunnable.startInfo();
+		MyRunnable.getInputFirstAct();
 	}
 	
 	public void createGame() {
 		Random r = new Random();
-		int players = r.nextInt(5) + 1;
 		for(int i = 0; i < players; i++)
 			entity.add(new Virologus());
 		int items = 0;
