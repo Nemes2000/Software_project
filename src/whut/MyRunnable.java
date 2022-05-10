@@ -28,7 +28,7 @@ public class MyRunnable {
 		System.out.println(s);
 	}
 	
-	public void Main() {
+	/*public void Main() {
 		logFile = new ArrayList<String>();
 		//game = new Game();
 		if(!started) {
@@ -46,7 +46,7 @@ public class MyRunnable {
 		}
 		else
 			start();
-	}
+	}*/
 	
 	private static Virologus currentVirologus;
 	public static void setCurrentVirologus(Virologus v) {
@@ -603,11 +603,11 @@ public class MyRunnable {
 		while(tartKor) {
 			readed = read();
 			switch(readed[0]) {
-				case "newtest" :
+				/*case "newtest" :
 					started = true;
 					game = new Game();
 					start();
-					break;
+					break;*/
 				case "info":
 					steps++;
 					getInfo();
@@ -695,11 +695,11 @@ public class MyRunnable {
 		while(justinfo > 0) {
 
 			switch(readed[0]) {
-				case "newtest" :
+				/*case "newtest" :
 					started = true;
 					game = new Game();
 					start();
-					break;
+					break;*/
 				case "info":
 					justinfo++;
 					getInfo();
@@ -778,7 +778,7 @@ public class MyRunnable {
 	private static boolean testfromFile = false;;
 	
 	//init commands
-	public static void start() {
+	/*public static void start() {
 		String[] readed;
 		boolean megy = true;
 		while(megy) {
@@ -888,7 +888,7 @@ public class MyRunnable {
 				break;
 			}
 		}
-	}
+	}*/
 	
 	public static void startInfo() {
 		log("player in row: v" + getVirologusSzam(currentVirologus));
