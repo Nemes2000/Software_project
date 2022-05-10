@@ -29,24 +29,34 @@ public class Menu extends JPanel implements Serializable{
 		drawMenu();
 	}
 	
+	public static void setFrame(JFrame frame) {
+		f = frame;
+	}
+	
+	public static JFrame getFrame() {
+		return f;
+	}
+	
 	public static void createGame(){
 		gg = new Game(players);
-		
 	}
 	
 	public static void drawMenu() {
 		
 		f = new JFrame("");
 		f.setPreferredSize( new Dimension(300, 300));
-		f.getContentPane().setBackground(Color.ORANGE);
+		
 		JPanel top = new JPanel(new FlowLayout());
+		top.setBackground(Color.ORANGE);
 		JPanel mid = new JPanel(new FlowLayout());
+		mid.setBackground(Color.ORANGE);
 		JPanel bot = new JPanel(new FlowLayout());
+		bot.setBackground(Color.ORANGE);
 		t = new JTextField(Integer.toString(players));
-		t.disable();
+		t.setEnabled(false);
 		
 		JButton start = new JButton("Start game");
-		start.addActionListener(ae -> createGame());
+		start.addActionListener(ae -> {createGame(); f.dispose();});
 		
 		JButton minus = new JButton("-");
 		minus.addActionListener(ae -> { 

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game implements Serializable {
+import javax.swing.JFrame;
+
+public class Game extends View implements Serializable {
 	private Map map;
 	ArrayList<Entity> entity;
 	ArrayList<GeneticCode> allGeneticCode;
 	ArrayList<? extends AgensUsable> au;
 	private int players;
-	
 	
 	public Entity getEntityAt(int index) {
 		if(index<entity.size()&&index>=0) {
@@ -34,10 +35,13 @@ public class Game implements Serializable {
 		allGeneticCode.add(new StunCode());
 		allGeneticCode.add(new ProtectionCode());
 		allGeneticCode.add(new VitusdanceCode());
+		
 		createGame();
-		MyRunnable.setGame(this);
-		MyRunnable.startInfo();
-		MyRunnable.getInputFirstAct();
+		attach(new GameObserver(this));
+		
+		//MyRunnable.setGame(this);
+		//MyRunnable.startInfo();
+		//MyRunnable.getInputFirstAct();
 	}
 	
 	public void createGame() {

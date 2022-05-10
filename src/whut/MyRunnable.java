@@ -906,4 +906,8 @@ public class MyRunnable {
 		game = gg;
 		currentVirologus = (Virologus)game.getEntityAt(0);
 	}
+	
+	public static Virologus getCurrentVir() {
+		return currentVirologus;
+	}
 }
