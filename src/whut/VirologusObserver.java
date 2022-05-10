@@ -3,10 +3,17 @@ package whut;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class VirologusObserver {
+public class VirologusObserver implements Observer{
     private ContainerSuper cs;
     Virologus v;
     public void setVirologus(Virologus vir){v=vir;}
+    
+    public void update() {
+    	if(v == MyRunnable.getCurrentVir())
+    		updateLeft();
+    	else
+    		updateRight();
+    }
 
     public void updateLeft(){
         ArrayList<Item> items = v.getItemHave();
