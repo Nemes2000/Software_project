@@ -2,9 +2,6 @@ package whut;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
-
-import javax.swing.JFrame;
 
 public class Game extends View implements Serializable {
 	private Map map;
@@ -54,6 +51,7 @@ public class Game extends View implements Serializable {
 		int genetic = 0;
 		int fields = r.nextInt(10) + 1;
 		for(int i = 0; i < fields; i++) {
+			/*
 			if(i % 5 == 0)
 				map.addField(new Field());
 			else if(i % 5 == 1) {
@@ -90,10 +88,15 @@ public class Game extends View implements Serializable {
 			}
 			else
 				map.addField(new EvilLab());
-			
 			map.getField(0).setNeighbour(map.getField(i));
+			
 		}
-		
+		*/
+		map.addField(new Lab());
+		map.getField(i).setGeneticCode(new ProtectionCode());
+		map.getField(0).setNeighbour(map.getField(i));
+
+		}
 		for(int i = 0; i < entity.size(); i++)
 			map.getField(i % map.getSize()).accept(entity.get(i));
 

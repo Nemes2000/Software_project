@@ -1,6 +1,9 @@
 package whut;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 public class ShelterObserver implements Observer{
 
@@ -10,7 +13,8 @@ public class ShelterObserver implements Observer{
     public void setShelter(Shelter s){shelter = s;}
 
 
-    public void update(){
+    @Override
+	public void update(){
         ArrayList<Item> items = shelter.getItems();
         ArrayList<String> strings = new ArrayList<String>();
         for(Item i : items){
@@ -29,6 +33,8 @@ public class ShelterObserver implements Observer{
         }
         cs.addContainer(container);
         cs.draw();
+        JFrame frame = MyRunnable.getFrame();
+        frame.add(cs, BorderLayout.CENTER);
     }
 
 

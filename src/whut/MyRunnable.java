@@ -1,11 +1,6 @@
 package whut;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,6 +12,17 @@ public class MyRunnable {
 	private static JFrame frame;
 	private static ArrayList<String> logFile;
 	private static boolean started = true;
+	private static Game game;
+	private static Scanner scanner;
+	private static Virologus selectedVirologus;
+	
+	public static Virologus getSelected() {
+		return selectedVirologus;
+	}
+	
+	public static void setSelected(Virologus v) {
+		selectedVirologus=v;
+	}
 	
 	public static void setStart(boolean mire) {
 		started = mire;
@@ -63,8 +69,6 @@ public class MyRunnable {
 		currentVirologus=v;
 	}
 	
-	private static Game game;
-	private static Scanner scanner;
 	public static Game getGame() {return game;}
 	
 	public static String[] read() {

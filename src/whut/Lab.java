@@ -1,19 +1,16 @@
 package whut;
 
-import java.io.Serializable;
-
 public class Lab extends Field
 {
 	private GeneticCode geneticCode;
 	
 	public Lab()
 	{
-		super();
+		this.attach(new LabObserver(this));
 	}
 	
 	public Lab(GeneticCode g)
 	{
-		super();
 		geneticCode = g;
 	}
 	
@@ -24,6 +21,7 @@ public class Lab extends Field
 
 	}
 	
+	@Override
 	public void setGeneticCode(GeneticCode g) //genetikus kód beállítása
 	{
 		geneticCode = g;
@@ -33,6 +31,7 @@ public class Lab extends Field
 		return geneticCode;
 	}
 	
+	@Override
 	public String toString() {
 		return "lab";
 	}

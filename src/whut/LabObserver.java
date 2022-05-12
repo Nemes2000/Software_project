@@ -1,13 +1,22 @@
 package whut;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
 public class LabObserver implements Observer{
 
     private Lab lab;
     public void setLab(Lab l){lab = l;}
+    
+    public LabObserver(Lab l) {
+    	lab=l;
+    }
 
     private ContainerSuper cs;
 
-    public void update(){
+    @Override
+	public void update(){
         GeneticCode g = lab.codeHere();
 
         draw(g.toString());
@@ -21,7 +30,8 @@ public class LabObserver implements Observer{
         container.addIcon(new Icon(tmp,name));
         cs.addContainer(container);
         cs.draw();
+        JFrame frame = MyRunnable.getFrame();
+        frame.add(cs, BorderLayout.CENTER);
     }
-
 
 }

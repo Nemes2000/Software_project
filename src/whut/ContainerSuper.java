@@ -1,8 +1,10 @@
 package whut;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
+
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class ContainerSuper extends JPanel {
     private ArrayList<Container> containers = new ArrayList<Container>();
@@ -16,7 +18,7 @@ public class ContainerSuper extends JPanel {
 
     public void draw(){
         this.removeAll();
-        this.setLayout(new FlowLayout());
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.add(new JLabel(containerSuperText));
         for(Container c : containers){
             this.add(c);

@@ -1,9 +1,10 @@
 package whut;
 
-import javax.swing.*;
-
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class VirologusObserver implements Observer{
     private ContainerSuper cs;
@@ -15,10 +16,11 @@ public class VirologusObserver implements Observer{
     
     public void setVirologus(Virologus vir){v=vir;}
     
-    public void update() {
+    @Override
+	public void update() {
     	if(v == MyRunnable.getCurrentVir())
     		updateLeft();
-    	else
+    	if(v == MyRunnable.getSelected())
     		updateRight();
     }
 
@@ -97,10 +99,11 @@ public class VirologusObserver implements Observer{
         String[] tmp1 = new String[1];
         String[] tmp2 = new String[1];
         tmp1[0]=tmp2[0]="idle"; //kell idle parancs ami nem csinál semmit, vagy disableelni kell ezt a buttont
-        c4.addIcon(new Icon(tmp1,"amino"));
+        nukNum=5;
+        c4.addLabel(new JLabel(Integer.toString(nukNum)));
+        c4.addLabel(new JLabel(Integer.toString(aminoNum)));
         c4.addIcon(new Icon(tmp2,"nukleotid"));
-        c4.add(new JLabel(Integer.toString(nukNum)));
-        c4.add(new JLabel(Integer.toString(aminoNum)));
+        c4.addIcon(new Icon(tmp1,"amino"));
         cs.addContainer(c4);
 
         Container c5 = new Container("UnderEffect:");
@@ -160,12 +163,14 @@ public class VirologusObserver implements Observer{
         tmp1[0]= tmp2[0]="stealmaterial";
         tmp1[1] = "amino";
         tmp2[1]= "nukleotid";
-        c2.addIcon(new Icon(tmp1,"amino"));
         c2.addIcon(new Icon(tmp2,"nukleotid"));
-        c2.add(new JLabel(Integer.toString(nukNum)));
-        c2.add(new JLabel(Integer.toString(aminoNum)));
+        c2.addIcon(new Icon(tmp1,"amino"));
+        c2.addLabel(new JLabel(Integer.toString(nukNum)));
+        c2.addLabel(new JLabel(Integer.toString(aminoNum)));
         cs.addContainer(c2);
         cs.draw();
+        JFrame frame = MyRunnable.getFrame();
+        frame.add(cs, BorderLayout.EAST);
     }
 
 }

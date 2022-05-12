@@ -20,10 +20,15 @@ public class MoveContainer extends JPanel {
 			cb.addItem(field);
 		button.setText("Move");
 		button.setActionCommand("move");
+		button.addActionListener(new moveActionListener());
 		this.setLayout(new FlowLayout());
 		this.add(label);
 		this.add(cb);
 		this.add(button);
+	}
+	
+	public void clearBox() {
+		cb.removeAllItems();
 	}
 	
 	public void draw(){
@@ -34,6 +39,7 @@ public class MoveContainer extends JPanel {
 	}
 	
 	class moveActionListener implements ActionListener{
+		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("move")) {
 				

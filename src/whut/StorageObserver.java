@@ -1,14 +1,18 @@
 package whut;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class StorageObserver implements Observer {
     private Storage storage;
     public void setStorage(Storage s){storage=s;}
     private ContainerSuper cs;
 
-    public void update(){
+    @Override
+	public void update(){
        ArrayList<Material> ms =  storage.getPacket().getMaterials();
        ArrayList<String> ss = new ArrayList<String>();
         int nukNum = 0;
@@ -37,6 +41,8 @@ public class StorageObserver implements Observer {
         container.add(new JLabel(Integer.toString(aminoNum)));
         cs.addContainer(container);
         cs.draw();
+        JFrame frame = MyRunnable.getFrame();
+        frame.add(cs, BorderLayout.CENTER);
     }
 
 }

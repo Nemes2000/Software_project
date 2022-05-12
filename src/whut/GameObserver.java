@@ -3,10 +3,11 @@ package whut;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class GameObserver implements Observer{
 	
@@ -23,6 +24,7 @@ public class GameObserver implements Observer{
 		setFrame();
 	}
 	
+	@Override
 	public void update() {
 		drawGame();
 	}
@@ -30,15 +32,17 @@ public class GameObserver implements Observer{
 	public void setFrame() {
 		frame.setPreferredSize( new Dimension(800, 600));
 		frame.getContentPane().setBackground(Color.ORANGE);
-		
 		update();
 		blc.setBackground(Color.ORANGE);
 		mc.setBackground(Color.ORANGE);
 		MyRunnable.setFrame(frame);
 		MyRunnable.getCurrentVir().myNotify();
-		
+		MyRunnable.getCurrentVir().getField().myNotify();
+		JPanel p=new JPanel(new FlowLayout());
+		p.add(mc);
+		p.add(tc);
 		frame.add(blc, BorderLayout.SOUTH);
-		frame.add(mc, BorderLayout.NORTH);
+		frame.add(p, BorderLayout.NORTH);
 		
 		
 		frame.pack();
@@ -47,10 +51,11 @@ public class GameObserver implements Observer{
 	}
 	
 	public void drawGame() {
+		blc.clearButtons();
 		blc.addButton("Save");
 		blc.addButton("New Game");
 		blc.addButton("Finishturn");
-		
+		blc.draw();
 		ArrayList<String> fields = new ArrayList<String>();
 		ArrayList<Field> fs = MyRunnable.getCurrentVir().getField().getNeighbourhood();
 		for (Field f : fs) {
@@ -58,13 +63,8 @@ public class GameObserver implements Observer{
 		}
 		mc = new MoveContainer(fields);
 		
-		ArrayList<String> players = new ArrayList<String>();
-		ArrayList<AgensUsable> vs =  MyRunnable.getCurrentVir().getField().getVirologusok();
-		for (AgensUsable a : vs) {
-			Virologus v = (Virologus)a;
-			players.add("v"+MyRunnable.getVirologusSzam(v));
-		}
-		tc = new TouchContainer(players);
+		
+		tc = new TouchContainer();
 	}
 
 }

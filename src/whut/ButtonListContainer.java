@@ -15,14 +15,16 @@ public class ButtonListContainer extends JPanel {
 		this.setLayout(new FlowLayout());
 		
 	}
+	public void clearButtons() {
+		buttons.clear();
+	}
 	
 	public void addButton(String buttonT) {
 		JButton tmp = new JButton();
 		tmp.setText(buttonT);
 		tmp.setActionCommand(buttonT);
-		
+		tmp.addActionListener(new ButtonActionListener());
 		buttons.add(tmp);
-		this.add(tmp);
 	}
 	
 	public void draw() {
@@ -33,6 +35,7 @@ public class ButtonListContainer extends JPanel {
 	}
 	
 	class ButtonActionListener implements ActionListener{
+		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Save")) {}
 			if (ae.getActionCommand().equals("New Game")) {}
