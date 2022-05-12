@@ -35,12 +35,14 @@ public class GameObserver implements Observer{
 		update();
 		blc.setBackground(Color.ORANGE);
 		mc.setBackground(Color.ORANGE);
+		tc.setBackground(Color.ORANGE);
 		MyRunnable.setFrame(frame);
 		MyRunnable.getCurrentVir().myNotify();
 		MyRunnable.getCurrentVir().getField().myNotify();
 		JPanel p=new JPanel(new FlowLayout());
 		p.add(mc);
 		p.add(tc);
+		p.setBackground(Color.ORANGE);
 		frame.add(blc, BorderLayout.SOUTH);
 		frame.add(p, BorderLayout.NORTH);
 		

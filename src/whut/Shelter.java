@@ -16,6 +16,7 @@ public class Shelter extends Field
 	public void removeItem(Item i)
 	{
 		items.remove(i);
+		myNotify();
 	}
 	
 	//hozzáadja a tárgyat a shelterhez
@@ -23,6 +24,7 @@ public class Shelter extends Field
 	public void addItem(Item i)
 	{
 		items.add(i);
+		myNotify();
 	}
 	
 	

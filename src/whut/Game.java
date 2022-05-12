@@ -107,7 +107,7 @@ public class Game extends View implements Serializable {
 		for(int i = 0;i<entity.size();++i)
 		{
 			  entity.get(i).step();
-		
+			  myNotify();
 		}
 	}
 	

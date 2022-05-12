@@ -610,12 +610,12 @@ public class MyRunnable {
 	
 	private static int steps; 
 	private static boolean tartKor;
-	public static void getInputFirstAct() {
-		String[] readed;
+	public static void getInputFirstAct(String[] readed) {
+		//String[] readed;
 		steps = 2;
 		tartKor = true;
-		while(tartKor) {
-			readed = read();
+		//while(tartKor) {
+			//readed = read();
 			switch(readed[0]) {
 				/*case "newtest" :
 					started = true;
@@ -659,10 +659,14 @@ public class MyRunnable {
 					int ii;
 					for(ii = 0; currentVirologus != game.getEntity().get(ii) && ii<game.getEntity().size(); ii++);
 					if(ii < game.getEntity().size()) {
-						if(ii+1 != game.getEntity().size())
+						if(ii+1 != game.getEntity().size()) {
 							currentVirologus = (Virologus)game.getEntity().get(ii+1);
-						else
+							currentVirologus.myNotify();
+						}
+						else {
 							currentVirologus = (Virologus)game.getEntity().get(0);
+							currentVirologus.myNotify();
+						}
 					}
 						
 					log("player in row: v" + getVirologusSzam(currentVirologus));
@@ -701,7 +705,7 @@ public class MyRunnable {
 					break;
 			}
 			steps--;
-		}
+		//}
 	}
 	
 	public static void getInputAfterTouch(String[] readed) {

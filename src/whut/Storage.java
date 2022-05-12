@@ -20,6 +20,7 @@ public class Storage extends Field
 	
 	public void setPacket(Packet p) {
 		packet = p;
+		myNotify();
 	}
 	
 	@Override

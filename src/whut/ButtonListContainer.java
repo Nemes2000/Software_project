@@ -39,7 +39,12 @@ public class ButtonListContainer extends JPanel {
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("Save")) {}
 			if (ae.getActionCommand().equals("New Game")) {}
-			if (ae.getActionCommand().equals("FinishTurn")) {}
+			if (ae.getActionCommand().equals("Finishturn")) {
+				String[] command = new String[1];
+				command[0] = "finishturn";
+				MyRunnable.getInputFirstAct(command);
+				MyRunnable.setSelected(null);
+			}
 		}
 	}
 

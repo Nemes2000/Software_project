@@ -59,6 +59,9 @@ public class TouchContainer extends JPanel {
 					cb.addItem(player);
 				MyRunnable.getGame().myNotify();
 				MyRunnable.setSelected((Virologus)vs.get(0));
+				String[] command = new String[1];
+				command[0] = "touch";
+				MyRunnable.getInputFirstAct(command);
 				vs.get(0).myNotify();
 			}
 			

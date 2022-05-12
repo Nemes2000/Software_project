@@ -66,7 +66,7 @@ public class VirologusObserver implements Observer{
     public void drawLeft(ArrayList<String> is,ArrayList<String> as,ArrayList<String> gs,ArrayList<String> ss,ArrayList<String> aos,int nukNum, int aminoNum){
 
         cs = new ContainerSuper("V"+MyRunnable.getVirologusSzam(v)+"player in row");
-        Virologus selectedVir;
+        //Virologus selectedVir;
         //selectedVir = ...
         Container c1 = new Container("Items:");
         for(String s : is){
@@ -89,7 +89,7 @@ public class VirologusObserver implements Observer{
         Container c3 = new Container("GeneticCode:");
         for(String s : gs){
             String[] command = new String[2];
-            command[0] = "learn";
+            command[0] = "create";
             command[1] = s;//MyRunnable-ben learn utan varjon genetikkodnevet ne agenst!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             c3.addIcon(new Icon(command,s));
         }

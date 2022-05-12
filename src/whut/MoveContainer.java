@@ -42,7 +42,10 @@ public class MoveContainer extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getActionCommand().equals("move")) {
-				
+				String[] command = new String[2];
+				command[0] = "move";
+				command[1] = cb.getSelectedItem().toString();
+				MyRunnable.getInputFirstAct(command);
 			}
 		}
 	}
