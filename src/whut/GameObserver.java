@@ -30,7 +30,7 @@ public class GameObserver implements Observer{
 	}
 	
 	public void setFrame() {
-		frame.setPreferredSize( new Dimension(800, 600));
+		frame.setPreferredSize( new Dimension(1000, 600));
 		frame.getContentPane().setBackground(Color.ORANGE);
 		update();
 		blc.setBackground(Color.ORANGE);
