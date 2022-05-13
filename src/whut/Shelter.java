@@ -16,7 +16,7 @@ public class Shelter extends Field
 	public void removeItem(Item i)
 	{
 		items.remove(i);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	//hozzÃ¡adja a tÃ¡rgyat a shelterhez
@@ -24,13 +24,13 @@ public class Shelter extends Field
 	public void addItem(Item i)
 	{
 		items.add(i);
-		myNotify();
+		//MyRunnable.getGame().myNotify();
 	}
 	
 	
-	//A paraméterként megadott virológus megérinti a mezõt. 
-	//Megjelentíti a játékosnak a lehetséges cselekvéseket, majd a kiválasztott cselekvés alapján indítja el a megfelelõ folyamatot a virológusnál. 
-	//Lehetséges cselekvések: tárgylopás, anyaglopás, ágenshasználat, tárgyfelvétel, tárgy lerakás.
+	//A paramï¿½terkï¿½nt megadott virolï¿½gus megï¿½rinti a mezï¿½t. 
+	//Megjelentï¿½ti a jï¿½tï¿½kosnak a lehetsï¿½ges cselekvï¿½seket, majd a kivï¿½lasztott cselekvï¿½s alapjï¿½n indï¿½tja el a megfelelï¿½ folyamatot a virolï¿½gusnï¿½l. 
+	//Lehetsï¿½ges cselekvï¿½sek: tï¿½rgylopï¿½s, anyaglopï¿½s, ï¿½genshasznï¿½lat, tï¿½rgyfelvï¿½tel, tï¿½rgy lerakï¿½s.
 	@Override
 	public void touching(Virologus v) //mezÅ‘ Ã©rintÃ©sekor
 	{
@@ -53,6 +53,7 @@ public class Shelter extends Field
 		return null;
 	}
 	
+	@Override
 	public String toString() {
 		return "shelter";
 	}

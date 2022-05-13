@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,9 +20,10 @@ public class GameObserver implements Observer{
 	public GameObserver(Game g) {
 		game = g;
 		frame = new JFrame(); 
-		
 		setFrame();
+		drawGame();
 	}
+		
 	
 	@Override
 	public void update() {
@@ -33,17 +35,10 @@ public class GameObserver implements Observer{
 		frame.getContentPane().setBackground(Color.ORANGE);
 		//update();
 		blc.setBackground(Color.ORANGE);
-		mc.setBackground(Color.ORANGE);
-		tc.setBackground(Color.ORANGE);
 		MyRunnable.setFrame(frame);
-		MyRunnable.getCurrentVir().myNotify();
-		MyRunnable.getCurrentVir().getField().myNotify();
-		JPanel p=new JPanel(new FlowLayout());
-		p.add(mc);
-		p.add(tc);
-		p.setBackground(Color.ORANGE);
-		frame.add(blc, BorderLayout.SOUTH);
-		frame.add(p, BorderLayout.NORTH);
+	//	MyRunnable.getCurrentVir().myNotify();
+	//	MyRunnable.getCurrentVir().getField().myNotify();
+		
 		
 		
 		frame.pack();
@@ -52,9 +47,12 @@ public class GameObserver implements Observer{
 	}
 	
 	public void drawGame() {
+		System.out.print("DRAWGAMEHIVODIK");
 		frame.getContentPane().removeAll();
-		/*setFrame();
-		blc.clearButtons();
+		
+		
+		setFrame();
+		blc = new ButtonListContainer();
 		blc.addButton("Save");
 		blc.addButton("New Game");
 		blc.addButton("Finishturn");
@@ -68,10 +66,20 @@ public class GameObserver implements Observer{
 		for (Field f : fs) {
 			fields.add("f"+MyRunnable.getFieldSzam(f));
 		}
-		 
+		
+		JPanel p=new JPanel(new FlowLayout());
+		p.setBackground(Color.ORANGE);
+		
+		
 		mc = new MoveContainer(fields);
-		tc = new TouchContainer();
-		*/
+		tc = new TouchContainer();		 
+		mc.setBackground(Color.ORANGE);
+		tc.setBackground(Color.ORANGE);
+		p.add(mc);
+		p.add(tc);
+		frame.add(blc, BorderLayout.SOUTH);
+		frame.add(p, BorderLayout.NORTH);
+		frame.revalidate();
 	}
 
 }

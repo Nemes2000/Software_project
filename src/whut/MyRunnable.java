@@ -15,6 +15,16 @@ public class MyRunnable {
 	private static Game game;
 	private static Scanner scanner;
 	private static Virologus selectedVirologus;
+	private static boolean touched = false;
+	
+	public static void setTouched(boolean t) {
+		touched = t;
+	}
+	
+	public static boolean getTouched() {
+		return touched;
+	}
+	
 	
 	public static Virologus getSelected() {
 		return selectedVirologus;
@@ -636,6 +646,7 @@ public class MyRunnable {
 					if(steps > 0) {
 						if (readed.length == 2) {
 							moveTo(readed[1]);
+							
 						}
 						else log("Bad parameter!");
 					}
@@ -673,7 +684,7 @@ public class MyRunnable {
 						}
 					}
 						
-					game.myNotify();
+					
 					log("player in row: v" + getVirologusSzam(currentVirologus));
 					getInfo();
 					ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
@@ -709,6 +720,7 @@ public class MyRunnable {
 					log("Bad parameter!");
 					break;
 			}
+			game.myNotify();
 			steps--;
 		//}
 	}

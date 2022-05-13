@@ -50,6 +50,7 @@ public class MoveContainer extends JPanel {
 				command[0] = "move";
 				command[1] = cb.getSelectedItem().toString();
 				MyRunnable.getInputFirstAct(command);
+				MyRunnable.setTouched(false);
 			}
 		}
 	}

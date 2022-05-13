@@ -43,6 +43,7 @@ public class ButtonListContainer extends JPanel {
 				command[0] = "finishturn";
 				MyRunnable.getInputFirstAct(command);
 				MyRunnable.setSelected(null);
+				MyRunnable.setTouched(false);
 			}
 		}
 	}

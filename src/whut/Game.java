@@ -51,7 +51,7 @@ public class Game extends View implements Serializable {
 		int genetic = 0;
 		int fields = r.nextInt(10) + 1;
 		for(int i = 0; i < fields; i++) {
-			/*
+			
 			if(i % 5 == 0)
 				map.addField(new Field());
 			else if(i % 5 == 1) {
@@ -88,17 +88,15 @@ public class Game extends View implements Serializable {
 			}
 			else
 				map.addField(new EvilLab());
-			map.getField(0).setNeighbour(map.getField(i));
 			
+			map.getField(0).setNeighbour(map.getField(i));
 		}
-		*/
-		map.addField(new Lab());
-		map.getField(i).setGeneticCode(new ProtectionCode());
-		map.getField(0).setNeighbour(map.getField(i));
-
-		}
+	
+		map.getField(1).setNeighbour(map.getField(0));
+		
 		for(int i = 0; i < entity.size(); i++)
-			map.getField(i % map.getSize()).accept(entity.get(i));
+			//map.getField(i % map.getSize()).accept(entity.get(i));
+			map.getField(0).accept(entity.get(i));
 
 	}
 	

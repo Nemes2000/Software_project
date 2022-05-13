@@ -17,10 +17,10 @@ public class TouchContainer extends JPanel {
 	
 	public TouchContainer() {
 	
-		
 		button.setText("Touch");
 		button.setActionCommand("touch");
 		button.addActionListener(new touchActionListener()); 
+		cb.addActionListener(new itemActionListener());
 		this.setLayout(new FlowLayout());
 		this.add(label);
 		this.add(cb);
@@ -60,8 +60,9 @@ public class TouchContainer extends JPanel {
 				MyRunnable.setSelected((Virologus)vs.get(0));
 				String[] command = new String[1];
 				command[0] = "touch";
+				MyRunnable.setTouched(true);
 				MyRunnable.getInputFirstAct(command);
-				MyRunnable.getGame().myNotify();
+				//MyRunnable.getGame().myNotify();
 				
 			}
 			

@@ -46,7 +46,12 @@ public class Field extends View implements Serializable
 	//szomszédos mezők beállítása
 	public void setNeighbour(Field f){
 		neighbor.add(f);
+		//f.addNeighbour(this);
 		//skeletonnál még kézzel
+	}
+	
+	public void addNeighbour(Field f) {
+		neighbor.add(f);
 	}
 	
 	//visszaadja a szomszéd mezők listáját
@@ -83,6 +88,7 @@ public class Field extends View implements Serializable
 		MyRunnable.log("Ide nem rakhatsz!");
 	}
 	
+	@Override
 	public String toString() {
 		return "field";
 	}

@@ -20,7 +20,7 @@ public class Storage extends Field
 	
 	public void setPacket(Packet p) {
 		packet = p;
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	@Override
@@ -28,6 +28,7 @@ public class Storage extends Field
 		return packet;
 	}
 	
+	@Override
 	public String toString() {
 		return "storage";
 	}
