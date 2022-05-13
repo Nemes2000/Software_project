@@ -5,7 +5,9 @@ public class Virologus extends AgensUsable {
 	private ArrayList<Item> itemHave = new ArrayList<Item>();
 
 	public Virologus() {
-		this.attach(new VirologusObserver(this));
+		VirologusObserver virologusObs=new VirologusObserver(this);
+		this.attach(virologusObs);
+	
 		
 	}
 	
@@ -57,7 +59,7 @@ public class Virologus extends AgensUsable {
 			}
 		} else
 			MyRunnable.log("The item was not stolen");
-		myNotify();
+		MyRunnable.getGame().myNotify();
 		
 	}
 	
@@ -78,7 +80,7 @@ public class Virologus extends AgensUsable {
 			MyRunnable.log(mit.toString()+"was stolen");
 		} else
 			MyRunnable.log("This material was not stolen");
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	//lecser�l egy t�rgyat a n�la l�v� t�rgyak k�z�l
@@ -115,7 +117,7 @@ public class Virologus extends AgensUsable {
 			addItem(mire);
 		}
 		field.removeItem(mire);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 		
 	}
 	
@@ -123,7 +125,7 @@ public class Virologus extends AgensUsable {
 	public void leaveItem(Item mit) {
 		field.addItem(mit);
 		removeItem(mit);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	
@@ -166,7 +168,7 @@ public class Virologus extends AgensUsable {
 			}
 			}
 		}
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	public void kill(Virologus v) {
@@ -181,7 +183,7 @@ public class Virologus extends AgensUsable {
 		if (!killed) {
 			MyRunnable.log("You need an axe");
 		}
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	public void die() {
@@ -191,7 +193,7 @@ public class Virologus extends AgensUsable {
 	
 	public void touch() {
 		field.touching(this);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	@Override
@@ -204,13 +206,14 @@ public class Virologus extends AgensUsable {
 	}
 	
 	
+	@Override
 	public void step() {
 		MyRunnable.setCurrentVirologus(this);
 		if(roundDesc()) {
 			//MyRunnable.getInputFirstAct();
 		}
 		MyRunnable.getGame().endGame(geneticCode);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	public ArrayList<Item> getItemHave(){

@@ -28,7 +28,6 @@ public class ButtonListContainer extends JPanel {
 	}
 	
 	public void draw() {
-		this.removeAll();
 		for (JButton b : buttons) {
 			this.add(b);
 		}

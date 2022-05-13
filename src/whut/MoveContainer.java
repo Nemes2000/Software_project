@@ -27,6 +27,10 @@ public class MoveContainer extends JPanel {
 		this.add(button);
 	}
 	
+	public MoveContainer() {
+		
+	}
+	
 	public void clearBox() {
 		cb.removeAllItems();
 	}

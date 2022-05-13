@@ -31,11 +31,11 @@ public class Container extends JPanel {
 
     public void draw()
     {
+    	this.removeAll();
     	JPanel c1=new JPanel(new FlowLayout());
     	JPanel c2=new JPanel(new FlowLayout());
     	JPanel c3=new JPanel(new FlowLayout());
 
-        this.removeAll();
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         c1.add(new JLabel(containerText));
         //utolso, max 5 icont felrakja

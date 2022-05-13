@@ -40,7 +40,7 @@ public class TouchContainer extends JPanel {
 			String valami=cb.getSelectedItem().toString();
 			String sub = valami.substring(1);
 			MyRunnable.setSelected((Virologus)MyRunnable.getGame().getEntityAt(Integer.parseInt(sub))); //szep.
-			MyRunnable.getGame().getEntityAt(Integer.parseInt(sub)).myNotify();
+			MyRunnable.getGame().myNotify();
 		}
 	}
 	
@@ -57,12 +57,12 @@ public class TouchContainer extends JPanel {
 				}
 				for (String player : players)
 					cb.addItem(player);
-				MyRunnable.getGame().myNotify();
 				MyRunnable.setSelected((Virologus)vs.get(0));
 				String[] command = new String[1];
 				command[0] = "touch";
 				MyRunnable.getInputFirstAct(command);
-				vs.get(0).myNotify();
+				MyRunnable.getGame().myNotify();
+				
 			}
 			
 		}

@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class VirologusObserver implements Observer{
-    private ContainerSuper cs;
+    private ContainerSuper csLeft;
+    private ContainerSuper csRight;
     Virologus v;
     
     public VirologusObserver(Virologus _v) {
@@ -18,10 +19,14 @@ public class VirologusObserver implements Observer{
     
     @Override
 	public void update() {
-    	if(v == MyRunnable.getCurrentVir())
+    	if(v.equals(MyRunnable.getCurrentVir())) {
     		updateLeft();
-    	if(v == MyRunnable.getSelected())
+    		
+    	}
+    	if(v.equals(MyRunnable.getSelected())) {
     		updateRight();
+    		
+    	}
     }
 
     public void updateLeft(){
@@ -64,8 +69,12 @@ public class VirologusObserver implements Observer{
 
 
     public void drawLeft(ArrayList<String> is,ArrayList<String> as,ArrayList<String> gs,ArrayList<String> ss,ArrayList<String> aos,int nukNum, int aminoNum){
-
-        cs = new ContainerSuper("V"+MyRunnable.getVirologusSzam(v)+"player in row");
+    	
+    	JFrame frame = MyRunnable.getFrame();
+    	if (csLeft != null) {
+    		frame.remove(csLeft);
+    	}
+        csLeft = new ContainerSuper("V"+MyRunnable.getVirologusSzam(MyRunnable.getCurrentVir())+"player in row");
         //Virologus selectedVir;
         //selectedVir = ...
         Container c1 = new Container("Items:");
@@ -75,7 +84,7 @@ public class VirologusObserver implements Observer{
             command[1] = s;
             c1.addIcon(new Icon(command,s));
         }
-        cs.addContainer(c1);
+        csLeft.addContainer(c1);
         Container c2 = new Container("Agens:");
         for(String s : as){
             String[] command = new String[3];
@@ -84,7 +93,7 @@ public class VirologusObserver implements Observer{
             //command[2] = v+selecetedVir.getNum()
             c2.addIcon(new Icon(command,s));
         }
-        cs.addContainer(c2);
+        csLeft.addContainer(c2);
 
         Container c3 = new Container("GeneticCode:");
         for(String s : gs){
@@ -93,7 +102,7 @@ public class VirologusObserver implements Observer{
             command[1] = s;//MyRunnable-ben learn utan varjon genetikkodnevet ne agenst!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             c3.addIcon(new Icon(command,s));
         }
-        cs.addContainer(c3);
+        csLeft.addContainer(c3);
 
         Container c4 = new Container("Material:");
         String[] tmp1 = new String[1];
@@ -104,19 +113,19 @@ public class VirologusObserver implements Observer{
         c4.addLabel(new JLabel(Integer.toString(aminoNum)));
         c4.addIcon(new Icon(tmp2,"nukleotid"));
         c4.addIcon(new Icon(tmp1,"amino"));
-        cs.addContainer(c4);
-
+        csLeft.addContainer(c4);
+        
         Container c5 = new Container("UnderEffect:");
         for(String s : aos){
             String[] command = new String[1];
             command[0] = "idle";
             c5.addIcon(new Icon(command,s));
         }
-        cs.addContainer(c5);
-
-        cs.draw();
-        JFrame frame = MyRunnable.getFrame();
-        frame.add(cs, BorderLayout.WEST);
+        csLeft.addContainer(c5);
+        
+        csLeft.draw();
+        frame.add(csLeft, BorderLayout.WEST);
+        System.out.print("DRAWWWWWWW");
     }
 
 
@@ -147,7 +156,7 @@ public class VirologusObserver implements Observer{
     public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){
         Virologus selectedVir;
         //selectedVir = ...
-        cs = new ContainerSuper("V"+/*selectedVir.getNum()*/"player's stats:");
+        csRight = new ContainerSuper("V"+/*selectedVir.getNum()*/"player's stats:");
         Container c1 = new Container("Items:");
         for(String s : is){
             String[] command = new String[2];
@@ -155,7 +164,7 @@ public class VirologusObserver implements Observer{
             command[1] = s;
             c1.addIcon(new Icon(command,s));
         }
-        cs.addContainer(c1);
+        csRight.addContainer(c1);
 
         Container c2 = new Container("Material:");
         String[] tmp1 = new String[2];
@@ -167,10 +176,10 @@ public class VirologusObserver implements Observer{
         c2.addIcon(new Icon(tmp1,"amino"));
         c2.addLabel(new JLabel(Integer.toString(nukNum)));
         c2.addLabel(new JLabel(Integer.toString(aminoNum)));
-        cs.addContainer(c2);
-        cs.draw();
+        csRight.addContainer(c2);
+        csRight.draw();
         JFrame frame = MyRunnable.getFrame();
-        frame.add(cs, BorderLayout.EAST);
+        frame.add(csRight, BorderLayout.EAST);
     }
 
 }

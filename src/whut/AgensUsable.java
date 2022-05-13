@@ -34,11 +34,11 @@ public class AgensUsable extends Entity{
 		//minden startTurneffect lefut, akkor is, ha m�r volt stunnol�
 		for(int i = 0; i < agensOnMe.size(); i++){
 			if(!agensOnMe.get(i).startTurnEffect(this)) {
-				myNotify();
+				MyRunnable.getGame().myNotify();
 				 return false;
 			}
 		}
-		myNotify();
+		MyRunnable.getGame().myNotify();
 		return true;
 	}
 	
@@ -63,7 +63,7 @@ public class AgensUsable extends Entity{
 	//megtanul egy genetikk�dot
 	public void learnGeneticCode(GeneticCode gc) {
 		geneticCode.add(gc);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	//megk�rdezi a felhaszn�l�t melyik genetik k�dot szeretn� �genss� alak�tani �s azt megcsin�lja
@@ -80,18 +80,18 @@ public class AgensUsable extends Entity{
 		
 		if(!created)
 			MyRunnable.log("Genetic code for " + mit + " not learned yet!");
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
 		geneticCode.removeAll(geneticCode);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
 	public void increaseMaterial(Packet p, Material m) {
 		p.handleMaterialSeparate(m, this.materialPacket);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 		
 	}
 	
@@ -99,7 +99,7 @@ public class AgensUsable extends Entity{
 	public void useAgens(Virologus v, Agens ag) {
 		agens.remove(ag);
 		v.uRAttacked(ag, (Virologus)this);
-		myNotify();
+		MyRunnable.getGame().myNotify();
 	}
 	
 	public void destroyMaterial(Packet p) {

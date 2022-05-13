@@ -661,14 +661,19 @@ public class MyRunnable {
 					if(ii < game.getEntity().size()) {
 						if(ii+1 != game.getEntity().size()) {
 							currentVirologus = (Virologus)game.getEntity().get(ii+1);
-							currentVirologus.myNotify();
+							//System.out.print("EEEELOTTTEEEEEEE");
+							//currentVirologus.myNotify();
+							//System.out.print("VEEEGGGEEEEEEEEE");
+
 						}
 						else {
 							currentVirologus = (Virologus)game.getEntity().get(0);
-							currentVirologus.myNotify();
+							
+							//currentVirologus.myNotify();
 						}
 					}
 						
+					game.myNotify();
 					log("player in row: v" + getVirologusSzam(currentVirologus));
 					getInfo();
 					ArrayList<Field> n = currentVirologus.getField().getNeighbourhood();
