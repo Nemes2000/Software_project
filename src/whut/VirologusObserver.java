@@ -44,20 +44,22 @@ public class VirologusObserver implements Observer{
         for(GeneticCode g : genetics){
             gs.add(g.toString());
         }
+        
         ArrayList<Material> ms =  v.getPacket().getMaterials();
         ArrayList<String> ss = new ArrayList<String>();
         int nukNum = 0;
         int aminoNum = 0;
         for(Material m : ms){
             if(m.isSame(new Nukleotid())){
-                nukNum+= m.getValue();
+            	nukNum+= m.getValue();
                 System.out.print(m.getValue());
             }else{
-                aminoNum+=m.getValue();
+            	aminoNum+=m.getValue();
                 System.out.print(m.getValue());
             }
             ss.add(m.toString());
        	}
+        
         ArrayList<Agens> agensesOn = v.getAgensOnMe();
         ArrayList<String> aos = new ArrayList<String>();
         for(Agens a : agensesOn){
@@ -86,8 +88,8 @@ public class VirologusObserver implements Observer{
         for(String s : as){
             String[] command = new String[3];
             command[0] = "useagens";
-            command[1] = s;
-            command[2] = "v"+MyRunnable.getVirologusSzam(MyRunnable.getSelected());
+            command[1] = "v"+MyRunnable.getVirologusSzam(MyRunnable.getSelected());
+            command[2] = s;
             c2.addIcon(new Icon(command,s));
         }
         csLeft.addContainer(c2);
@@ -96,7 +98,7 @@ public class VirologusObserver implements Observer{
         for(String s : gs){
             String[] command = new String[2];
             command[0] = "create";
-            command[1] = s.substring(0, s.length()-4);//MyRunnable-ben learn utan varjon genetikkodnevet ne agenst!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            command[1] = s.substring(0, s.length()-4);
             c3.addIcon(new Icon(command,s));
         }
         csLeft.addContainer(c3);
@@ -169,8 +171,8 @@ public class VirologusObserver implements Observer{
         tmp2[2]= "nukleotid";
         c2.addIcon(new Icon(tmp2,"nukleotid"));
         c2.addIcon(new Icon(tmp1,"amino"));
-        c2.addLabel(new JLabel(Integer.toString(nukNum)));
         c2.addLabel(new JLabel(Integer.toString(aminoNum)));
+        c2.addLabel(new JLabel(Integer.toString(nukNum)));
         csRight.addContainer(c2);
         csRight.draw();
         JFrame frame = MyRunnable.getFrame();

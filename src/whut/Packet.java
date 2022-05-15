@@ -14,7 +14,7 @@ public class Packet implements Serializable
 	//Konstruktor, alapbol csak a zseb meretet allitja be
 	public Packet()
 	{
-		maxPerMaterial = 500;
+		maxPerMaterial = 50;
 	}
 	
 	//Torli a listaban kapott anyagmennyiseget ezen zsebbol
@@ -144,7 +144,7 @@ public class Packet implements Serializable
 	//abban az esetben ha egy anyagnak a merete nagyobb lenne mint amennyit fel tudnunk venni azt le is kezeli
 	//Material mat - azon anyag amit fel akar venni a jatekos
 	//Packet pac - azon jatekos zsebe aki fel akarja venni az anyagot
-	public void handleMaterialSeparate(Material mat, Packet pac) 
+	public void handleMaterialSeparate(Material mat, Packet pac) //pac virologuse sajat
 	{
 		
 		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van a pac-ban
@@ -198,6 +198,8 @@ public class Packet implements Serializable
 				
 				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialNDb));
+				this.addMaterial(mat);
+				
 			}
 			//ha feltudja venni az egesz anyagot
 			else
@@ -222,6 +224,7 @@ public class Packet implements Serializable
 				
 				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialADb));
+				this.addMaterial(mat);
 			}
 			//ha feltudja venni az egesz anyagot
 			else
@@ -260,7 +263,17 @@ public class Packet implements Serializable
 	//MAterial mat - azon anyag amit a zsebhez adunk
 	public void addMaterial(Material mat)
 	{
-		this.materials.add(mat);
+		System.out.println(mat.getValue()+"aaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		if(mat.isSame(new Aminosav())) {
+			Material materialAm=new Aminosav();
+			materialAm.setValue(mat.getValue());
+			this.materials.add(materialAm);		
+		}else{
+			Material materialNuk=new Nukleotid();
+			materialNuk.setValue(mat.getValue());
+			this.materials.add(materialNuk);	
+		}
 	}
 	
 	public int getMaxMaterial() {
