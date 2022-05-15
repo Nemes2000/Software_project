@@ -44,7 +44,17 @@ public class Game extends View implements Serializable {
 	}
 	
 	public void BearAll() {
+		System.out.print("vklnnroebrne........");
+		boolean vanJozan = false;
+		for (Entity e : entity) {
+			Virologus v = (Virologus)e;
+			if (!v.isBear()) vanJozan = true;
+		}
 		
+		if(!vanJozan) {
+			megy = false;
+			((GameObserver)observer.get(0)).drawEnd("Everybody lost!");
+		}
 	}
 	
 	public void createGame() {
@@ -153,7 +163,7 @@ public class Game extends View implements Serializable {
 		
 		if(nem) {
 			MyRunnable.log("You won :)!");
-			((GameObserver)observer.get(0)).drawEnd();
+			((GameObserver)observer.get(0)).drawEnd("You won!");
 			megy = false;
 			
 		}

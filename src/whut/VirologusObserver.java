@@ -153,10 +153,17 @@ public class VirologusObserver implements Observer{
         for(Item i : items){
             is.add(i.toString());
         }
-        drawRight(ss, is, nukNum,  aminoNum);
+        
+        ArrayList<Agens> agensesOn = v.getAgensOnMe();
+        ArrayList<String> aos = new ArrayList<String>();
+        for(Agens a : agensesOn){
+            aos.add(a.toString());
+        }
+        
+        drawRight(ss, is, aos, nukNum,  aminoNum);
     }
     
-    public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){    	
+    public void drawRight(ArrayList<String> ss, ArrayList<String> is, ArrayList<String> aos, int nukNum, int aminoNum){    	
         csRight = new ContainerSuper("V"+ MyRunnable.getVirologusSzam(v) +"player's stats:");
         
         Container c1 = new Container("Items:");
@@ -181,6 +188,15 @@ public class VirologusObserver implements Observer{
         c2.addLabel(new JLabel(Integer.toString(aminoNum)));
         c2.addLabel(new JLabel(Integer.toString(nukNum)));
         csRight.addContainer(c2);
+        
+        Container c3 = new Container("UnderEffect:");
+        for(String s : aos){
+            String[] command = new String[1];
+            command[0] = "idle";
+            c3.addIcon(new Icon(command,s));
+        }
+        csRight.addContainer(c3);
+        
         csRight.draw();
         JFrame frame = MyRunnable.getFrame();
         frame.add(csRight, BorderLayout.EAST);

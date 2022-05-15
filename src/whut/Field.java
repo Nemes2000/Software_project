@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Field extends View implements Serializable
 {
-	private ArrayList<AgensUsable> au; // A mezőn található entity-k
+	protected ArrayList<AgensUsable> au; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
 
 	

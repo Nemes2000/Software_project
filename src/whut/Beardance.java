@@ -1,6 +1,7 @@
 package whut;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Beardance extends Agens{
 	
@@ -10,8 +11,22 @@ public class Beardance extends Agens{
 	@Override
 	public boolean startTurnEffect(AgensUsable v) {
 		infectAll(v.getField().getVirologusok(),v);
-		if(v.getField().getNeighbourhood().size() > 0)
-			v.move(v.getField().getNeighbourhood().get(0));
+		
+		/*Field all;
+		ArrayList<Field> osszesSzomszed = new ArrayList<Field>();
+		int randomSzomsz;
+		Random rand = new Random();
+		all = v.getField();
+		osszesSzomszed = all.getNeighbourhood();
+		randomSzomsz = rand.nextInt(osszesSzomszed.size());
+		v.move(osszesSzomszed.get(randomSzomsz));*/
+		
+		if (v.getField().getNeighbourhood().size() > 3) {
+			v.move(v.getField().getNeighbourhood().get(2));
+		} 
+		else v.move(v.getField().getNeighbourhood().get(0));
+		//if(v.getField().getNeighbourhood().size() > 0)
+		//	v.move(v.getField().getNeighbourhood().get(0));
 		infectAll(v.getField().getVirologusok(),v);		
 		return false;
 	}

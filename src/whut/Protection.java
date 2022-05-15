@@ -13,7 +13,7 @@ public class Protection extends Agens{
 	//Mindenképp igazzal tér vissza, jelezve hogy még az adott körben mozoghat.
 	public boolean startTurnEffect(AgensUsable au) {
 		//csï¿½kkenti a hatï¿½sidï¿½t, ï¿½s ha lejï¿½rt, akkor kitï¿½rli a virolï¿½gustï¿½l
-		if(--effectTime < 0) {
+		if(effectTime < 0) {
 			au.removeAgensOnMe(this);
 		}
 		

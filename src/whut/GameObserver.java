@@ -48,6 +48,7 @@ public class GameObserver implements Observer{
 		System.out.print("DRAWGAMEHIVODIK");
 		frame.getContentPane().removeAll();
 		frame.repaint();
+		
 		frame.add(new JLabel(new ImageIcon("iitlogo")));
 		
 		blc = new ButtonListContainer();
@@ -88,13 +89,13 @@ public class GameObserver implements Observer{
 		frame.revalidate();
 	}
 	
-	public void drawEnd() {
+	public void drawEnd(String msg) {
 		frame.dispose();
 		frame = new JFrame();
 		JButton b = new JButton("Back to menu");
 		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});
 		
-		frame.add(new JLabel("                      You won!"), BorderLayout.CENTER);
+		frame.add(new JLabel("                      "+msg), BorderLayout.CENTER);
 		frame.add(b, BorderLayout.SOUTH);
 		
 		MyRunnable.setFrame(frame);

@@ -168,6 +168,8 @@ public class Virologus extends AgensUsable {
 				if (!medve)
 					addAgensOnMe(ag);
 				if (ag.Check("Beardance")) {
+					MyRunnable.setSelected(null);
+					MyRunnable.setTouched(false);
 					String[] command = new String[1];
 					command[0] = "finishturn";
 					MyRunnable.getGame().BearAll();
@@ -191,6 +193,15 @@ public class Virologus extends AgensUsable {
 		if (!killed) {
 			MyRunnable.log("You need an axe");
 		}
+	}
+	
+	public boolean isBear() {
+		boolean medve = false;
+		for (Agens ag2 : agensOnMe) {
+			if(ag2.Check("Beardance"))
+				medve = true;
+		}
+		return medve;
 	}
 	
 	public void die() {

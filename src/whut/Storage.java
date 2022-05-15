@@ -19,6 +19,16 @@ public class Storage extends Field
 
 	}
 	
+	@Override
+	public void accept(Entity e) {
+		Virologus ag = (Virologus)e;
+		au.add(ag);
+		ag.setField(this);
+		
+		ag.destroyMaterial(packet);
+		
+	}
+	
 	public void setPacket(Packet p) {
 		packet = p;
 		MyRunnable.getGame().myNotify();
