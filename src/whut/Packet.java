@@ -25,6 +25,22 @@ public class Packet implements Serializable
 		//le masoljuk a zseb tartalmat, hogy ha nem tudnank levonni akkor semmisse tudjuk tenni a muveletet
 		ArrayList<Material> decreas = materials;
 		
+		
+	        ArrayList<String> ss = new ArrayList<String>();
+	        int nukNum = 0;
+	        int aminoNum = 0;
+	        for(Material m : mats){
+	            if(m.isSame(new Nukleotid())){
+	            	nukNum+= m.getValue();
+	                System.out.print(m.getValue());
+	            }else{
+	            	aminoNum+=m.getValue();
+	                System.out.print(m.getValue());
+	            }
+	            ss.add(m.toString());
+	       	}
+		System.out.println("decrease DDDDDDDDDDDDD"+nukNum+"amino:"+aminoNum);
+		
 		//addig megyunk amig az egyik lista ki nem urul
 		//ha a mats urul ki akkor meg van a kello anyag mennyiseg
 		//ha a decreas urul ki akkor pedig nincs elegendo anyagunk

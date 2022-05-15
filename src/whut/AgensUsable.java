@@ -76,6 +76,21 @@ public class AgensUsable extends Entity{
 			if(geneticCode.get(i).Check(mit)) {
 				geneticCode.get(i).createAgens(this);
 				created = true;
+				geneticCode.remove(i);
+				switch(mit) {
+				case "protection":
+					geneticCode.add(new ProtectionCode());
+					break;
+				case "vitusdance":
+					geneticCode.add(new VitusdanceCode());
+					break;
+				case "stun":
+					geneticCode.add(new StunCode());
+					break;
+				case "forget":
+					geneticCode.add(new ForgetCode());
+					break;
+				}
 			}
 			i++;
 		}
