@@ -37,10 +37,12 @@ public class TouchContainer extends JPanel {
 	class itemActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String valami=cb.getSelectedItem().toString();
-			String sub = valami.substring(1);
-			MyRunnable.setSelected((Virologus)MyRunnable.getGame().getEntityAt(Integer.parseInt(sub))); //szep.
-			MyRunnable.getGame().myNotify();
+			if(MyRunnable.getTouched()) {
+				String valami=cb.getSelectedItem().toString();
+				String sub = valami.substring(1);
+				MyRunnable.setSelected((Virologus)MyRunnable.getGame().getEntityAt(Integer.parseInt(sub)-1)); //szep.
+				MyRunnable.getGame().myNotify();
+			}
 		}
 	}
 	
@@ -61,8 +63,9 @@ public class TouchContainer extends JPanel {
 				String[] command = new String[1];
 				command[0] = "touch";
 				MyRunnable.setTouched(true);
+				System.out.println(MyRunnable.getTouched());
 				MyRunnable.getInputFirstAct(command);
-				//MyRunnable.getGame().myNotify();
+				MyRunnable.getGame().myNotify();
 				
 			}
 			

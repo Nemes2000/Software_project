@@ -14,7 +14,7 @@ public class GameObserver implements Observer{
 	private Game game;
 	private ButtonListContainer blc = new ButtonListContainer();
 	private MoveContainer mc= new MoveContainer();
-	private TouchContainer tc= new TouchContainer();
+	private TouchContainer tc;
 	private JFrame frame;
 	
 	public GameObserver(Game g) {
@@ -67,12 +67,17 @@ public class GameObserver implements Observer{
 			fields.add("f"+MyRunnable.getFieldSzam(f));
 		}
 		
-		JPanel p=new JPanel(new FlowLayout());
+		JPanel p = new JPanel(new FlowLayout());
 		p.setBackground(Color.ORANGE);
 		
 		
 		mc = new MoveContainer(fields);
-		tc = new TouchContainer();		 
+		
+		if(!MyRunnable.getTouched())
+			tc = new TouchContainer();
+		else
+			frame.remove(tc);
+		
 		mc.setBackground(Color.ORANGE);
 		tc.setBackground(Color.ORANGE);
 		p.add(mc);

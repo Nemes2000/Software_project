@@ -131,7 +131,7 @@ public class VirologusObserver implements Observer{
 
 
 
-    public void updateRight(){
+    public void updateRight() {
         ArrayList<Material> ms =  v.getPacket().getMaterials();
         ArrayList<String> ss = new ArrayList<String>();
         int nukNum = 0;
@@ -154,9 +154,7 @@ public class VirologusObserver implements Observer{
     }
     
     public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){
-        Virologus selectedVir;
-        //selectedVir = ...
-        csRight = new ContainerSuper("V"+/*selectedVir.getNum()*/"player's stats:");
+        csRight = new ContainerSuper("V"+ MyRunnable.getVirologusSzam(v) +"player's stats:");
         Container c1 = new Container("Items:");
         for(String s : is){
             String[] command = new String[2];
