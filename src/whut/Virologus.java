@@ -182,6 +182,7 @@ public class Virologus extends AgensUsable {
 	}
 	
 	public void kill(Virologus v) {
+		if (v.equals(this)) return;
 		boolean killed = false;
 		for (Item i : itemHave) {
 			killed = i.killEffect(v);
