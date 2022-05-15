@@ -44,9 +44,11 @@ public class GameObserver implements Observer{
 	}
 	
 	public void drawGame() {
+		if (!game.getMegy()) return;
 		System.out.print("DRAWGAMEHIVODIK");
 		frame.getContentPane().removeAll();
 		frame.repaint();
+		frame.add(new JLabel(new ImageIcon("iitlogo")));
 		
 		blc = new ButtonListContainer();
 		blc.addButton("Save");
@@ -84,6 +86,23 @@ public class GameObserver implements Observer{
 		frame.add(blc, BorderLayout.SOUTH);
 		frame.add(p, BorderLayout.NORTH);
 		frame.revalidate();
+	}
+	
+	public void drawEnd() {
+		frame.dispose();
+		frame = new JFrame();
+		JButton b = new JButton("Back to menu");
+		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});
+		
+		frame.add(new JLabel("                      You won!"), BorderLayout.CENTER);
+		frame.add(b, BorderLayout.SOUTH);
+		
+		MyRunnable.setFrame(frame);
+		//frame.revalidate();
+		frame.setPreferredSize( new Dimension(200, 200));
+		frame.pack();
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 
 }

@@ -7,7 +7,9 @@ public class Virologus extends AgensUsable {
 	public Virologus() {
 		VirologusObserver virologusObs=new VirologusObserver(this);
 		this.attach(virologusObs);
-	
+		Aminosav a = new Aminosav();
+		a.setValue(25);
+		materialPacket.addMaterial(a);
 		
 	}
 	
@@ -71,7 +73,7 @@ public class Virologus extends AgensUsable {
 		}
 		if (canSteal) {
 			Packet p = v.getPacket();		
-			p.handleMaterialSeparate(mit, p);
+			materialPacket.handleMaterialSeparate(mit, p);
 			ArrayList<Material> temp = new ArrayList<Material>();
 			temp.add(mit);
 			getPacket().decreaseMaterial(temp);
@@ -127,6 +129,7 @@ public class Virologus extends AgensUsable {
 	@Override
 	public void uRAttacked(Agens ag, Virologus v) {
 		MyRunnable.log(ag.toString() + " was used against v" + MyRunnable.getVirologusSzam(this));
+		//agens.remove(ag);
 		
 		if (v == this) {
 			addAgensOnMe(ag);
@@ -157,7 +160,19 @@ public class Virologus extends AgensUsable {
 			}
 				//ha vissza sem keni, akkor hozz�adja a rajt l�v� �gensekhez
 			if(!fireBacked) {
-				addAgensOnMe(ag);
+				boolean medve = false;
+				for (Agens ag2 : agensOnMe) {
+					if(ag2.Check("Beardance"))
+						medve = true;
+				}
+				if (!medve)
+					addAgensOnMe(ag);
+				if (ag.Check("Beardance")) {
+					String[] command = new String[1];
+					command[0] = "finishturn";
+					MyRunnable.getGame().BearAll();
+					MyRunnable.getInputFirstAct(command);
+				}
 				MyRunnable.log("v" + MyRunnable.getVirologusSzam(this)+" is now under " + ag.toString() + " effect");
 			}
 			}
@@ -199,10 +214,8 @@ public class Virologus extends AgensUsable {
 	
 	@Override
 	public void step() {
-		MyRunnable.setCurrentVirologus(this);
-		if(roundDesc()) {
-			//MyRunnable.getInputFirstAct();
-		}
+		//MyRunnable.setCurrentVirologus(this);
+		
 		MyRunnable.getGame().endGame(geneticCode);
 	}
 	

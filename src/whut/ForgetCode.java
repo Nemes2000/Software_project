@@ -31,4 +31,5 @@ public class ForgetCode extends GeneticCode
 	public String toString() {
 		return "forgetcode";
 	}
+	
 }

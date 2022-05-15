@@ -7,7 +7,7 @@ public class Cloak extends Item{
 	public boolean canCastEffect() {
 		Random random = new Random();
 		int n = random.nextInt(1000);
-		if (n <= 1000) return false;
+		if (n <= 823) return false;
 		return true;
 	}
 	

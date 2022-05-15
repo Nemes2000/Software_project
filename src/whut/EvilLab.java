@@ -9,7 +9,8 @@ public class EvilLab extends Lab
 	
 	public EvilLab()
 	{
-		super();
+		
+		super(new StunCode());
 	}
  
 	//Létrehoz egy medvetánc ágenst, és megtámadja vele a virológust, ezzel „megfertõzve” õt.

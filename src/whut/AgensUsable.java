@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class AgensUsable extends Entity{
 	
-	private ArrayList<Agens> agens = new ArrayList<Agens>();
+	protected ArrayList<Agens> agens = new ArrayList<Agens>();
 	protected ArrayList<Agens> agensOnMe = new ArrayList<Agens>();
 	protected ArrayList<GeneticCode> geneticCode = new ArrayList<GeneticCode>();
 	protected Packet materialPacket = new Packet();
@@ -61,6 +61,10 @@ public class AgensUsable extends Entity{
 	
 	//megtanul egy genetikk�dot
 	public void learnGeneticCode(GeneticCode gc) {
+		for (GeneticCode gc2 : geneticCode){
+			if (gc2.Check(gc.toString().substring(0, gc.toString().length()-4)))
+				return;
+		}
 		geneticCode.add(gc);
 	}
 	

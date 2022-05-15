@@ -9,6 +9,7 @@ public class Game extends View implements Serializable {
 	ArrayList<GeneticCode> allGeneticCode;
 	ArrayList<? extends AgensUsable> au;
 	private int players;
+	private boolean megy = true;
 	
 	public Entity getEntityAt(int index) {
 		if(index<entity.size()&&index>=0) {
@@ -42,6 +43,10 @@ public class Game extends View implements Serializable {
 		//MyRunnable.getInputFirstAct();
 	}
 	
+	public void BearAll() {
+		
+	}
+	
 	public void createGame() {
 		MyRunnable.setLeft(49);
 		Random r = new Random();
@@ -49,7 +54,7 @@ public class Game extends View implements Serializable {
 			entity.add(new Virologus());
 		int items = 0;
 		int anyagok = 0;
-		int genetic = 1;
+		int genetic = 2;
 		int fields = 5;
 		for(int i = 0; i < fields; i++) {
 			
@@ -70,8 +75,8 @@ public class Game extends View implements Serializable {
 			}
 			else if(i%5 == 2) {
 				map.addField(new Shelter());
-				/*
-				if(items%4 == 0)
+				
+				/*if(items%4 == 0)
 					map.getField(i).addItem(new Cloak());
 				else if(items%4 == 1)
 					map.getField(i).addItem(new Glove());
@@ -79,8 +84,8 @@ public class Game extends View implements Serializable {
 					map.getField(i).addItem(new Sack());
 				else 
 					map.getField(i).addItem(new Axe());
-				items++;
-				*/
+				items++;*/
+				
 				map.getField(i).addItem(new Cloak());
 				map.getField(i).addItem(new Glove());
 				map.getField(i).addItem(new Sack());
@@ -94,13 +99,27 @@ public class Game extends View implements Serializable {
 					map.getField(i).getPacket().addMaterial(new Nukleotid());
 				}
 			}
-			else
+			else {
 				map.addField(new EvilLab());
+				
+			}
 			
 			map.getField(0).setNeighbour(map.getField(i));
 		}
 	
 		//map.getField(0).setNeighbour(map.getField(0));
+		/*
+		map.addField(new Lab());
+		map.getField(0).setGeneticCode(new ForgetCode());
+		map.addField(new Lab());
+		map.getField(1).setGeneticCode(new ProtectionCode());
+		map.addField(new Lab());
+		map.getField(2).setGeneticCode(new VitusdanceCode());
+		map.addField(new Lab());
+		map.getField(3).setGeneticCode(new StunCode());
+		for(int i =1; i < 4; i++) {
+			map.getField(0).setNeighbour(map.getField(i));
+		}*/
 		
 		for(int i = 0; i < entity.size(); i++)
 			//map.getField(i % map.getSize()).accept(entity.get(i));
@@ -132,10 +151,20 @@ public class Game extends View implements Serializable {
 			if(!megvannak[i])
 				nem = false;
 		
-		if(nem)
+		if(nem) {
 			MyRunnable.log("You won :)!");
+			((GameObserver)observer.get(0)).drawEnd();
+			megy = false;
+			
+		}
 		
 	}
+	
+	public boolean getMegy() {
+		return megy;
+	}
+	
+	
 	public void run() {
 		boolean megy = true;
 		while(megy) {

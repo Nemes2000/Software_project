@@ -3,7 +3,7 @@ package whut;
 import java.util.ArrayList;
 
 public class View {
-	ArrayList<Observer> observer = new ArrayList<>();
+	protected ArrayList<Observer> observer = new ArrayList<>();
 	
 	public void myNotify() {
 		for(Observer os : observer)

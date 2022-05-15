@@ -810,6 +810,7 @@ public class MyRunnable {
 				case "learn":
 					if (readed.length == 1) {
 						learn();
+						currentVirologus.step();
 					}
 					else 
 						log("Bad parameter!");
