@@ -57,6 +57,8 @@ public class Game extends View implements Serializable {
 		}
 	}
 	public void mapThird(){
+		for(int i = 0; i < players; i++)
+			entity.add(new Virologus());
 		map.addField(new Field());
 		map.addField(new Lab());
 		map.getField(1).setGeneticCode(new VitusdanceCode());
@@ -112,6 +114,8 @@ public class Game extends View implements Serializable {
 		map.getField(14).setNeighbour(map.getField(15));
 		map.getField(15).setNeighbour(map.getField(3));
 		map.getField(14).setNeighbour(map.getField(3));
+		for(int i = 0; i < entity.size(); i++)
+			map.getField(i % map.getSize()).accept(entity.get(i));
 	}
 
 
