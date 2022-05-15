@@ -42,7 +42,6 @@ public class GameObserver implements Observer{
 	
 	public void drawGame() {
 		if (!game.getMegy()) return;
-		System.out.print("DRAWGAMEHIVODIK");
 		frame.getContentPane().removeAll();
 		frame.repaint();
 		

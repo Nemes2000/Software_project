@@ -80,7 +80,7 @@ public class Menu extends JPanel implements Serializable{
 			JFrame parentFrame = new JFrame();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
 			chooser.setFileFilter(filter);
-			chooser.setCurrentDirectory( new File("C:\\Users"));
+			chooser.setCurrentDirectory( new File("C:\\"));
 			chooser.setDialogTitle("Specify a file to load");   
 			userSelection = chooser.showSaveDialog(parentFrame);
 			
