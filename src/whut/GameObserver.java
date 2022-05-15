@@ -1,9 +1,6 @@
 package whut;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -64,11 +61,13 @@ public class GameObserver implements Observer{
 		for (Field f : fs) {
 			fields.add("f"+MyRunnable.getFieldSzam(f));
 		}
-		
+
+
+
 		JPanel p = new JPanel(new FlowLayout());
 		p.setBackground(Color.ORANGE);
-		
-		
+
+
 		mc = new MoveContainer(fields);
 		
 		System.out.println(MyRunnable.getTouched());
@@ -104,5 +103,7 @@ public class GameObserver implements Observer{
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
+
+
 
 }

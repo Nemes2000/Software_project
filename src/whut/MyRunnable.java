@@ -1,11 +1,12 @@
 package whut;
 
+import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 //Ez a f� oszt�ly ez kezeli a tesztesetek �s a j�t�kok ind�t�s�t
 public class MyRunnable {
@@ -988,5 +989,14 @@ public class MyRunnable {
 	
 	public static Virologus getCurrentVir() {
 		return currentVirologus;
+	}
+
+
+	public static void addLogo(JPanel panel){
+		ImageIcon i = new ImageIcon("iitlogo.png");
+
+		JLabel l = new JLabel();
+		l.setIcon(i);
+		panel.add(l);
 	}
 }
