@@ -15,7 +15,7 @@ public class ContainerSuper extends JPanel {
     public void addContainer(Container container){
         containers.add(container);
     }
-
+////
     public void draw(){
         this.removeAll();
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
