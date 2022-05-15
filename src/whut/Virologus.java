@@ -154,7 +154,7 @@ public class Virologus extends AgensUsable {
 			if(!isProtected) {
 				boolean fireBacked = false;
 				//for(Item it: itemHave){
-				for(int i=0; i < itemHave.size(); i++) {
+				for(int i=itemHave.size()-1; i>=0; i--) {
 					if(itemHave.get(i).fireBackEffect(v, this, ag)) {
 						fireBacked=true;
 					}
