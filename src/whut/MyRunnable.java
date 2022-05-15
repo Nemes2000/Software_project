@@ -993,8 +993,8 @@ public class MyRunnable {
 
 
 	public static void addLogo(JPanel panel){
+		panel.setBackground(Color.CYAN);
 		ImageIcon i = new ImageIcon("iitlogo.png");
-
 		JLabel l = new JLabel();
 		l.setIcon(i);
 		panel.add(l);

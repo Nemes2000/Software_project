@@ -28,9 +28,9 @@ public class GameObserver implements Observer{
 	
 	public void setFrame() {
 		frame.setPreferredSize( new Dimension(1000, 600));
-		frame.getContentPane().setBackground(Color.ORANGE);
+		frame.getContentPane().setBackground(Color.GREEN);
 		//update();
-		blc.setBackground(Color.ORANGE);
+		blc.setBackground(Color.PINK);
 		MyRunnable.setFrame(frame);
 	//	MyRunnable.getCurrentVir().myNotify();
 	//	MyRunnable.getCurrentVir().getField().myNotify();
@@ -65,7 +65,7 @@ public class GameObserver implements Observer{
 
 
 		JPanel p = new JPanel(new FlowLayout());
-		p.setBackground(Color.ORANGE);
+		p.setBackground(Color.PINK);
 
 
 		mc = new MoveContainer(fields);
@@ -77,8 +77,8 @@ public class GameObserver implements Observer{
 			MyRunnable.getCurrentVir().getField().myNotify();
 		}
 		
-		mc.setBackground(Color.ORANGE);
-		tc.setBackground(Color.ORANGE);
+		mc.setBackground(Color.BLUE);
+		tc.setBackground(Color.YELLOW);
 		p.add(new JLabel("Remaining steps: "+Integer.toString(MyRunnable.getLeft())+"            "));
 		p.add(mc);
 		p.add(tc);
