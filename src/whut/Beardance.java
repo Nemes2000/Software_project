@@ -41,11 +41,11 @@ public class Beardance extends Agens{
 	//Csinál egy Beardance ágenst, amit odaad a paraméterül kapott virológusnak. 
 	//Ezután a lista elem virológust a viselõ virológus nevében a csinált ágenssel megtámadja.
 	public void infectAll(ArrayList<AgensUsable> vs, AgensUsable a) {
-		for(AgensUsable vc : vs) {
-			if(!vc.equals(a)) {
+		for(int i = vs.size()-1; i >= 0; i--) {
+			if(!vs.get(i).equals(a)) {
 				Beardance b = new Beardance();
 				a.addAgens(b);
-				Virologus v = (Virologus)vc;
+				Virologus v = (Virologus)vs.get(i);
 				//vc.uRAttacked(b,v);
 				a.useAgens(v, b);
 			}

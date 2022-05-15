@@ -1,5 +1,6 @@
 package whut;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
@@ -33,11 +34,14 @@ public class Container extends JPanel {
     {
 
     	this.removeAll();
-        MyRunnable.addLogo(this);
+        //MyRunnable.addLogo(this);
     	JPanel c1=new JPanel(new FlowLayout());
     	JPanel c2=new JPanel(new FlowLayout());
     	JPanel c3=new JPanel(new FlowLayout());
-
+    	this.setBackground(Color.CYAN);
+    	c1.setBackground(Color.MAGENTA);
+    	c2.setBackground(Color.WHITE);
+    	c3.setBackground(Color.CYAN);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         c1.add(new JLabel(containerText));
         //utolso, max 5 icont felrakja

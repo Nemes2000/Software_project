@@ -32,65 +32,81 @@ public class Packet implements Serializable
 	        for(Material m : mats){
 	            if(m.isSame(new Nukleotid())){
 	            	nukNum+= m.getValue();
-	                System.out.print(m.getValue());
+	                //System.out.print(m.getValue());
 	            }else{
 	            	aminoNum+=m.getValue();
-	                System.out.print(m.getValue());
+	                //System.out.print(m.getValue());
 	            }
 	            ss.add(m.toString());
 	       	}
-		System.out.println("decrease DDDDDDDDDDDDD"+nukNum+"amino:"+aminoNum);
+		//System.out.println("decrease DDDDDDDDDDDDD"+nukNum+"amino:"+aminoNum);
 		
 		//addig megyunk amig az egyik lista ki nem urul
 		//ha a mats urul ki akkor meg van a kello anyag mennyiseg
 		//ha a decreas urul ki akkor pedig nincs elegendo anyagunk
 		while((mats.size() > 0) && (decreas.size() > 0)) {
 
-			int i = 0;
+			//int i = 0;
 			//vegig megyünk a kapott anyag listan
-			while(i < mats.size()) {
-				int j = 0;
+			//while(i < mats.size()) {
+			for(int i = mats.size()-1; i >= 0; i--) {
+				//int j = 0;
+				System.out.println("kulsoooooooooooooo");
 				//vegig megyunk a sajat listank masolatan
-				while(j < decreas.size()) {
+				//while(j < decreas.size()) {
+				for(int j = decreas.size()-1; j >= 0; j--) {
+					System.out.println(i+ "   size:" +mats.size());
+					System.out.println(j+ "   size:" +decreas.size());
 					//ha azonos tipusu anyagot talaltunk akkor tehetunk valamit
 					if(mats.get(i).isSame(decreas.get(j)))
 					{
 						//ha ezen zseb eppen soron levo anyaganak mennyisegbol kevesebb van mint amennyi kellene
 						if(decreas.get(j).getValue() - mats.get(i).getValue() <= 0) 
 						{
+							System.out.println("elvileg nincs eleg");
+							//return false;
 							mats.get(i).setValue(mats.get(i).getValue()-decreas.get(j).getValue());
 							
 							//toroljuk a zsebunkben levo anyagot mert elfogyott
-							decreas.remove(j--);
+							decreas.remove(j);
+							//j--;
 						}
 						
 						//ha elegendo van
 						else
 						{
 							decreas.get(j).setValue(decreas.get(j).getValue()-mats.get(i).getValue());
-							
+							System.out.println("levonom");
 							//toroljuk a kapott listabol az anyagot mert le lett vonva
 							mats.get(i).setValue(0);
+							System.out.println("levonom2");
 						}
 					}
-					j++;
+					//j++;
 				}
 				//ha le tudtuk vonni ezen zsebbol a kapott listabeli anyagot, akkor a kapott lista anyagat is toroljuk a levonando anyagok kozul
 				if(mats.get(i).getValue() == 0) {
+					System.out.println("levonom3");
 					mats.remove(i);
+					System.out.println("levonom4");
 				}
-				else
-					i++;
+				i--;
+				//else
+					//i++;
 			}
 		}
+		
 		
 		//megnezzuk hogy a legvegen maradt-e anyag a kapott listaban
 		if(mats.size()==0) {
 			materials = decreas;
+			System.out.println("true");
 			return true;
 		}
-		else
+		else {
+			System.out.println("false");
 			return false;
+		}
 	}
 	
 	//megvaltoztatjuk a maximum tarolhato anyagmennyiseget anyagonkont
@@ -279,7 +295,7 @@ public class Packet implements Serializable
 	//MAterial mat - azon anyag amit a zsebhez adunk
 	public void addMaterial(Material mat)
 	{
-		System.out.println(mat.getValue()+"aaaaaaaaaaaaaaaaaaaaaaaaa");
+		//System.out.println(mat.getValue()+"aaaaaaaaaaaaaaaaaaaaaaaaa");
 		
 		if(mat.isSame(new Aminosav())) {
 			Material materialAm=new Aminosav();

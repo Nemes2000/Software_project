@@ -7,9 +7,9 @@ public class Virologus extends AgensUsable {
 	public Virologus() {
 		VirologusObserver virologusObs=new VirologusObserver(this);
 		this.attach(virologusObs);
-		Aminosav a = new Aminosav();
-		a.setValue(25);
-		materialPacket.addMaterial(a);
+		//Aminosav a = new Aminosav();
+		//a.setValue(25);
+		//materialPacket.addMaterial(a);
 		
 	}
 	

@@ -44,7 +44,7 @@ public class Game extends View implements Serializable {
 	}
 	
 	public void BearAll() {
-		System.out.print("vklnnroebrne........");
+		//System.out.print("vklnnroebrne........");
 		boolean vanJozan = false;
 		for (Entity e : entity) {
 			Virologus v = (Virologus)e;
@@ -199,8 +199,7 @@ public class Game extends View implements Serializable {
 		
 		Random select= new Random();
         int kor=select.nextInt(3);
-        System.out.println(kor);
-        kor = 1;
+        //System.out.println(kor);
         if(kor==0) mapFirst();
         if (kor==1) mapSecond();
         if (kor==2) mapThird();

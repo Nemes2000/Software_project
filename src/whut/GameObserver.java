@@ -70,16 +70,16 @@ public class GameObserver implements Observer{
 
 		mc = new MoveContainer(fields);
 		
-		System.out.println(MyRunnable.getTouched());
+		//System.out.println(MyRunnable.getTouched());
 		if(!MyRunnable.getTouched())
 			tc = new TouchContainer();
 		else {
 			MyRunnable.getCurrentVir().getField().myNotify();
 		}
 		
-		mc.setBackground(Color.BLUE);
-		tc.setBackground(Color.YELLOW);
-		p.add(new JLabel("Remaining steps: "+Integer.toString(MyRunnable.getLeft())+"            "));
+		mc.setBackground(Color.PINK);
+		tc.setBackground(Color.PINK);
+		p.add(new JLabel("Remaining steps: "+Integer.toString(MyRunnable.getLeft())+"            "+"You are on: f"+MyRunnable.getFieldSzam(MyRunnable.getCurrentVir().getField())));
 		p.add(mc);
 		p.add(tc);
 		frame.add(blc, BorderLayout.SOUTH);
@@ -90,10 +90,10 @@ public class GameObserver implements Observer{
 	public void drawEnd(String msg) {
 		frame.dispose();
 		frame = new JFrame();
-		ImageIcon i = new ImageIcon("goldi.png");
-		JLabel l = new JLabel();
-		l.setIcon(i);
-		frame.add(l, BorderLayout.NORTH);
+		//ImageIcon i = new ImageIcon("goldi.png");
+		//JLabel l = new JLabel();
+		//l.setIcon(i);
+		//frame.add(l, BorderLayout.NORTH);
 
 		JButton b = new JButton("Back to menu");
 		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});

@@ -57,7 +57,7 @@ public class TouchContainer extends JPanel {
 				for (AgensUsable a : vs) {
 					Virologus v = (Virologus)a;
 					players.add("v"+MyRunnable.getVirologusSzam(v));
-					System.out.println("v"+MyRunnable.getVirologusSzam(v));
+					//System.out.println("v"+MyRunnable.getVirologusSzam(v));
 				}
 				for (String player : players)
 					cb.addItem(player);

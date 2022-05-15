@@ -1,5 +1,6 @@
 package whut;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ public class ButtonListContainer extends JPanel {
 	
 	public ButtonListContainer() {
 		this.setLayout(new FlowLayout());
-		
+		this.setBackground(Color.PINK);
 	}
 	public void clearButtons() {
 		buttons.clear();

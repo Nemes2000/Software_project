@@ -15,6 +15,10 @@ public abstract class GeneticCode implements Serializable{
 		Material amc=new Aminosav();
 		amc.setValue(1);
 		cost.add(amc);
+		
+		Material nuk=new Nukleotid();
+		nuk.setValue(1);
+		cost.add(nuk);
 		Random rand = new Random();
 		//maximum ket anyagba kerülhet
 		/*

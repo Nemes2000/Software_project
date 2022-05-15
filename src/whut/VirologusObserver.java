@@ -52,10 +52,10 @@ public class VirologusObserver implements Observer{
         for(Material m : ms){
             if(m.isSame(new Nukleotid())){
             	nukNum+= m.getValue();
-                System.out.print(m.getValue());
+                //System.out.print(m.getValue());
             }else{
             	aminoNum+=m.getValue();
-                System.out.print(m.getValue());
+                //System.out.print(m.getValue());
             }
             ss.add(m.toString());
        	}

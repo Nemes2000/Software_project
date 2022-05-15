@@ -17,9 +17,9 @@ public class ProtectionCode extends GeneticCode
 	public void createAgens(AgensUsable au)
 	{
 		//ha ki tudta "fizetni" az �gens haszn�l� az �gens l�trehoz�s d�j�t, akkor kap egyet
-		ArrayList<Material> matlist=new ArrayList<Material>();
-		matlist = (ArrayList<Material>)cost.clone();
-		if(au.getPacket().decreaseMaterial(matlist))
+		//ArrayList<Material> matlist=new ArrayList<Material>();
+		//matlist = (ArrayList<Material>)cost.clone();
+		if(au.getPacket().decreaseMaterial(this.cost))
 			au.addAgens(new Protection());
 		else
 			MyRunnable.log("Not enough aminosav,nukleotid to create protection");
