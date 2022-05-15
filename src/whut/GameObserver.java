@@ -90,6 +90,11 @@ public class GameObserver implements Observer{
 	public void drawEnd() {
 		frame.dispose();
 		frame = new JFrame();
+		ImageIcon i = new ImageIcon("goldi.png");
+		JLabel l = new JLabel();
+		l.setIcon(i);
+		frame.add(l);
+
 		JButton b = new JButton("Back to menu");
 		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});
 		
