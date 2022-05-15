@@ -31,7 +31,9 @@ public class Container extends JPanel {
 
     public void draw()
     {
+
     	this.removeAll();
+        MyRunnable.addLogo(this);
     	JPanel c1=new JPanel(new FlowLayout());
     	JPanel c2=new JPanel(new FlowLayout());
     	JPanel c3=new JPanel(new FlowLayout());

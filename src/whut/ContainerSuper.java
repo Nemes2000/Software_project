@@ -1,5 +1,6 @@
 package whut;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -17,8 +18,11 @@ public class ContainerSuper extends JPanel {
     }
 ////
     public void draw(){
+
         this.removeAll();
+
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        MyRunnable.addLogo(this);
         this.add(new JLabel(containerSuperText));
         for(Container c : containers){
             this.add(c);

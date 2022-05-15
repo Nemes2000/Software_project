@@ -1,9 +1,6 @@
 package whut;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -31,9 +28,9 @@ public class GameObserver implements Observer{
 	
 	public void setFrame() {
 		frame.setPreferredSize( new Dimension(1000, 600));
-		frame.getContentPane().setBackground(Color.ORANGE);
+		frame.getContentPane().setBackground(Color.GREEN);
 		//update();
-		blc.setBackground(Color.ORANGE);
+		blc.setBackground(Color.PINK);
 		MyRunnable.setFrame(frame);
 	//	MyRunnable.getCurrentVir().myNotify();
 	//	MyRunnable.getCurrentVir().getField().myNotify();
@@ -65,11 +62,13 @@ public class GameObserver implements Observer{
 		for (Field f : fs) {
 			fields.add("f"+MyRunnable.getFieldSzam(f));
 		}
-		
+
+
+
 		JPanel p = new JPanel(new FlowLayout());
-		p.setBackground(Color.ORANGE);
-		
-		
+		p.setBackground(Color.PINK);
+
+
 		mc = new MoveContainer(fields);
 		
 		System.out.println(MyRunnable.getTouched());
@@ -79,8 +78,8 @@ public class GameObserver implements Observer{
 			MyRunnable.getCurrentVir().getField().myNotify();
 		}
 		
-		mc.setBackground(Color.ORANGE);
-		tc.setBackground(Color.ORANGE);
+		mc.setBackground(Color.BLUE);
+		tc.setBackground(Color.YELLOW);
 		p.add(new JLabel("Remaining steps: "+Integer.toString(MyRunnable.getLeft())+"            "));
 		p.add(mc);
 		p.add(tc);
@@ -92,6 +91,11 @@ public class GameObserver implements Observer{
 	public void drawEnd(String msg) {
 		frame.dispose();
 		frame = new JFrame();
+		ImageIcon i = new ImageIcon("goldi.png");
+		JLabel l = new JLabel();
+		l.setIcon(i);
+		frame.add(l);
+
 		JButton b = new JButton("Back to menu");
 		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});
 		
@@ -105,5 +109,7 @@ public class GameObserver implements Observer{
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
+
+
 
 }

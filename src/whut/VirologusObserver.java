@@ -87,7 +87,7 @@ public class VirologusObserver implements Observer{
                 String[] commando = new String[2];
                 commando[0]="kill";
                 commando[1]= "v"+ MyRunnable.getVirologusSzam(MyRunnable.getSelected());
-                c1.addIcon(new Icon(commando,s));
+                c1.addIcon(new Icon(commando,"kill"));
             }
         }
         csLeft.addContainer(c1);
