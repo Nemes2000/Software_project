@@ -59,8 +59,6 @@ public class Virologus extends AgensUsable {
 			}
 		} else
 			MyRunnable.log("The item was not stolen");
-		MyRunnable.getGame().myNotify();
-		
 	}
 	
 	//ellen�rzi, hogy lehet-e t�le anyagot lopni, �s ha igen, akkor v�grehajtja a lop�st
@@ -80,7 +78,6 @@ public class Virologus extends AgensUsable {
 			MyRunnable.log(mit.toString()+"was stolen");
 		} else
 			MyRunnable.log("This material was not stolen");
-		MyRunnable.getGame().myNotify();
 	}
 	
 	//lecser�l egy t�rgyat a n�la l�v� t�rgyak k�z�l
@@ -117,15 +114,12 @@ public class Virologus extends AgensUsable {
 			addItem(mire);
 		}
 		field.removeItem(mire);
-		MyRunnable.getGame().myNotify();
-		
 	}
 	
 	//egy t�rgyat otthagy ahol van
 	public void leaveItem(Item mit) {
 		field.addItem(mit);
 		removeItem(mit);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	
@@ -182,7 +176,6 @@ public class Virologus extends AgensUsable {
 		if (!killed) {
 			MyRunnable.log("You need an axe");
 		}
-		MyRunnable.getGame().myNotify();
 	}
 	
 	public void die() {
@@ -192,7 +185,6 @@ public class Virologus extends AgensUsable {
 	
 	public void touch() {
 		field.touching(this);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	@Override
@@ -212,7 +204,6 @@ public class Virologus extends AgensUsable {
 			//MyRunnable.getInputFirstAct();
 		}
 		MyRunnable.getGame().endGame(geneticCode);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	public ArrayList<Item> getItemHave(){

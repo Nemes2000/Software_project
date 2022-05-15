@@ -741,6 +741,19 @@ public class MyRunnable {
 				case "idle":
 					steps++;
 					break;
+				case "create":
+					if(steps > 0) {
+						int elozo = currentVirologus.getAgensHave().size() ;
+						if (readed.length == 2)
+							currentVirologus.createAgens(readed[1]);
+						else 
+							log("Bad parameter! rossz");
+						if(currentVirologus.getAgensHave().size() == elozo)
+							log("");
+						else
+							log("v"+getVirologusSzam(currentVirologus)+" created a "+readed[1]);
+					}
+					break;
 				case "info":
 					justinfo++;
 					getInfo();
@@ -815,6 +828,7 @@ public class MyRunnable {
 			selectedVirologus = null;
 			touched = false;
 			justinfo--;
+			game.myNotify();
 		}
 	}
 	

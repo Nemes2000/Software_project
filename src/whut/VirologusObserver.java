@@ -51,8 +51,10 @@ public class VirologusObserver implements Observer{
         for(Material m : ms){
             if(m.isSame(new Nukleotid())){
                 nukNum+= m.getValue();
+                System.out.print(m.getValue());
             }else{
                 aminoNum+=m.getValue();
+                System.out.print(m.getValue());
             }
             ss.add(m.toString());
        	}
@@ -62,7 +64,6 @@ public class VirologusObserver implements Observer{
             as.add(a.toString());
         }
         drawLeft(is, as, gs, ss, aos, nukNum, aminoNum);
-
     }
 
 
@@ -73,12 +74,10 @@ public class VirologusObserver implements Observer{
     		frame.remove(csLeft);
     	}
         csLeft = new ContainerSuper("V"+MyRunnable.getVirologusSzam(MyRunnable.getCurrentVir())+"player in row");
-        //Virologus selectedVir;
-        //selectedVir = ...
         Container c1 = new Container("Items:");
         for(String s : is){
             String[] command = new String[2];
-            command[0] = "leaveitem";
+            command[0] = "leave";
             command[1] = s;
             c1.addIcon(new Icon(command,s));
         }
@@ -122,7 +121,6 @@ public class VirologusObserver implements Observer{
         
         csLeft.draw();
         frame.add(csLeft, BorderLayout.WEST);
-        System.out.print("DRAWWWWWWW");
     }
 
 

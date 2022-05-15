@@ -38,7 +38,6 @@ public class AgensUsable extends Entity{
 				 return false;
 			}
 		}
-		MyRunnable.getGame().myNotify();
 		return true;
 	}
 	
@@ -63,7 +62,6 @@ public class AgensUsable extends Entity{
 	//megtanul egy genetikk�dot
 	public void learnGeneticCode(GeneticCode gc) {
 		geneticCode.add(gc);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	//megk�rdezi a felhaszn�l�t melyik genetik k�dot szeretn� �genss� alak�tani �s azt megcsin�lja
@@ -80,26 +78,21 @@ public class AgensUsable extends Entity{
 		
 		if(!created)
 			MyRunnable.log("Genetic code for " + mit + " not learned yet!");
-		MyRunnable.getGame().myNotify();
 	}
 	//elfelejt minden genetikk�dot
 	public void forgetAll() {
 		geneticCode.removeAll(geneticCode);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
 	public void increaseMaterial(Packet p, Material m) {
 		p.handleMaterialSeparate(m, this.materialPacket);
-		MyRunnable.getGame().myNotify();
-		
 	}
 	
 	//ennek kene egy parameter, hogy melyik agenst hasznalja
 	public void useAgens(Virologus v, Agens ag) {
 		agens.remove(ag);
 		v.uRAttacked(ag, (Virologus)this);
-		MyRunnable.getGame().myNotify();
 	}
 	
 	public void destroyMaterial(Packet p) {
