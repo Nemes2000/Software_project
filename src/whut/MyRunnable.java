@@ -9,6 +9,13 @@ import javax.swing.JFrame;
 
 //Ez a f� oszt�ly ez kezeli a tesztesetek �s a j�t�kok ind�t�s�t
 public class MyRunnable {
+	private int thingsLeft;
+	public void setLeft(int a){thingsLeft = a;}
+	public void incrLeft(){thingsLeft++;}
+	public void decrLeft(){thingsLeft--;}
+
+
+
 	private static JFrame frame;
 	private static ArrayList<String> logFile;
 	private static boolean started = true;

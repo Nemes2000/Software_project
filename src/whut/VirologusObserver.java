@@ -80,6 +80,12 @@ public class VirologusObserver implements Observer{
             command[0] = "leave";
             command[1] = s;
             c1.addIcon(new Icon(command,s));
+
+            if(s.equals("axe")){
+                String[] commando = new String[1];
+                commando[0]="kill";
+                c1.addIcon(new Icon(commando,s));
+            }
         }
         csLeft.addContainer(c1);
         Container c2 = new Container("Agens:");
