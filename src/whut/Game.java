@@ -56,7 +56,65 @@ public class Game extends View implements Serializable {
 			((GameObserver)observer.get(0)).drawEnd("Everybody lost!");
 		}
 	}
-	
+	public void mapThird(){
+		map.addField(new Field());
+		map.addField(new Lab());
+		map.getField(1).setGeneticCode(new VitusdanceCode());
+		map.addField(new Shelter());
+		map.getField(2).addItem(new Cloak());
+		map.getField(2).addItem(new Cloak());
+		map.getField(2).addItem(new Axe());
+		map.addField(new Field());
+		map.addField(new Lab());
+		map.getField(4).setGeneticCode(new StunCode());
+		map.getField(0).setNeighbour(map.getField(1));
+		map.getField(0).setNeighbour(map.getField(3));
+		map.getField(1).setNeighbour(map.getField(3));
+		map.getField(1).setNeighbour(map.getField(2));
+		map.getField(2).setNeighbour(map.getField(4));
+		map.addField(new Lab());
+		map.getField(5).setGeneticCode(new ProtectionCode());
+		map.getField(5).setNeighbour(map.getField(0));
+		map.addField(new Lab());
+		map.getField(6).setGeneticCode(new ForgetCode());
+		map.getField(6).setNeighbour(map.getField(5));
+		map.getField(6).setNeighbour(map.getField(4));
+		map.addField(new Storage());
+		map.getField(7).getPacket().addMaterial(new Nukleotid());
+		map.getField(7).getPacket().addMaterial(new Aminosav());
+		map.getField(7).setNeighbour(map.getField(5));
+		map.getField(7).setNeighbour(map.getField(2));
+		map.getField(7).setNeighbour(map.getField(4));
+		map.addField(new Storage());
+		map.getField(8).getPacket().addMaterial(new Nukleotid());
+		map.getField(8).getPacket().addMaterial(new Aminosav());
+		map.getField(8).setNeighbour(map.getField(4));
+		map.addField(new Shelter());
+		map.getField(9).addItem(new Glove());
+		map.getField(9).addItem(new Axe());
+		map.getField(9).addItem(new Axe());
+		map.getField(9).setNeighbour(map.getField(8));
+		map.addField(new EvilLab());
+		map.getField(10).setGeneticCode(new StunCode());
+		map.getField(10).setNeighbour(map.getField(9));
+		map.getField(10).setNeighbour(map.getField(2));
+		map.getField(10).setNeighbour(map.getField(1));
+		map.getField(10).setNeighbour(map.getField(3));
+		map.addField(new Field());
+		map.addField(new Field());
+		map.addField(new Shelter());
+		map.addField(new Field());
+		map.addField(new Field());
+		map.getField(11).setNeighbour(map.getField(6));
+		map.getField(11).setNeighbour(map.getField(12));
+		map.getField(12).setNeighbour(map.getField(13));
+		map.getField(13).setNeighbour(map.getField(14));
+		map.getField(14).setNeighbour(map.getField(15));
+		map.getField(15).setNeighbour(map.getField(3));
+		map.getField(14).setNeighbour(map.getField(3));
+	}
+
+
 	public void createGame() {
 		MyRunnable.setLeft(49);
 		Random r = new Random();
