@@ -49,14 +49,13 @@ public class VirologusObserver implements Observer{
         int nukNum = 0;
         int aminoNum = 0;
         for(Material m : ms){
-            if(m.equals("nukleotid")){
-                aminoNum+= m.getValue();
+            if(m.isSame(new Nukleotid())){
+                nukNum+= m.getValue();
             }else{
-                nukNum+=m.getValue();
+                aminoNum+=m.getValue();
             }
             ss.add(m.toString());
-
-        }
+       	}
         ArrayList<Agens> agensesOn = v.getAgensOnMe();
         ArrayList<String> aos = new ArrayList<String>();
         for(Agens a : agensesOn){
@@ -135,13 +134,12 @@ public class VirologusObserver implements Observer{
         int nukNum = 0;
         int aminoNum = 0;
         for(Material m : ms){
-            if(m.equals("nukleotid")){
+        	if(m.isSame(new Nukleotid())){
                 aminoNum+= m.getValue();
             }else{
                 nukNum+=m.getValue();
             }
             ss.add(m.toString());
-
         }
         ArrayList<Item> items = v.getItemHave();
         ArrayList<String> is = new ArrayList<String>();
