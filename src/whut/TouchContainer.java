@@ -49,13 +49,14 @@ public class TouchContainer extends JPanel {
 	class touchActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("touch")) {
+			if (ae.getActionCommand().equals("touch") && !MyRunnable.getTouched()) {
 				cb.removeAllItems();
 				ArrayList<String> players = new ArrayList<String>();
 				ArrayList<AgensUsable> vs =  MyRunnable.getCurrentVir().getField().getVirologusok();
 				for (AgensUsable a : vs) {
 					Virologus v = (Virologus)a;
 					players.add("v"+MyRunnable.getVirologusSzam(v));
+					System.out.println("v"+MyRunnable.getVirologusSzam(v));
 				}
 				for (String player : players)
 					cb.addItem(player);
@@ -63,7 +64,6 @@ public class TouchContainer extends JPanel {
 				String[] command = new String[1];
 				command[0] = "touch";
 				MyRunnable.setTouched(true);
-				System.out.println(MyRunnable.getTouched());
 				MyRunnable.getInputFirstAct(command);
 				MyRunnable.getGame().myNotify();
 				

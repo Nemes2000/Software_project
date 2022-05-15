@@ -9,6 +9,7 @@ public class Shelter extends Field
 	{
 		super();
 		items = new ArrayList<Item>();
+		this.attach(new ShelterObserver(this));
 	}
 	
 	//tölri a tárgyat a shelterről
@@ -16,7 +17,7 @@ public class Shelter extends Field
 	public void removeItem(Item i)
 	{
 		items.remove(i);
-		MyRunnable.getGame().myNotify();
+		//MyRunnable.getGame().myNotify();
 	}
 	
 	//hozzáadja a tárgyat a shelterhez

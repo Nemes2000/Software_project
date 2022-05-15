@@ -8,7 +8,10 @@ import javax.swing.JLabel;
 
 public class StorageObserver implements Observer {
     private Storage storage;
-    public void setStorage(Storage s){storage=s;}
+    public StorageObserver(Storage s){
+    	storage=s;
+    }
+    
     private ContainerSuper cs;
 
     @Override
@@ -18,10 +21,10 @@ public class StorageObserver implements Observer {
         int nukNum = 0;
         int aminoNum = 0;
        for(Material m : ms){
-            if(m.equals("nukleotid")){
-                aminoNum+= m.getValue();
+            if(m.isSame(new Nukleotid())){
+                nukNum+= m.getValue();
             }else{
-                nukNum+=m.getValue();
+                aminoNum+=m.getValue();
             }
             ss.add(m.toString());
        }
@@ -33,12 +36,14 @@ public class StorageObserver implements Observer {
         String[] tmp1 = new String[2];
         String[] tmp2 = new String[2];
         tmp1[0]= tmp2[0]="collect";
-        tmp1[1] = "amino";
-        tmp2[1]= "nukleotid";
-        container.addIcon(new Icon(tmp1,"amino"));
-        container.addIcon(new Icon(tmp2,"nukleotid"));
+        tmp1[1] = "nukleotid";
+        tmp2[1]= "amino";
+        container.addIcon(new Icon(tmp1,"nukleotid"));
+        container.addIcon(new Icon(tmp2,"amino"));
         container.add(new JLabel(Integer.toString(nukNum)));
         container.add(new JLabel(Integer.toString(aminoNum)));
+        container.addLabel(new JLabel(Integer.toString(nukNum)));
+        container.addLabel(new JLabel(Integer.toString(aminoNum)));
         cs.addContainer(container);
         cs.draw();
         JFrame frame = MyRunnable.getFrame();

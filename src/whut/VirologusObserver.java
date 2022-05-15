@@ -21,7 +21,6 @@ public class VirologusObserver implements Observer{
 	public void update() {
     	if(v.equals(MyRunnable.getCurrentVir())) {
     		updateLeft();
-    		
     	}
     	if(v.equals(MyRunnable.getSelected())) {
     		updateRight();
@@ -90,7 +89,7 @@ public class VirologusObserver implements Observer{
             String[] command = new String[3];
             command[0] = "useagens";
             command[1] = s;
-            //command[2] = v+selecetedVir.getNum()
+            command[2] = "v"+MyRunnable.getVirologusSzam(MyRunnable.getSelected());
             c2.addIcon(new Icon(command,s));
         }
         csLeft.addContainer(c2);
@@ -99,7 +98,7 @@ public class VirologusObserver implements Observer{
         for(String s : gs){
             String[] command = new String[2];
             command[0] = "create";
-            command[1] = s;//MyRunnable-ben learn utan varjon genetikkodnevet ne agenst!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            command[1] = s.substring(0, s.length()-4);//MyRunnable-ben learn utan varjon genetikkodnevet ne agenst!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             c3.addIcon(new Icon(command,s));
         }
         csLeft.addContainer(c3);
@@ -108,7 +107,6 @@ public class VirologusObserver implements Observer{
         String[] tmp1 = new String[1];
         String[] tmp2 = new String[1];
         tmp1[0]=tmp2[0]="idle"; //kell idle parancs ami nem csinál semmit, vagy disableelni kell ezt a buttont
-        nukNum=5;
         c4.addLabel(new JLabel(Integer.toString(nukNum)));
         c4.addLabel(new JLabel(Integer.toString(aminoNum)));
         c4.addIcon(new Icon(tmp2,"nukleotid"));
@@ -153,23 +151,26 @@ public class VirologusObserver implements Observer{
         drawRight(ss, is, nukNum,  aminoNum);
     }
     
-    public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){
+    public void drawRight(ArrayList<String> ss, ArrayList<String> is,int nukNum, int aminoNum){    	
         csRight = new ContainerSuper("V"+ MyRunnable.getVirologusSzam(v) +"player's stats:");
+        
         Container c1 = new Container("Items:");
         for(String s : is){
-            String[] command = new String[2];
+            String[] command = new String[3];
             command[0] = "stealitem";
-            command[1] = s;
+            command[1] = "v"+MyRunnable.getVirologusSzam(v);
+            command[2] = s;
             c1.addIcon(new Icon(command,s));
         }
         csRight.addContainer(c1);
 
         Container c2 = new Container("Material:");
-        String[] tmp1 = new String[2];
-        String[] tmp2 = new String[2];
+        String[] tmp1 = new String[3];
+        String[] tmp2 = new String[3];
         tmp1[0]= tmp2[0]="stealmaterial";
-        tmp1[1] = "amino";
-        tmp2[1]= "nukleotid";
+        tmp1[1] = tmp2[1] = "v"+ MyRunnable.getVirologusSzam(v);
+        tmp1[2] = "amino";
+        tmp2[2]= "nukleotid";
         c2.addIcon(new Icon(tmp2,"nukleotid"));
         c2.addIcon(new Icon(tmp1,"amino"));
         c2.addLabel(new JLabel(Integer.toString(nukNum)));

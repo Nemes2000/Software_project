@@ -39,19 +39,16 @@ public class GameObserver implements Observer{
 	//	MyRunnable.getCurrentVir().myNotify();
 	//	MyRunnable.getCurrentVir().getField().myNotify();
 		
-		
-		
-		frame.pack();
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.pack();
 	}
 	
 	public void drawGame() {
 		System.out.print("DRAWGAMEHIVODIK");
 		frame.getContentPane().removeAll();
+		frame.repaint();
 		
-		
-		setFrame();
 		blc = new ButtonListContainer();
 		blc.addButton("Save");
 		blc.addButton("New Game");
@@ -73,10 +70,11 @@ public class GameObserver implements Observer{
 		
 		mc = new MoveContainer(fields);
 		
+		System.out.println(MyRunnable.getTouched());
 		if(!MyRunnable.getTouched())
 			tc = new TouchContainer();
 		else
-			frame.remove(tc);
+			MyRunnable.getCurrentVir().getField().myNotify();
 		
 		mc.setBackground(Color.ORANGE);
 		tc.setBackground(Color.ORANGE);

@@ -9,9 +9,8 @@ public class Entity extends View implements Serializable{
 	public void step() {}
 	
 	public void move(Field cel) {
-		cel.accept(this);
 		field.remove(this);
-		//MyRunnable.getGame().myNotify();
+		cel.accept(this);
 	}
 	
 	public Field getField() {

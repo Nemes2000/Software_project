@@ -45,8 +45,9 @@ public class Field extends View implements Serializable
 	
 	//szomszédos mezők beállítása
 	public void setNeighbour(Field f){
+		if(!f.equals(this)) {
 		neighbor.add(f);
-		//f.addNeighbour(this);
+		f.addNeighbour(this);}
 		//skeletonnál még kézzel
 	}
 	

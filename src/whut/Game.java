@@ -49,7 +49,7 @@ public class Game extends View implements Serializable {
 		int items = 0;
 		int anyagok = 0;
 		int genetic = 0;
-		int fields = r.nextInt(10) + 1;
+		int fields = 5;
 		for(int i = 0; i < fields; i++) {
 			
 			if(i % 5 == 0)
@@ -92,7 +92,7 @@ public class Game extends View implements Serializable {
 			map.getField(0).setNeighbour(map.getField(i));
 		}
 	
-		map.getField(1).setNeighbour(map.getField(0));
+		//map.getField(0).setNeighbour(map.getField(0));
 		
 		for(int i = 0; i < entity.size(); i++)
 			//map.getField(i % map.getSize()).accept(entity.get(i));

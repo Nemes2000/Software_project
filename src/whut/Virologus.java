@@ -168,7 +168,6 @@ public class Virologus extends AgensUsable {
 			}
 			}
 		}
-		MyRunnable.getGame().myNotify();
 	}
 	
 	public void kill(Virologus v) {

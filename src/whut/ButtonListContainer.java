@@ -36,8 +36,15 @@ public class ButtonListContainer extends JPanel {
 	class ButtonActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-			if (ae.getActionCommand().equals("Save")) {}
-			if (ae.getActionCommand().equals("New Game")) {}
+			if (ae.getActionCommand().equals("Save")) {
+				
+			}
+			if (ae.getActionCommand().equals("New Game")) {
+				MyRunnable.setSelected(null);
+				MyRunnable.setTouched(false);
+				MyRunnable.getFrame().dispose();
+				Menu.drawMenu();
+			}
 			if (ae.getActionCommand().equals("Finishturn")) {
 				MyRunnable.setSelected(null);
 				MyRunnable.setTouched(false);

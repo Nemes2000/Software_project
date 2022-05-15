@@ -10,7 +10,9 @@ public class ShelterObserver implements Observer{
     private ContainerSuper cs;
 
     private Shelter shelter;
-    public void setShelter(Shelter s){shelter = s;}
+    public ShelterObserver(Shelter s){
+    	shelter = s;
+    }
 
 
     @Override

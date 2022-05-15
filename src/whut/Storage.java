@@ -9,6 +9,7 @@ public class Storage extends Field
 	{
 		super();
 		packet = new Packet();
+		this.attach(new StorageObserver(this));
 	}
 	
 	

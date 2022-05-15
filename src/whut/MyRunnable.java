@@ -632,6 +632,9 @@ public class MyRunnable {
 					game = new Game();
 					start();
 					break;*/
+				case "idle":
+					steps++;
+					break;
 				case "info":
 					steps++;
 					getInfo();
@@ -735,6 +738,9 @@ public class MyRunnable {
 					game = new Game();
 					start();
 					break;*/
+				case "idle":
+					steps++;
+					break;
 				case "info":
 					justinfo++;
 					getInfo();
@@ -806,6 +812,8 @@ public class MyRunnable {
 					log("Bad parameter!");
 					break;
 			}
+			selectedVirologus = null;
+			touched = false;
 			justinfo--;
 		}
 	}
