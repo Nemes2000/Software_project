@@ -43,6 +43,7 @@ public class Game extends View implements Serializable {
 	}
 	
 	public void createGame() {
+		MyRunnable.setLeft(2);
 		Random r = new Random();
 		for(int i = 0; i < players; i++)
 			entity.add(new Virologus());
@@ -69,6 +70,7 @@ public class Game extends View implements Serializable {
 			}
 			else if(i%5 == 2) {
 				map.addField(new Shelter());
+				/*
 				if(items%4 == 0)
 					map.getField(i).addItem(new Cloak());
 				else if(items%4 == 1)
@@ -78,6 +80,12 @@ public class Game extends View implements Serializable {
 				else 
 					map.getField(i).addItem(new Axe());
 				items++;
+				*/
+				map.getField(i).addItem(new Cloak());
+				map.getField(i).addItem(new Glove());
+				map.getField(i).addItem(new Sack());
+				map.getField(i).addItem(new Axe());
+				items+=4;
 			}
 			else if(i%5 == 3) {
 				map.addField(new Storage());
