@@ -46,6 +46,7 @@ public class ButtonListContainer extends JPanel {
 				Menu.drawMenu();
 			}
 			if (ae.getActionCommand().equals("Finishturn")) {
+				MyRunnable.setLeft(3);
 				MyRunnable.setSelected(null);
 				MyRunnable.setTouched(false);
 				String[] command = new String[1];

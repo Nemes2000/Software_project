@@ -49,6 +49,7 @@ public class TouchContainer extends JPanel {
 	class touchActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ae) {
+
 			if (ae.getActionCommand().equals("touch") && !MyRunnable.getTouched()) {
 				cb.removeAllItems();
 				ArrayList<String> players = new ArrayList<String>();

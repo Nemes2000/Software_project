@@ -6,8 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GameObserver implements Observer{
 	
@@ -78,6 +77,7 @@ public class GameObserver implements Observer{
 		
 		mc.setBackground(Color.ORANGE);
 		tc.setBackground(Color.ORANGE);
+		p.add(new JLabel("Remaining steps: "+Integer.toString(MyRunnable.getLeft())+"            "));
 		p.add(mc);
 		p.add(tc);
 		frame.add(blc, BorderLayout.SOUTH);

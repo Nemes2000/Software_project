@@ -9,11 +9,12 @@ import javax.swing.JFrame;
 
 //Ez a f� oszt�ly ez kezeli a tesztesetek �s a j�t�kok ind�t�s�t
 public class MyRunnable {
-	private int thingsLeft;
-	public void setLeft(int a){thingsLeft = a;}
-	public void incrLeft(){thingsLeft++;}
-	public void decrLeft(){thingsLeft--;}
+	private static int thingsLeft = 2;
+	public static void setLeft(int a){thingsLeft = a;}
+	public static void incrLeft(){thingsLeft++;}
+	public static void decrLeft(){thingsLeft--;}
 
+	public static int getLeft(){return thingsLeft;}
 
 
 	private static JFrame frame;
@@ -629,7 +630,8 @@ public class MyRunnable {
 	private static boolean tartKor;
 	public static void getInputFirstAct(String[] readed) {
 		//String[] readed;
-		steps = 2;
+		if(getLeft()<=0)return;
+		decrLeft();
 		tartKor = true;
 		//while(tartKor) {
 			//readed = read();
@@ -641,14 +643,17 @@ public class MyRunnable {
 					break;*/
 				case "idle":
 					steps++;
+					incrLeft();
 					break;
 				case "info":
 					steps++;
 					getInfo();
+					incrLeft();
 					break;
 				case "touch":
 					if(steps > 0) {
 						touch();
+						incrLeft();
 						currentVirologus.getField().touching(currentVirologus);
 					}
 					break;
@@ -706,6 +711,7 @@ public class MyRunnable {
 					log(kimenet);
 					break;
 				case "save":
+					incrLeft();
 					if (readed.length == 2) {
 						ObjectOutputStream out;
 						try {
@@ -737,6 +743,8 @@ public class MyRunnable {
 	
 	public static void getInputAfterTouch(String[] readed) {
 		int justinfo = 1;
+		if(getLeft()<=0)return;
+		decrLeft();
 		while(justinfo > 0) {
 
 			switch(readed[0]) {
@@ -747,6 +755,7 @@ public class MyRunnable {
 					break;*/
 				case "idle":
 					steps++;
+					incrLeft();
 					break;
 				case "create":
 					if(steps > 0) {
@@ -762,6 +771,7 @@ public class MyRunnable {
 					}
 					break;
 				case "info":
+					incrLeft();
 					justinfo++;
 					getInfo();
 					break;
@@ -822,7 +832,8 @@ public class MyRunnable {
 					else 
 						log("Bad parameter!");
 					break;
-				case "finishturn" : 
+				case "finishturn" :
+
 					justinfo = 0;
 					steps = 0;
 					tartKor = false;
