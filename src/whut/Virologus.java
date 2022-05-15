@@ -153,11 +153,12 @@ public class Virologus extends AgensUsable {
 			//mivel virol�gus, ez�rt v�gigmegy az itemein, hogy valamelyik visszakeni-e
 			if(!isProtected) {
 				boolean fireBacked = false;
-				for(Item it: itemHave){
-					if(it.fireBackEffect(v, this, ag)) {
+				//for(Item it: itemHave){
+				for(int i=0; i < itemHave.size(); i++) {
+					if(itemHave.get(i).fireBackEffect(v, this, ag)) {
 						fireBacked=true;
 					}
-			}
+				}
 				//ha vissza sem keni, akkor hozz�adja a rajt l�v� �gensekhez
 			if(!fireBacked) {
 				boolean medve = false;

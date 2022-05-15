@@ -12,6 +12,7 @@ public class Lab extends Field
 	public Lab(GeneticCode g)
 	{
 		geneticCode = g;
+		this.attach(new LabObserver(this));
 	}
 	
 	

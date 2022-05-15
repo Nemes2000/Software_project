@@ -199,7 +199,8 @@ public class Game extends View implements Serializable {
 		
 		Random select= new Random();
         int kor=select.nextInt(3);
-        kor=0;
+        System.out.println(kor);
+        kor = 1;
         if(kor==0) mapFirst();
         if (kor==1) mapSecond();
         if (kor==2) mapThird();
@@ -386,10 +387,14 @@ public class Game extends View implements Serializable {
 		map.addField(new Shelter());
 		map.getField(2).addItem(new Sack());
 		map.addField(new Storage());
+		map.getField(3).getPacket().addMaterial(new Aminosav());
+		map.getField(3).getPacket().addMaterial(new Nukleotid());
 		map.addField(new Shelter());
 		map.getField(4).addItem(new Axe());
 		
 		map.addField(new Storage());
+		map.getField(5).getPacket().addMaterial(new Aminosav());
+		map.getField(5).getPacket().addMaterial(new Nukleotid());
 		map.addField(new Lab());
 		map.getField(6).setGeneticCode(new ForgetCode());
 		map.addField(new Field());
@@ -402,11 +407,15 @@ public class Game extends View implements Serializable {
 		map.getField(11).addItem(new Glove());
 		map.addField(new EvilLab());
 		map.addField(new Storage());
+		map.getField(13).getPacket().addMaterial(new Aminosav());
+		map.getField(13).getPacket().addMaterial(new Nukleotid());
 		map.addField(new Shelter());
-		map.getField(11).addItem(new Glove());
+		map.getField(14).addItem(new Glove());
 		
 		map.addField(new Field());
 		map.addField(new Storage());
+		map.getField(16).getPacket().addMaterial(new Aminosav());
+		map.getField(16).getPacket().addMaterial(new Nukleotid());
 		map.addField(new Field());
 		map.addField(new Lab());
 		map.getField(18).setGeneticCode(new StunCode());
@@ -418,8 +427,12 @@ public class Game extends View implements Serializable {
 		map.addField(new Lab());
 		map.getField(21).setGeneticCode(new ForgetCode());
 		map.addField(new Storage());
+		map.getField(22).getPacket().addMaterial(new Aminosav());
+		map.getField(22).getPacket().addMaterial(new Nukleotid());
 		map.addField(new Field());
 		map.addField(new Storage());
+		map.getField(24).getPacket().addMaterial(new Aminosav());
+		map.getField(24).getPacket().addMaterial(new Nukleotid());
 		
 		map.getField(0).setNeighbour(map.getField(1));
 		map.getField(0).setNeighbour(map.getField(5));

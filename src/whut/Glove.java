@@ -11,6 +11,7 @@ public class Glove extends Item {
 			MyRunnable.log("v"+MyRunnable.getVirologusSzam(hasznalo) + " attacked back with " + a.toString());
 			tamado.uRAttacked(a, null);
 		}
+		System.out.println(usedTime+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
 		usedTime++;
 		if (usedTime >= 3) {
 			hasznalo.removeItem(this);
