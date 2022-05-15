@@ -94,7 +94,7 @@ public class GameObserver implements Observer{
 		ImageIcon i = new ImageIcon("goldi.png");
 		JLabel l = new JLabel();
 		l.setIcon(i);
-		frame.add(l);
+		frame.add(l, BorderLayout.NORTH);
 
 		JButton b = new JButton("Back to menu");
 		b.addActionListener(ae -> {MyRunnable.setSelected(null); MyRunnable.setTouched(false);frame.dispose(); Menu.drawMenu();});
