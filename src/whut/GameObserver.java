@@ -72,8 +72,9 @@ public class GameObserver implements Observer{
 		System.out.println(MyRunnable.getTouched());
 		if(!MyRunnable.getTouched())
 			tc = new TouchContainer();
-		else
+		else {
 			MyRunnable.getCurrentVir().getField().myNotify();
+		}
 		
 		mc.setBackground(Color.ORANGE);
 		tc.setBackground(Color.ORANGE);

@@ -43,13 +43,13 @@ public class Game extends View implements Serializable {
 	}
 	
 	public void createGame() {
-		MyRunnable.setLeft(2);
+		MyRunnable.setLeft(49);
 		Random r = new Random();
 		for(int i = 0; i < players; i++)
 			entity.add(new Virologus());
 		int items = 0;
 		int anyagok = 0;
-		int genetic = 0;
+		int genetic = 1;
 		int fields = 5;
 		for(int i = 0; i < fields; i++) {
 			
@@ -113,7 +113,7 @@ public class Game extends View implements Serializable {
 		for(int i = 0;i<entity.size();++i)
 		{
 			  entity.get(i).step();
-			  myNotify();
+			  //myNotify();
 		}
 	}
 	

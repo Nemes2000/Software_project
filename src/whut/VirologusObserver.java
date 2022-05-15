@@ -63,7 +63,7 @@ public class VirologusObserver implements Observer{
         ArrayList<Agens> agensesOn = v.getAgensOnMe();
         ArrayList<String> aos = new ArrayList<String>();
         for(Agens a : agensesOn){
-            as.add(a.toString());
+            aos.add(a.toString());
         }
         drawLeft(is, as, gs, ss, aos, nukNum, aminoNum);
     }
@@ -84,8 +84,9 @@ public class VirologusObserver implements Observer{
             c1.addIcon(new Icon(command,s));
 
             if(s.equals("axe")){
-                String[] commando = new String[1];
+                String[] commando = new String[2];
                 commando[0]="kill";
+                commando[1]= "v"+ MyRunnable.getVirologusSzam(MyRunnable.getSelected());
                 c1.addIcon(new Icon(commando,s));
             }
         }

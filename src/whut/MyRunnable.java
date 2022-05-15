@@ -626,7 +626,7 @@ public class MyRunnable {
 		}
 	}
 	
-	private static int steps; 
+	//private static int steps; 
 	private static boolean tartKor;
 	public static void getInputFirstAct(String[] readed) {
 		//String[] readed;
@@ -642,32 +642,32 @@ public class MyRunnable {
 					start();
 					break;*/
 				case "idle":
-					steps++;
+					//steps++;
 					incrLeft();
 					break;
 				case "info":
-					steps++;
+					//steps++;
 					getInfo();
 					incrLeft();
 					break;
 				case "touch":
-					if(steps > 0) {
+					//if(steps > 0) {
 						touch();
 						incrLeft();
 						currentVirologus.getField().touching(currentVirologus);
-					}
+					//}
 					break;
 				case "move":
-					if(steps > 0) {
+					//if(steps > 0) {
 						if (readed.length == 2) {
 							moveTo(readed[1]);
 							
 						}
 						else log("Bad parameter!");
-					}
+					//}
 					break;
 				case "create":
-					if(steps > 0) {
+					//if(steps > 0) {
 						int elozo = currentVirologus.getAgensHave().size() ;
 						if (readed.length == 2)
 							currentVirologus.createAgens(readed[1]);
@@ -677,10 +677,10 @@ public class MyRunnable {
 							log("");
 						else
 							log("v"+getVirologusSzam(currentVirologus)+" created a "+readed[1]);
-					}
+					//}
 					break;
 				case "finishturn" : 
-					steps = 0;
+					//steps = 0;
 					tartKor = false;
 					int ii;
 					for(ii = 0; currentVirologus != game.getEntity().get(ii) && ii<game.getEntity().size(); ii++);
@@ -694,9 +694,12 @@ public class MyRunnable {
 						}
 						else {
 							currentVirologus = (Virologus)game.getEntity().get(0);
-							
 							//currentVirologus.myNotify();
 						}
+					}
+					
+					if (!currentVirologus.roundDesc()) {
+						setLeft(0);
 					}
 						
 					
@@ -737,7 +740,7 @@ public class MyRunnable {
 					break;
 			}
 			game.myNotify();
-			steps--;
+			//steps--;
 		//}
 	}
 	
@@ -754,11 +757,11 @@ public class MyRunnable {
 					start();
 					break;*/
 				case "idle":
-					steps++;
+					//steps++;
 					incrLeft();
 					break;
 				case "create":
-					if(steps > 0) {
+					//if(steps > 0) {
 						int elozo = currentVirologus.getAgensHave().size() ;
 						if (readed.length == 2)
 							currentVirologus.createAgens(readed[1]);
@@ -768,7 +771,7 @@ public class MyRunnable {
 							log("");
 						else
 							log("v"+getVirologusSzam(currentVirologus)+" created a "+readed[1]);
-					}
+					//}
 					break;
 				case "info":
 					incrLeft();
@@ -835,7 +838,7 @@ public class MyRunnable {
 				case "finishturn" :
 
 					justinfo = 0;
-					steps = 0;
+					//steps = 0;
 					tartKor = false;
 					startInfo();
 					break;
