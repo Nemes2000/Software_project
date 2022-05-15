@@ -198,6 +198,96 @@ public class Game extends View implements Serializable {
 		return entity;
 	}
 	
+	public void mapSecond() {
+		for(int i = 0; i < players; i++)
+			entity.add(new Virologus());
+		map.addField(new Lab());
+		map.getField(0).setGeneticCode(new VitusdanceCode());
+		map.addField(new Field());
+		map.addField(new Shelter());
+		map.getField(2).addItem(new Sack());
+		map.addField(new Storage());
+		map.addField(new Shelter());
+		map.getField(4).addItem(new Axe());
+		
+		map.addField(new Storage());
+		map.addField(new Lab());
+		map.getField(6).setGeneticCode(new ForgetCode());
+		map.addField(new Field());
+		map.addField(new Field());
+		map.addField(new Lab());
+		map.getField(9).setGeneticCode(new ProtectionCode());
+		
+		map.addField(new Field());
+		map.addField(new Shelter());
+		map.getField(11).addItem(new Glove());
+		map.addField(new EvilLab());
+		map.addField(new Storage());
+		map.addField(new Shelter());
+		map.getField(11).addItem(new Glove());
+		
+		map.addField(new Field());
+		map.addField(new Storage());
+		map.addField(new Field());
+		map.addField(new Lab());
+		map.getField(18).setGeneticCode(new StunCode());
+		map.addField(new Shelter());
+		map.getField(19).addItem(new Cloak());
+		
+		map.addField(new Shelter());
+		map.getField(20).addItem(new Axe());
+		map.addField(new Lab());
+		map.getField(21).setGeneticCode(new ForgetCode());
+		map.addField(new Storage());
+		map.addField(new Field());
+		map.addField(new Storage());
+		
+		map.getField(0).setNeighbour(map.getField(1));
+		map.getField(0).setNeighbour(map.getField(5));
+		map.getField(1).setNeighbour(map.getField(2));
+		map.getField(1).setNeighbour(map.getField(6));
+		map.getField(2).setNeighbour(map.getField(3));
+		map.getField(2).setNeighbour(map.getField(7));
+		map.getField(3).setNeighbour(map.getField(4));
+		map.getField(3).setNeighbour(map.getField(8));
+		map.getField(4).setNeighbour(map.getField(9));
+		map.getField(5).setNeighbour(map.getField(6));
+		map.getField(5).setNeighbour(map.getField(10));
+		map.getField(6).setNeighbour(map.getField(7));
+		map.getField(6).setNeighbour(map.getField(11));
+		map.getField(7).setNeighbour(map.getField(8));
+		map.getField(7).setNeighbour(map.getField(12));
+		map.getField(8).setNeighbour(map.getField(9));
+		map.getField(8).setNeighbour(map.getField(13));
+		map.getField(9).setNeighbour(map.getField(14));
+		map.getField(10).setNeighbour(map.getField(11));
+		map.getField(10).setNeighbour(map.getField(15));
+		map.getField(11).setNeighbour(map.getField(12));
+		map.getField(11).setNeighbour(map.getField(16));
+		map.getField(12).setNeighbour(map.getField(13));
+		map.getField(12).setNeighbour(map.getField(17));
+		map.getField(13).setNeighbour(map.getField(14));
+		map.getField(13).setNeighbour(map.getField(18));
+		map.getField(14).setNeighbour(map.getField(19));
+		map.getField(15).setNeighbour(map.getField(16));
+		map.getField(15).setNeighbour(map.getField(20));
+		map.getField(16).setNeighbour(map.getField(17));
+		map.getField(16).setNeighbour(map.getField(21));
+		map.getField(17).setNeighbour(map.getField(18));
+		map.getField(17).setNeighbour(map.getField(22));
+		map.getField(18).setNeighbour(map.getField(19));
+		map.getField(18).setNeighbour(map.getField(23));
+		map.getField(19).setNeighbour(map.getField(24));
+		map.getField(20).setNeighbour(map.getField(21));
+		map.getField(21).setNeighbour(map.getField(22));
+		map.getField(22).setNeighbour(map.getField(23));
+		map.getField(23).setNeighbour(map.getField(24));
+		
+		for(int i = 0; i < entity.size(); i++)
+			map.getField(i % map.getSize()).accept(entity.get(i));
+		
+	}
+	
 }
 
 
