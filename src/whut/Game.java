@@ -120,7 +120,7 @@ public class Game extends View implements Serializable {
 
 
 	public void createGame() {
-		MyRunnable.setLeft(49);
+		MyRunnable.setLeft(2);
 		/*Random r = new Random();
 		for(int i = 0; i < players; i++)
 			entity.add(new Virologus());

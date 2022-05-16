@@ -47,11 +47,11 @@ public class Menu extends JPanel implements Serializable{
 		f.setPreferredSize( new Dimension(300, 300));
 		
 		JPanel top = new JPanel(new FlowLayout());
-		top.setBackground(Color.ORANGE);
+		top.setBackground(Color.YELLOW);
 		JPanel mid = new JPanel(new FlowLayout());
-		mid.setBackground(Color.ORANGE);
+		mid.setBackground(Color.WHITE);
 		JPanel bot = new JPanel(new FlowLayout());
-		bot.setBackground(Color.ORANGE);
+		bot.setBackground(Color.YELLOW);
 		t = new JTextField(Integer.toString(players));
 		t.setEnabled(false);
 		
