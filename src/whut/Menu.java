@@ -82,7 +82,6 @@ public class Menu extends JPanel implements Serializable{
 			chooser.setFileFilter(filter);
 			chooser.setCurrentDirectory( new File("C:\\"));
 			chooser.setDialogTitle("Specify a file to load");   
-			//userSelection = chooser.showSaveDialog(parentFrame);
 			userSelection = chooser.showOpenDialog(parentFrame);
 			
 			if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -92,13 +91,12 @@ public class Menu extends JPanel implements Serializable{
 					ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileToSave.getPath()));
 			        gg = (Game)ois.readObject();
 			        ois.close();
-			        /*f.dispose();
-			        MyRunnable.setGame(gg);
-			        gg.myNotify(); */ 
 				} 
 				catch(Exception ex) {
 				        ex.printStackTrace();
 				}
+			    createGame(); 
+			    f.dispose();
 			}
 			
 		});
