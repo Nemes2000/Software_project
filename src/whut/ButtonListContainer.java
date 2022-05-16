@@ -61,7 +61,6 @@ public class ButtonListContainer extends JPanel {
 					    try {
 				            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave.getPath()));
 				            oos.writeObject(MyRunnable.getGame());
-				            System.out.println(fileToSave.getPath());
 				            oos.close();
 				        }
 						catch(Exception ex) {
