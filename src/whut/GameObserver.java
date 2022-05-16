@@ -23,6 +23,7 @@ public class GameObserver implements Observer{
 	
 	@Override
 	public void update() {
+		setFrame();
 		drawGame();
 	}
 	

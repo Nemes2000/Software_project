@@ -54,10 +54,11 @@ public class ButtonListContainer extends JPanel {
 				chooser.setDialogTitle("Specify a file to save");   
 				int userSelection = chooser.showSaveDialog(parentFrame);
 				File fileToSave = chooser.getSelectedFile();
+				System.out.println(fileToSave.getName());
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 				    if(!fileToSave.exists()) {
 					    try {
-				            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave.getName()));
+				            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave.getPath()));
 				            oos.writeObject(MyRunnable.getGame());
 				            oos.close();
 				        }
@@ -66,7 +67,7 @@ public class ButtonListContainer extends JPanel {
 				        }
 				    }
 				    else {
-				    	JOptionPane.showConfirmDialog(null,"Van már ilyen nevü fájl!","Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE);
+				    	JOptionPane.showConfirmDialog(null,"Van mar ilyen nevu fajl!","Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE);
 				    }
 				}
 			}

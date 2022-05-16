@@ -22,8 +22,49 @@ public class Packet implements Serializable
 	//visszateresi erteke azt mondja meg, hogy sikerult-e levonni ezen zsebbol a listaban kapott anyagmennyisegeket
 	public boolean decreaseMaterial(ArrayList<Material> mats) 
 	{	
+		//System.out.println("decrease........................................");
+		int nuklevon = 0; //ennyi nukleotidot akarunk levonni
+		int aminolevon = 0; //ennyi aminosavat akarunk levonni
+		for(Material m : mats) {
+			if(m.isSame(new Nukleotid()))
+				nuklevon += m.getValue();
+			else
+				aminolevon += m.getValue();
+		}
+		
+		int nukSum = 0; //ennyi nukleotidunk van
+		int aminoSum = 0; //ennyi aminosavunk van
+		for (Material m : this.materials) {
+			if(m.isSame(new Nukleotid()))
+				nukSum += m.getValue();
+			else
+				aminoSum += m.getValue();
+		}
+		//System.out.println("nuk a fielden: "+nukSum);
+		//System.out.println("amino a fielden: "+aminoSum);
+		//System.out.println("nuk amit levonunk: "+nuklista);
+		//System.out.println("amino amit levonunk: "+aminolista);
+		
+		if (nukSum < nuklevon || aminoSum < aminolevon){
+			return false;
+		} else {
+			int nukMarad = nukSum-nuklevon; //ennyi nukleotidunk marad a levon·s ut·n
+			int aminoMarad = aminoSum-aminolevon; //ennyi aminosavunk marad a levon·s ut·n
+			materials.clear();
+			//System.out.println("nukMarad: "+nukMarad);
+			//System.out.println("aminoMarad: "+aminoMarad);
+			Aminosav a = new Aminosav();
+			a.setValue(aminoMarad);
+			materials.add(a);
+			Nukleotid n = new Nukleotid();
+			n.setValue(nukMarad);
+			materials.add(n);
+			
+			mats.clear();
+			return true;
+		}
 		//le masoljuk a zseb tartalmat, hogy ha nem tudnank levonni akkor semmisse tudjuk tenni a muveletet
-		ArrayList<Material> decreas = materials;
+		/*ArrayList<Material> decreas = materials;
 		
 		
 	        ArrayList<String> ss = new ArrayList<String>();
@@ -45,7 +86,7 @@ public class Packet implements Serializable
 		//ha a mats urul ki akkor meg van a kello anyag mennyiseg
 		//ha a decreas urul ki akkor pedig nincs elegendo anyagunk
 		while((mats.size() > 0) && (decreas.size() > 0)) {
-
+			
 			//int i = 0;
 			//vegig megy√ºnk a kapott anyag listan
 			//while(i < mats.size()) {
@@ -106,7 +147,7 @@ public class Packet implements Serializable
 		else {
 			System.out.println("false");
 			return false;
-		}
+		}*/
 	}
 	
 	//megvaltoztatjuk a maximum tarolhato anyagmennyiseget anyagonkont

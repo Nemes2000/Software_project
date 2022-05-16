@@ -200,6 +200,7 @@ public class Game extends View implements Serializable {
 		Random select= new Random();
         int kor=select.nextInt(3);
         //System.out.println(kor);
+        kor = 1;
         if(kor==0) mapFirst();
         if (kor==1) mapSecond();
         if (kor==2) mapThird();
