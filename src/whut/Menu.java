@@ -95,7 +95,8 @@ public class Menu extends JPanel implements Serializable{
 				catch(Exception ex) {
 				        ex.printStackTrace();
 				}
-			    createGame(); 
+			    MyRunnable.setGame(gg);
+				gg.myNotify();
 			    f.dispose();
 			}
 			

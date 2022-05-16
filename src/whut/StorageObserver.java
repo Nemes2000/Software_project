@@ -1,12 +1,13 @@
 package whut;
 
 import java.awt.BorderLayout;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class StorageObserver implements Observer {
+public class StorageObserver implements Observer, Serializable {
     private Storage storage;
     public StorageObserver(Storage s){
     	storage=s;

@@ -1,10 +1,11 @@
 package whut;
 
 import java.awt.BorderLayout;
+import java.io.Serializable;
 
 import javax.swing.JFrame;
 
-public class LabObserver implements Observer{
+public class LabObserver implements Observer, Serializable{
 
     private Lab lab;
     public void setLab(Lab l){lab = l;}

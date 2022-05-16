@@ -1,11 +1,12 @@
 package whut;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class GameObserver implements Observer{
+public class GameObserver implements Observer, Serializable{
 	
 	private Game game;
 	private ButtonListContainer blc = new ButtonListContainer();
@@ -46,7 +47,7 @@ public class GameObserver implements Observer{
 		frame.getContentPane().removeAll();
 		frame.repaint();
 		
-		frame.add(new JLabel(new ImageIcon("iitlogo")));
+		//frame.add(new JLabel(new ImageIcon("iitlogo")));
 		
 		blc = new ButtonListContainer();
 		blc.addButton("Save");

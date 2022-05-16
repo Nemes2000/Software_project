@@ -3,9 +3,10 @@ package whut;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Icon extends JButton {
+public class Icon extends JButton{
 
     String[] command;
 

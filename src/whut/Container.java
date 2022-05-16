@@ -2,13 +2,14 @@ package whut;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Container extends JPanel {
+public class Container extends JPanel{
     private ArrayList<Icon> icons = new ArrayList<Icon>();
     private ArrayList<JLabel> labels = new ArrayList<JLabel>();
 

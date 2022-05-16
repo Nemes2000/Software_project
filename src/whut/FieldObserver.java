@@ -1,6 +1,8 @@
 package whut;
 
-public class FieldObserver implements Observer{
+import java.io.Serializable;
+
+public class FieldObserver implements Observer, Serializable{
     public void update(){
 
     }

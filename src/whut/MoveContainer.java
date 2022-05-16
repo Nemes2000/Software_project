@@ -3,6 +3,7 @@ package whut;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -10,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MoveContainer extends JPanel {
+public class MoveContainer extends JPanel{
 	private JLabel label = new JLabel("Move to: ");
 	private JComboBox<String> cb = new JComboBox<String>();
 	private JButton button = new JButton();

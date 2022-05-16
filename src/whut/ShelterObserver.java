@@ -1,11 +1,12 @@
 package whut;
 
 import java.awt.BorderLayout;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-public class ShelterObserver implements Observer{
+public class ShelterObserver implements Observer, Serializable{
 
     private ContainerSuper cs;
 

@@ -1,13 +1,14 @@
 package whut;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ContainerSuper extends JPanel {
+public class ContainerSuper extends JPanel{
     private ArrayList<Container> containers = new ArrayList<Container>();
     private String containerSuperText = new String();
 

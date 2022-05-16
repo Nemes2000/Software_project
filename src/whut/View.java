@@ -1,8 +1,9 @@
 package whut;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class View {
+public class View implements Serializable{
 	protected ArrayList<Observer> observer = new ArrayList<>();
 	
 	public void myNotify() {

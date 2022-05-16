@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -54,12 +55,13 @@ public class ButtonListContainer extends JPanel {
 				chooser.setDialogTitle("Specify a file to save");   
 				int userSelection = chooser.showSaveDialog(parentFrame);
 				File fileToSave = chooser.getSelectedFile();
-				System.out.println(fileToSave.getName());
+				
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 				    if(!fileToSave.exists()) {
 					    try {
 				            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileToSave.getPath()));
 				            oos.writeObject(MyRunnable.getGame());
+				            System.out.println(fileToSave.getPath());
 				            oos.close();
 				        }
 						catch(Exception ex) {
