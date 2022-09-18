@@ -1,12 +1,12 @@
 # Software_project
 
-# Find the code
+## Find the code
   Go to the src/whut package.
   
-# Find the documentation
+## Find the documentation
   Go to the Whut.pdf file.
   
-# Specification
+## Specification
 
 The world of unworldly virologists
 
