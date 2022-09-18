@@ -12,8 +12,16 @@ public abstract class GeneticCode implements Serializable{
 	public GeneticCode() 
 	{
 		cost = new ArrayList<Material>();
+		Material amc=new Aminosav();
+		amc.setValue(15);
+		cost.add(amc);
+		
+		Material nuk=new Nukleotid();
+		nuk.setValue(15);
+		cost.add(nuk);
 		Random rand = new Random();
 		//maximum ket anyagba kerülhet
+		/*
 		int costDb = rand.nextInt(1);
 		for(int i = 0; i <= costDb; i++)
 		{
@@ -26,7 +34,8 @@ public abstract class GeneticCode implements Serializable{
 				mat = new Nukleotid();
 			mat.setValue(1);
 			cost.add(mat);
-		}	
+		}
+		*/	
 	}
 	
 	//ezen fuggvenyt meg kell valositania a leszarmazottaknak

@@ -14,7 +14,7 @@ public class Packet implements Serializable
 	//Konstruktor, alapbol csak a zseb meretet allitja be
 	public Packet()
 	{
-		maxPerMaterial = 500;
+		maxPerMaterial = 50;
 	}
 	
 	//Torli a listaban kapott anyagmennyiseget ezen zsebbol
@@ -22,59 +22,132 @@ public class Packet implements Serializable
 	//visszateresi erteke azt mondja meg, hogy sikerult-e levonni ezen zsebbol a listaban kapott anyagmennyisegeket
 	public boolean decreaseMaterial(ArrayList<Material> mats) 
 	{	
+		//System.out.println("decrease........................................");
+		int nuklevon = 0; //ennyi nukleotidot akarunk levonni
+		int aminolevon = 0; //ennyi aminosavat akarunk levonni
+		for(Material m : mats) {
+			if(m.isSame(new Nukleotid()))
+				nuklevon += m.getValue();
+			else
+				aminolevon += m.getValue();
+		}
+		
+		int nukSum = 0; //ennyi nukleotidunk van
+		int aminoSum = 0; //ennyi aminosavunk van
+		for (Material m : this.materials) {
+			if(m.isSame(new Nukleotid()))
+				nukSum += m.getValue();
+			else
+				aminoSum += m.getValue();
+		}
+		//System.out.println("nuk a fielden: "+nukSum);
+		//System.out.println("amino a fielden: "+aminoSum);
+		//System.out.println("nuk amit levonunk: "+nuklista);
+		//System.out.println("amino amit levonunk: "+aminolista);
+		
+		if (nukSum < nuklevon || aminoSum < aminolevon){
+			return false;
+		} else {
+			int nukMarad = nukSum-nuklevon; //ennyi nukleotidunk marad a levon·s ut·n
+			int aminoMarad = aminoSum-aminolevon; //ennyi aminosavunk marad a levon·s ut·n
+			materials.clear();
+			//System.out.println("nukMarad: "+nukMarad);
+			//System.out.println("aminoMarad: "+aminoMarad);
+			Aminosav a = new Aminosav();
+			a.setValue(aminoMarad);
+			materials.add(a);
+			Nukleotid n = new Nukleotid();
+			n.setValue(nukMarad);
+			materials.add(n);
+			
+			mats.clear();
+			return true;
+		}
 		//le masoljuk a zseb tartalmat, hogy ha nem tudnank levonni akkor semmisse tudjuk tenni a muveletet
-		ArrayList<Material> decreas = materials;
+		/*ArrayList<Material> decreas = materials;
+		
+		
+	        ArrayList<String> ss = new ArrayList<String>();
+	        int nukNum = 0;
+	        int aminoNum = 0;
+	        for(Material m : mats){
+	            if(m.isSame(new Nukleotid())){
+	            	nukNum+= m.getValue();
+	                //System.out.print(m.getValue());
+	            }else{
+	            	aminoNum+=m.getValue();
+	                //System.out.print(m.getValue());
+	            }
+	            ss.add(m.toString());
+	       	}
+		//System.out.println("decrease DDDDDDDDDDDDD"+nukNum+"amino:"+aminoNum);
 		
 		//addig megyunk amig az egyik lista ki nem urul
 		//ha a mats urul ki akkor meg van a kello anyag mennyiseg
 		//ha a decreas urul ki akkor pedig nincs elegendo anyagunk
 		while((mats.size() > 0) && (decreas.size() > 0)) {
-
-			int i = 0;
+			
+			//int i = 0;
 			//vegig megy√ºnk a kapott anyag listan
-			while(i < mats.size()) {
-				int j = 0;
+			//while(i < mats.size()) {
+			for(int i = mats.size()-1; i >= 0; i--) {
+				//int j = 0;
+				System.out.println("kulsoooooooooooooo");
 				//vegig megyunk a sajat listank masolatan
-				while(j < decreas.size()) {
+				//while(j < decreas.size()) {
+				for(int j = decreas.size()-1; j >= 0; j--) {
+					System.out.println(i+ "   size:" +mats.size());
+					System.out.println(j+ "   size:" +decreas.size());
 					//ha azonos tipusu anyagot talaltunk akkor tehetunk valamit
 					if(mats.get(i).isSame(decreas.get(j)))
 					{
 						//ha ezen zseb eppen soron levo anyaganak mennyisegbol kevesebb van mint amennyi kellene
 						if(decreas.get(j).getValue() - mats.get(i).getValue() <= 0) 
 						{
+							System.out.println("elvileg nincs eleg");
+							//return false;
 							mats.get(i).setValue(mats.get(i).getValue()-decreas.get(j).getValue());
 							
 							//toroljuk a zsebunkben levo anyagot mert elfogyott
-							decreas.remove(j--);
+							decreas.remove(j);
+							//j--;
 						}
 						
 						//ha elegendo van
 						else
 						{
 							decreas.get(j).setValue(decreas.get(j).getValue()-mats.get(i).getValue());
-							
+							System.out.println("levonom");
 							//toroljuk a kapott listabol az anyagot mert le lett vonva
 							mats.get(i).setValue(0);
+							System.out.println("levonom2");
 						}
 					}
-					j++;
+					//j++;
 				}
 				//ha le tudtuk vonni ezen zsebbol a kapott listabeli anyagot, akkor a kapott lista anyagat is toroljuk a levonando anyagok kozul
 				if(mats.get(i).getValue() == 0) {
+					System.out.println("levonom3");
 					mats.remove(i);
+					System.out.println("levonom4");
 				}
-				else
-					i++;
+				i--;
+				//else
+					//i++;
 			}
 		}
+		
 		
 		//megnezzuk hogy a legvegen maradt-e anyag a kapott listaban
 		if(mats.size()==0) {
 			materials = decreas;
+			System.out.println("true");
 			return true;
 		}
-		else
+		else {
+			System.out.println("false");
 			return false;
+		}*/
 	}
 	
 	//megvaltoztatjuk a maximum tarolhato anyagmennyiseget anyagonkont
@@ -144,7 +217,7 @@ public class Packet implements Serializable
 	//abban az esetben ha egy anyagnak a merete nagyobb lenne mint amennyit fel tudnunk venni azt le is kezeli
 	//Material mat - azon anyag amit fel akar venni a jatekos
 	//Packet pac - azon jatekos zsebe aki fel akarja venni az anyagot
-	public void handleMaterialSeparate(Material mat, Packet pac) 
+	public void handleMaterialSeparate(Material mat, Packet pac) //pac virologuse sajat
 	{
 		
 		int matsMaterialNDb = 0;  //mennyi nukleotidsavunk van a pac-ban
@@ -198,6 +271,8 @@ public class Packet implements Serializable
 				
 				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialNDb));
+				this.addMaterial(mat);
+				
 			}
 			//ha feltudja venni az egesz anyagot
 			else
@@ -222,6 +297,7 @@ public class Packet implements Serializable
 				
 				//az anyag erteket pedig lecsokkentjuk
 				mat.setValue(mat.getValue()-(maxPerMaterial-matsMaterialADb));
+				this.addMaterial(mat);
 			}
 			//ha feltudja venni az egesz anyagot
 			else
@@ -260,7 +336,17 @@ public class Packet implements Serializable
 	//MAterial mat - azon anyag amit a zsebhez adunk
 	public void addMaterial(Material mat)
 	{
-		this.materials.add(mat);
+		//System.out.println(mat.getValue()+"aaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		if(mat.isSame(new Aminosav())) {
+			Material materialAm=new Aminosav();
+			materialAm.setValue(mat.getValue());
+			this.materials.add(materialAm);		
+		}else{
+			Material materialNuk=new Nukleotid();
+			materialNuk.setValue(mat.getValue());
+			this.materials.add(materialNuk);	
+		}
 	}
 	
 	public int getMaxMaterial() {

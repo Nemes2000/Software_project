@@ -9,18 +9,29 @@ public class Storage extends Field
 	{
 		super();
 		packet = new Packet();
+		this.attach(new StorageObserver(this));
 	}
 	
 	
 	@Override
 	public void touching(Virologus v) //mező érintésekor
 	{
-		//felajánlja a játékosnak a lehetséges cselekvéseket
-		MyRunnable.getInputAfterTouch();
+
+	}
+	
+	@Override
+	public void accept(Entity e) {
+		Virologus ag = (Virologus)e;
+		au.add(ag);
+		ag.setField(this);
+		
+		ag.destroyMaterial(packet);
+		
 	}
 	
 	public void setPacket(Packet p) {
 		packet = p;
+		MyRunnable.getGame().myNotify();
 	}
 	
 	@Override
@@ -28,6 +39,7 @@ public class Storage extends Field
 		return packet;
 	}
 	
+	@Override
 	public String toString() {
 		return "storage";
 	}

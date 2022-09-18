@@ -1,1 +1,1 @@
-# Szoftproj01
+# Software_project

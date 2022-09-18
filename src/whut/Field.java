@@ -3,9 +3,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Field implements Serializable
+public class Field extends View implements Serializable
 {
-	private ArrayList<AgensUsable> au; // A mezőn található entity-k
+	protected ArrayList<AgensUsable> au; // A mezőn található entity-k
 	private ArrayList<Field> neighbor; //szomszédos mezők
 
 	
@@ -40,14 +40,19 @@ public class Field implements Serializable
 	//mező érintés esetén hívódik meg
 	public void touching(Virologus v)
 	{
-		//felsorolja a lehetséges cselekvéseket a felhasználónak
-		MyRunnable.getInputAfterTouch();
+
 	}
 	
 	//szomszédos mezők beállítása
 	public void setNeighbour(Field f){
+		if(!f.equals(this)) {
 		neighbor.add(f);
+		f.addNeighbour(this);}
 		//skeletonnál még kézzel
+	}
+	
+	public void addNeighbour(Field f) {
+		neighbor.add(f);
 	}
 	
 	//visszaadja a szomszéd mezők listáját
@@ -84,6 +89,7 @@ public class Field implements Serializable
 		MyRunnable.log("Ide nem rakhatsz!");
 	}
 	
+	@Override
 	public String toString() {
 		return "field";
 	}

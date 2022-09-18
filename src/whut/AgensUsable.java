@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class AgensUsable extends Entity{
 	
-	private ArrayList<Agens> agens = new ArrayList<Agens>();
+	protected ArrayList<Agens> agens = new ArrayList<Agens>();
 	protected ArrayList<Agens> agensOnMe = new ArrayList<Agens>();
 	protected ArrayList<GeneticCode> geneticCode = new ArrayList<GeneticCode>();
 	protected Packet materialPacket = new Packet();
@@ -34,6 +34,7 @@ public class AgensUsable extends Entity{
 		//minden startTurneffect lefut, akkor is, ha m�r volt stunnol�
 		for(int i = 0; i < agensOnMe.size(); i++){
 			if(!agensOnMe.get(i).startTurnEffect(this)) {
+				MyRunnable.getGame().myNotify();
 				 return false;
 			}
 		}
@@ -60,6 +61,10 @@ public class AgensUsable extends Entity{
 	
 	//megtanul egy genetikk�dot
 	public void learnGeneticCode(GeneticCode gc) {
+		for (GeneticCode gc2 : geneticCode){
+			if (gc2.Check(gc.toString().substring(0, gc.toString().length()-4)))
+				return;
+		}
 		geneticCode.add(gc);
 	}
 	
@@ -71,6 +76,21 @@ public class AgensUsable extends Entity{
 			if(geneticCode.get(i).Check(mit)) {
 				geneticCode.get(i).createAgens(this);
 				created = true;
+				geneticCode.remove(i);
+				switch(mit) {
+				case "protection":
+					geneticCode.add(new ProtectionCode());
+					break;
+				case "vitusdance":
+					geneticCode.add(new VitusdanceCode());
+					break;
+				case "stun":
+					geneticCode.add(new StunCode());
+					break;
+				case "forget":
+					geneticCode.add(new ForgetCode());
+					break;
+				}
 			}
 			i++;
 		}
@@ -86,14 +106,17 @@ public class AgensUsable extends Entity{
 	//elvileg ez �sszevonja a kapott packet-et a saj�tj�val?
 	public void increaseMaterial(Packet p, Material m) {
 		p.handleMaterialSeparate(m, this.materialPacket);
-		
 	}
 	
 	//ennek kene egy parameter, hogy melyik agenst hasznalja
 	public void useAgens(Virologus v, Agens ag) {
+		if (!MyRunnable.getGame().getMegy()) return;
+		MyRunnable.getGame().BearAll();
 		agens.remove(ag);
 		v.uRAttacked(ag, (Virologus)this);
+		MyRunnable.getGame().BearAll();
 	}
+	
 	public void destroyMaterial(Packet p) {
 		for(Agens a : agensOnMe) {
 			a.destroyEffect(p);
