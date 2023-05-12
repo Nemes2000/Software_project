@@ -1,6 +1,0 @@
-createfield shelter
-placevirologus f1
-add glove f1
-startgame
-touch
-pickup glove

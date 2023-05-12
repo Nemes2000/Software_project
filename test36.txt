@@ -1,9 +1,0 @@
-createfield
-placevirologus f1
-placevirologus f1
-add stun v1
-startgame
-touch
-useagens v2 stun
-touch
-stealmaterial v2 amino
